@@ -31,8 +31,8 @@ html
     - if request.subdomain.include? "beta"
       meta name="robots" content="noindex, nofollow"
       
-    - if Rails.env.production?    
-      = render 'layouts/vwo'
+    /- if Rails.env.production?    
+      /= render 'layouts/vwo'
 
   body#catarse_bootstrap[data-controller-name=controller_name data-action=action_name data-user="#{current_user.try(:to_analytics_json)}" data-referral="#{session[:referral_link]}" data-id=params[:id] data-mobile=browser.mobile?.to_s itemscope itemtype="http://schema.org/WebPage"]
     /= render 'layouts/global_alert'
@@ -45,6 +45,6 @@ html
     /page specific JS files
     = yield :js
   - if Rails.env.production?
-    = render 'layouts/hotjar'     
+    /= render 'layouts/hotjar'     
     = render_google_analytics_script
-    = render_mixpanel_script
+    /= render_mixpanel_script
