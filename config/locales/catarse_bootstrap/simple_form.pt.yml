@@ -36,6 +36,7 @@ pt:
     prompts:
       project:
         category: "Selecione uma categoria"
+        funding_type: "Selecione um modelo"
         select: "Selecione uma opção"
         traffic_sources: "Como você conheceu o Catarse?"
     hints:

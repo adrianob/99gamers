@@ -51,6 +51,10 @@ FactoryGirl.define do
     end
   end
 
+  factory :funding_type do |f|
+    f.name 'all_or_nothing'
+  end
+
   factory :category do |f|
     f.name_pt { generate(:name) }
   end
@@ -71,6 +75,7 @@ FactoryGirl.define do
     f.goal 10000
     f.online_date Time.now
     f.online_days 5
+    f.association :funding_type, factory: :funding_type
     f.more_links 'Ipsum dolor'
     f.first_contributions 'Foo bar'
     f.video_url 'http://vimeo.com/17298435'

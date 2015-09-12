@@ -24,6 +24,7 @@ class Project < ActiveRecord::Base
             :status_flag, :state_warning_template, :display_card_class, :display_errors, to: :decorator
 
   belongs_to :user
+  belongs_to :funding_type
   belongs_to :category
   has_one :project_total
   has_one :account, class_name: "ProjectAccount", inverse_of: :project
@@ -115,7 +116,7 @@ class Project < ActiveRecord::Base
 
   validates_acceptance_of :accepted_terms, on: :create
   ##validation for all states
-  validates_presence_of :name, :user, :category, :permalink
+  validates_presence_of :name, :user, :category, :permalink, :funding_type
   validates_length_of :headline, maximum: HEADLINE_MAXLENGTH
   validates_numericality_of :online_days, less_than_or_equal_to: 60, greater_than: 0,
     if: ->(p){ p.online_days.present? && ( p.online_days_was.nil? || p.online_days_was <= 60 ) }

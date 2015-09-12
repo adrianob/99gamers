@@ -1,5 +1,8 @@
 pt:
   shared:
+    all_or_nothing: 'Tudo ou nada'
+    flexible: 'Flexível'
+    recurrent: 'Recorrente'
     load_more: "Carregar mais"
     terms: termos de uso
     accept_terms_html: Eu li e estou de acordo com os %{link}.
