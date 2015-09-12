@@ -22,6 +22,7 @@ class Contribution < ActiveRecord::Base
   scope :not_anonymous, -> { where(anonymous: false) }
   scope :confirmed_last_day, -> { where("EXISTS(SELECT true FROM payments p WHERE p.contribution_id = contributions.id AND p.state = 'paid' AND (current_timestamp - p.paid_at) < '1 day'::interval)") }
   scope :can_cancel, -> { where(can_cancel: true) }
+  scope :was_confirmed, -> { where("contributions.was_confirmed") }
 
   # Contributions already refunded or with requested_refund should appear so that the user can see their status on the refunds list
   scope :can_refund, ->{ where(can_refund: true) }
@@ -36,6 +37,20 @@ class Contribution < ActiveRecord::Base
     attr_protected :state, :user_id
   rescue Exception => e
     puts "problem while using attr_protected in Contribution model:\n '#{e.message}'"
+  end
+
+  # Return contributions that need notify pending refunds without bank accounts registered
+  def self.need_notify_about_pending_refund
+    self.joins("
+      join contribution_details cd on cd.contribution_id = contributions.id
+      ").where("
+      cd.project_state = 'failed'
+      and cd.state = 'paid'
+      and lower(cd.gateway) = 'pagarme'
+      and lower(cd.payment_method) = 'boletobancario'
+      and (exists(select true from contribution_notifications un where un.contribution_id = contributions.id
+      and un.template_name = 'contribution_project_unsuccessful_slip_no_account'
+      and (current_timestamp - un.created_at) > '7 days'::interval) or not exists(select true from contribution_notifications un where un.contribution_id = contributions.id and un.template_name = 'contribution_project_unsuccessful_slip_no_account'))").uniq
   end
 
   def recommended_projects
@@ -55,9 +70,16 @@ class Contribution < ActiveRecord::Base
     @confirmed ||= Contribution.where(id: self.id).pluck('contributions.is_confirmed').first
   end
 
+  def was_confirmed?
+    @was_confirmed ||= Contribution.where(id: self.id).pluck('contributions.was_confirmed').first
+  end
+
+  def slip_payment?
+    payments.last.slip_payment?
+  end
+
   def invalid_refund
-    _user = User.find_by(email: CatarseSettings[:email_contact])
-    notify(:invalid_refund, _user, self) if _user
+    notify_to_contributor(:invalid_refund)
   end
 
   def available_rewards
@@ -69,6 +91,7 @@ class Contribution < ActiveRecord::Base
   end
 
   def notify_to_backoffice(template_name, options = {})
+    return if CatarseSettings[:email_payments].nil?
     _user = User.find_by(email: CatarseSettings[:email_payments])
     notify_once(template_name, _user, self, options) if _user
   end

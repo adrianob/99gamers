@@ -7,7 +7,6 @@ App.addChild('Project', _.extend({
   },
 
   activate: function(){
-  
     this.$warning = this.$('#project_warning_text');
     this.$embed= this.$('#project_embed');
     this.$container = $(".project-about");

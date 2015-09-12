@@ -22,8 +22,9 @@ RSpec.configure do |config|
     con = ActiveRecord::Base.connection
     con.execute "SET client_min_messages TO warning;"
     con.execute "SET timezone TO 'utc';"
+    con.execute %{SET search_path TO "$user", public, "1", "postgrest";}
     current_user = con.execute("SELECT current_user;")[0]["current_user"]
-    con.execute %{ALTER USER #{current_user} SET search_path TO "$user", public, "1";}
+    con.execute %{ALTER USER #{current_user} SET search_path TO "$user", public, "1", "postgrest";}
     DatabaseCleaner.clean_with :truncation
     I18n.locale = :pt
     I18n.default_locale = :pt
@@ -68,6 +69,7 @@ RSpec.configure do |config|
     allow_any_instance_of(UserObserver).to receive(:after_create)
     allow_any_instance_of(Project).to receive(:download_video_thumbnail)
     allow_any_instance_of(Calendar).to receive(:fetch_events_from)
+    allow_any_instance_of(Payment).to receive(:refund_queue_set).and_return(DirectRefundWorker.jobs)
     allow(Blog).to receive(:fetch_last_posts).and_return([])
 
     # Default configurations

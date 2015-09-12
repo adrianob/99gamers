@@ -26,7 +26,7 @@ class CreateNewViewProjectFinancials < ActiveRecord::Migration
       p.state
     FROM projects p
     JOIN users u ON u.id = p.user_id
-    LEFT JOIN "1".project_totals pt ON pt.project_id = p.id
+    LEFT JOIN project_totals pt ON pt.project_id = p.id
     CROSS JOIN catarse_fee_percentage cp
     CROSS JOIN catarse_base_url;
     SQL

@@ -19,9 +19,9 @@ RSpec.describe ProjectObserver do
     create(:user, email: CatarseSettings[:email_redbooth])
   end
 
-  let(:redbooth_user_atendimento) do
-    CatarseSettings[:email_redbooth_atendimento] = 'foo_atendimento@foo.com'
-    create(:user, email: CatarseSettings[:email_redbooth_atendimento])
+  let(:zendesk_user_atendimento) do
+    CatarseSettings[:email_contact] = 'foo_contato@foo.com'
+    create(:user, email: CatarseSettings[:email_contact])
   end
 
   subject{ contribution }
@@ -102,18 +102,6 @@ RSpec.describe ProjectObserver do
     it "should create notification for project owner" do
       expect(ProjectNotification.where(user_id: project.user.id, template_name: 'project_received', project_id: project.id).count).to eq 1
     end
-
-    context "after creating the project" do
-      let(:project) { build(:project) }
-
-      before do
-        expect(InactiveDraftWorker).to receive(:perform_at)
-      end
-
-      it "should call perform at in inactive draft worker" do
-        project.save
-      end
-    end
   end
 
   describe "#from_draft_to_in_analysis" do
@@ -151,7 +139,7 @@ RSpec.describe ProjectObserver do
 
   describe "#from_online_to_waiting_funds" do
     before do
-      redbooth_user_atendimento
+      zendesk_user_atendimento
       project.notify_observers(:from_online_to_waiting_funds)
     end
 
@@ -164,8 +152,8 @@ RSpec.describe ProjectObserver do
         project
       end
 
-      it "should not send redbooth_task_project_will_succeed notification" do
-        expect(ProjectNotification.where(template_name: 'redbooth_task_project_will_succeed', user: redbooth_user_atendimento, project: project).count).to eq 0
+      it "should not send project_will_succeed notification" do
+        expect(ProjectNotification.where(template_name: 'project_will_succeed', user: zendesk_user_atendimento, project: project).count).to eq 0
       end
     end
 
@@ -178,13 +166,55 @@ RSpec.describe ProjectObserver do
         project
       end
 
-      it "should send redbooth_task_project_will_succeed notification" do
-        expect(ProjectNotification.where(template_name: 'redbooth_task_project_will_succeed', user: redbooth_user_atendimento, project: project).count).to eq 1
+      it "should send project_will_succeed notification" do
+        expect(ProjectNotification.where(template_name: 'project_will_succeed', user: zendesk_user_atendimento, project: project).count).to eq 1
       end
     end
 
     it "should send project_visible notification" do
       expect(ProjectNotification.where(template_name: 'project_in_waiting_funds', user: project.user, project: project).count).to eq 1
+    end
+  end
+
+  describe "#from_online_to_failed" do
+    let(:project) do
+      create(:project, {
+        goal: 100,
+        online_date: 3.days.ago,
+        online_days: 2,
+        state: 'online'
+      })
+    end
+
+    let(:contribution_invalid) do
+      create(:confirmed_contribution, value: 10, project: project)
+    end
+
+    let(:contribution_valid) do
+      create(:confirmed_contribution, value: 10, project: project)
+    end
+
+    context "not request refund to invalid bank_account slip payment" do
+      let(:payment_valid) do
+        contribution_valid.payments.first
+      end
+
+      let(:payment_invalid) do
+        p = contribution_invalid.payments.first
+        p.update_column(:payment_method, 'BoletoBancario')
+        p
+      end
+
+      before do
+        Sidekiq::Testing.inline!
+        payment_valid
+        payment_invalid
+        contribution_invalid.user.bank_account.destroy
+        expect(DirectRefundWorker).to receive(:perform_async).with(payment_valid.id)
+        expect(DirectRefundWorker).to_not receive(:perform_async).with(payment_invalid.id)
+      end
+
+      it { project.finish }
     end
   end
 
@@ -199,22 +229,8 @@ RSpec.describe ProjectObserver do
       expect(ProjectNotification.where(template_name: 'project_success', user: project.user, project: project).count).to eq 1
     end
 
-    it "should send adm_project_deadline notification" do
-      expect(ProjectNotification.where(template_name: 'adm_project_deadline', user: admin_user, project: project).count).to eq 1
-    end
     it "should create notification for admin" do
       expect(ProjectNotification.where(template_name: 'redbooth_task', user: redbooth_user, project_id: project.id).count).not_to be_nil
-    end
-  end
-
-  describe '#from_waiting_funds_to_failed' do
-    before do
-      admin_user
-      project.notify_observers(:from_waiting_funds_to_failed)
-    end
-
-    it "should send adm_project_deadline notification" do
-      expect(ProjectNotification.where(template_name: 'adm_project_deadline', user: admin_user, project: project).count).to eq 1
     end
   end
 end

@@ -49,6 +49,70 @@ RSpec.describe User, type: :model do
 
   end
 
+  describe "#pending_refund_payments_projects" do
+    let(:user) { create(:user) }
+    let(:failed_project) { create(:project, state: 'online') }
+    let(:invalid_payment) do
+      c = create(:confirmed_contribution, project: failed_project, user: user)
+      c.payments.update_all({
+        gateway: 'Pagarme',
+        payment_method: 'BoletoBancario'})
+      c.payments.first
+    end
+
+    let(:valid_payment) do
+      c = create(:pending_refund_contribution, project: failed_project, user: user)
+      c.payments.update_all(gateway: 'Pagarme')
+      c.payments.first
+    end
+
+    subject { user.pending_refund_payments_projects }
+
+    before do
+      invalid_payment
+      valid_payment
+      failed_project.update_column(:state, 'failed')
+    end
+
+    it { is_expected.to eq([failed_project]) }
+  end
+
+  describe "#pending_refund_payments" do
+    let(:user) { create(:user) }
+    let(:failed_project) { create(:project, state: 'online') }
+    let(:invalid_payment) do
+      c = create(:confirmed_contribution, project: failed_project, user: user)
+      c.payments.update_all({
+        gateway: 'Pagarme',
+        payment_method: 'BoletoBancario'})
+      c.payments.first
+    end
+    let(:in_queue_payment) do
+      c = create(:confirmed_contribution, project: failed_project, user: user)
+      c.payments.update_all({
+        gateway: 'Pagarme',
+        payment_method: 'BoletoBancario'})
+      c.payments.first
+    end
+    let(:valid_payment) do
+      c = create(:pending_refund_contribution, project: failed_project, user: user)
+      c.payments.update_all(gateway: 'Pagarme')
+      c.payments.first
+    end
+
+    subject { user.pending_refund_payments }
+
+    before do
+      invalid_payment
+      valid_payment
+      in_queue_payment.direct_refund
+      failed_project.update_column(:state, 'failed')
+    end
+
+    it { is_expected.to eq([invalid_payment]) }
+    it { expect(in_queue_payment.already_in_refund_queue?).to eq(true) }
+  end
+
   describe ".find_active!" do
     it "should raise error when user is inactive" do
       @inactive_user = create(:user, deactivated_at: Time.now)
@@ -76,9 +140,14 @@ RSpec.describe User, type: :model do
 
     context "when he has credits in the user_total" do
       before do
-        @user_with_credits = create(:confirmed_contribution, project: failed_project).user
+        with_credit = create(:confirmed_contribution, project: failed_project)
+        with_credit.payments.first.update_attributes({gateway: 'MoIP'})
+
+        @user_with_credits = with_credit.user
         failed_project.update_attributes state: 'failed'
-        create(:confirmed_contribution, project: successful_project)
+        payment = create(:confirmed_contribution, project: successful_project).payments.first
+        payment.update_attributes({gateway: 'MoIP'})
+
         UserTotal.refresh_view
       end
       it{ is_expected.to eq([@user_with_credits]) }
@@ -87,9 +156,12 @@ RSpec.describe User, type: :model do
     context "when he has credits in the user_total but is checked with zero credits" do
       before do
         b = create(:confirmed_contribution, value: 100, project: failed_project)
+        b.payments.first.update_attributes({gateway: 'MoIP'})
         failed_project.update_attributes state: 'failed'
         @u = b.user
+
         b = create(:confirmed_contribution, value: 100, project: successful_project)
+        b.payments.first.update_attributes({gateway: 'MoIP'})
         @u.update_attributes(zero_credits: true)
         UserTotal.refresh_view
       end
@@ -109,7 +181,9 @@ RSpec.describe User, type: :model do
 
     context "when he has not used credits in the last month" do
       before do
-        @user_with_credits = create(:confirmed_contribution, project: failed_project).user
+        with_credits  = create(:confirmed_contribution, project: failed_project)
+        with_credits.payments.first.update_attributes({gateway: 'MoIP'})
+        @user_with_credits = with_credits.user
         failed_project.update_attributes state: 'failed'
         UserTotal.refresh_view
       end
@@ -346,11 +420,13 @@ RSpec.describe User, type: :model do
       is_expected.to eq({
         user_id: user.id,
         email: user.email,
+        name: user.name,
         contributions: user.total_contributed_projects,
         projects: user.projects.count,
         published_projects: user.published_projects.count,
         created: user.created_at,
         has_online_project: user.has_online_project?,
+        has_created_post: user.has_sent_notification?,
         last_login: user.last_sign_in_at,
         created_today: user.created_today?
       }.to_json)
@@ -381,33 +457,6 @@ RSpec.describe User, type: :model do
     subject{ @u.credits }
 
     it{ is_expected.to eq(50.0) }
-  end
-
-  describe "#contributor_number" do
-    let(:create_user){ create(:confirmed_contribution).user }
-    let(:connection){ ActiveRecord::Base.connection }
-
-    subject{ create_user.contributor_number }
-
-    context "when I'm the first contributor" do
-      before do
-        create(:pending_contribution) # this user should not count as contributor
-        create_user
-        connection.execute "REFRESH MATERIALIZED VIEW public.contributor_numbers"
-      end
-
-      it{ is_expected.to eq 1 }
-    end
-
-    context "when I'm the second contributor" do
-      before do
-        create(:confirmed_contribution)
-        create_user
-        connection.execute "REFRESH MATERIALIZED VIEW public.contributor_numbers"
-      end
-
-      it{ is_expected.to eq 2 }
-    end
   end
 
   describe "#update_attributes" do
@@ -525,6 +574,32 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#has_sent_notification?" do
+    subject{ user.has_sent_notification? }
+    let(:user) { create(:user) }
+
+    context "when user has sent notifications" do
+      let(:project) { create(:project, user: user, state: 'online') }
+      before do
+        create(:project_post, user: user, project: project )
+      end
+
+      it{ is_expected.to eq(true) }
+    end
+
+    context "when user has not sent notifications" do
+      before do
+        create(:project, user: user, state: 'online')
+      end
+
+      it{ is_expected.to eq(false) }
+    end
+
+    context "when user has no project" do
+      it{ is_expected.to eq(false) }
+    end
+  end
+
   describe "#has_online_project?" do
     subject{ user.has_online_project? }
     let(:user) { create(:user) }
@@ -574,6 +649,34 @@ RSpec.describe User, type: :model do
 
     context "when not following any category" do
       it { is_expected.to eq(false) }
+    end
+  end
+
+  describe "PostgREST users synchronization" do
+    it "should delete api user on user destroy" do
+      user = create(:user)
+      user.bank_account.destroy!
+      User.connection.select_all("DELETE FROM public.users WHERE email = '#{user.email}'")
+      expect(User.connection.select_all("SELECT * FROM postgrest.auth WHERE id = '#{user.email}'").count).to eq 0
+    end
+
+    it "should update api user on user update" do
+      user = create(:user)
+      user.email = 'foo@bar.com'
+      user.admin = true
+      user.save!
+      api_user = User.connection.select_all("SELECT * FROM postgrest.auth WHERE id = '#{user.id}'")[0]
+      expect(api_user["id"]).to eq user.id.to_s
+      expect(api_user["rolname"]).to eq 'admin'
+      expect(api_user["pass"].size).to eq 60
+    end
+
+    it "should create api user on user creation" do
+      user = create(:user)
+      api_user = User.connection.select_all("SELECT * FROM postgrest.auth WHERE id = '#{user.id}'")[0]
+      expect(api_user["id"]).to eq user.id.to_s
+      expect(api_user["rolname"]).to eq 'web_user'
+      expect(api_user["pass"].size).to eq 60
     end
   end
 end

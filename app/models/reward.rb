@@ -25,7 +25,8 @@ class Reward < ActiveRecord::Base
                                       FROM
                                         contributions c JOIN payments p ON p.contribution_id = c.id
                                       WHERE
-                                        p.state IN ('paid', 'pending')
+                                        (p.state = 'paid' OR
+                                        p.waiting_payment)
                                         AND reward_id = rewards.id
                                     ) < maximum_contributions)") }
   scope :sort_asc, -> { order('id ASC') }
@@ -66,7 +67,15 @@ class Reward < ActiveRecord::Base
   end
 
   def total_compromised
-    total_contributions %w(paid pending)
+    paid_count + in_time_to_confirm
+  end
+
+  def paid_count
+    pluck_from_database('paid_count')
+  end
+
+  def in_time_to_confirm
+    pluck_from_database('waiting_payment_count')
   end
 
   def remaining
@@ -83,5 +92,10 @@ class Reward < ActiveRecord::Base
 
   def expires_project_cache
     project.expires_fragments 'project-rewards'
+  end
+
+  private
+  def pluck_from_database attribute
+    Reward.where(id: self.id).pluck("rewards.#{attribute}").first
   end
 end

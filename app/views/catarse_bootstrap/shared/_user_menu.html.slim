@@ -1,4 +1,4 @@
-nav.w-dropdown-list.dropdown-list.user-menu
+nav#user-menu-dropdown.w-dropdown-list.dropdown-list.user-menu
   .w-row
     .w-col.w-col-4
       .fontweight-semibold.fontsize-smaller.u-marginbottom-10 = t('shared.menus.user.contributions_history')
@@ -21,9 +21,10 @@ nav.w-dropdown-list.dropdown-list.user-menu
           = link_to t('shared.menus.user.banking'), edit_user_path(current_user, anchor: :billing), class: 'alt-link fontsize-smaller'
     .w-col.w-col-4.w-hidden-small.w-hidden-tiny
       .fontweight-semibold.fontsize-smaller.u-marginbottom-10 = t('shared.menus.user.project_contributions')
-      - if current_user.contributed_projects.present?
+      - if current_user.contributions.was_confirmed.present?
         ul.w-list-unstyled.u-marginbottom-20
-          - current_user.contributed_projects.limit(3).each do |project|
+          - current_user.contributions.was_confirmed.ordered.limit(3).each do |contribution|
+            - project = contribution.project
             li.u-marginbottom-10
               .w-row
                 .w-col.w-col-3
@@ -45,7 +46,7 @@ nav.w-dropdown-list.dropdown-list.user-menu
                 .w-col.w-col-3
                   = image_tag project.decorate.display_image, class: 'thumb small u-radius'
                 .w-col.w-col-9
-                  = link_to truncate(project.name), edit_project_path(project, ref: 'user_menu_my_projects'), class: 'alt-link fontsize-smaller'
+                  = link_to truncate(project.name), edit_project_path(project, ref: 'user_menu_my_projects', anchor: 'home'), class: 'alt-link fontsize-smaller'
           li.u-margintop-20
             .w-row
               .w-col.w-col-6

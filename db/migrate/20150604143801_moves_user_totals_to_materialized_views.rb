@@ -1,8 +1,8 @@
 class MovesUserTotalsToMaterializedViews < ActiveRecord::Migration
   def up
     execute <<-SQL
-    DROP VIEW "1".user_totals;
-    CREATE MATERIALIZED VIEW "1".user_totals AS
+    DROP VIEW user_totals;
+    CREATE MATERIALIZED VIEW user_totals AS
       SELECT b.user_id AS id,
         b.user_id,
         count(DISTINCT b.project_id) AS total_contributed_projects,
@@ -26,8 +26,8 @@ class MovesUserTotalsToMaterializedViews < ActiveRecord::Migration
 
   def down
     execute <<-SQL
-    DROP MATERIALIZED VIEW "1".user_totals;
-    CREATE VIEW "1".user_totals AS
+    DROP MATERIALIZED VIEW user_totals;
+    CREATE VIEW user_totals AS
       SELECT b.user_id AS id,
         b.user_id,
         count(DISTINCT b.project_id) AS total_contributed_projects,

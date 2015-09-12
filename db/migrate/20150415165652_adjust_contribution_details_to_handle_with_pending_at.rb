@@ -1,8 +1,8 @@
 class AdjustContributionDetailsToHandleWithPendingAt < ActiveRecord::Migration
   def up
     execute <<-SQL
-    DROP VIEW "1".contribution_details;
-    CREATE OR REPLACE VIEW "1".contribution_details AS
+    DROP VIEW contribution_details;
+    CREATE OR REPLACE VIEW contribution_details AS
     SELECT
       pa.id,
       c.id AS contribution_id,
@@ -45,8 +45,8 @@ class AdjustContributionDetailsToHandleWithPendingAt < ActiveRecord::Migration
 
   def down
     execute <<-SQL
-    DROP VIEW "1".contribution_details;
-    CREATE OR REPLACE VIEW "1".contribution_details AS
+    DROP VIEW contribution_details;
+    CREATE OR REPLACE VIEW contribution_details AS
     SELECT
       pa.id,
       c.id AS contribution_id,

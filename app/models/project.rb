@@ -11,7 +11,6 @@ class Project < ActiveRecord::Base
   include Project::StateMachineHandler
   include Project::VideoHandler
   include Project::CustomValidators
-  include Project::RemindersHandler
   include Project::ErrorGroups
 
   has_notifications
@@ -26,6 +25,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :funding_type
   belongs_to :category
+  belongs_to :city
   has_one :project_total
   has_one :account, class_name: "ProjectAccount", inverse_of: :project
   has_many :rewards
@@ -142,6 +142,10 @@ class Project < ActiveRecord::Base
     order(sort_field)
   end
 
+  def user_already_in_reminder?(user_id)
+    notifications.where(template_name: 'reminder', user_id: user_id).present?
+  end
+
   def has_blank_service_fee?
     payments.with_state(:paid).where("NULLIF(gateway_fee, 0) IS NULL").present?
   end
@@ -160,6 +164,10 @@ class Project < ActiveRecord::Base
 
   def decorator
     @decorator ||= ProjectDecorator.new(self)
+  end
+
+  def total_reminders
+    notifications.where(template_name: 'reminder').count
   end
 
   def pledged
@@ -190,7 +198,7 @@ class Project < ActiveRecord::Base
   end
 
   def in_time_to_wait?
-    payments.with_state('pending').exists?
+    payments.waiting_payment.exists?
   end
 
   def new_draft_recipient
@@ -221,11 +229,8 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def users_in_reminder
-    reminder_jobs = Sidekiq::ScheduledSet.new.select do |job|
-      job['class'] == 'ReminderProjectWorker' && job.args[1] == self.id
-    end
-    User.where(id: reminder_jobs.map {|job| job.args[0]})
+  def delete_from_reminder_queue(user_id)
+    self.notifications.where(template_name: 'reminder', user_id: user_id).destroy_all
   end
 
   def published?

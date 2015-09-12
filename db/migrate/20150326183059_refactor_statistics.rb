@@ -2,7 +2,7 @@ class RefactorStatistics < ActiveRecord::Migration
   def up
     execute <<-SQL
       DROP VIEW statistics;
-      CREATE OR REPLACE VIEW "1".statistics AS
+      CREATE OR REPLACE VIEW statistics AS
       SELECT
         (SELECT count(*) FROM users) AS total_users,
         contributions_totals.total_contributions,
@@ -42,7 +42,7 @@ class RefactorStatistics < ActiveRecord::Migration
 
   def down
     execute <<-SQL
-      DROP VIEW "1".statistics;
+      DROP VIEW statistics;
       CREATe OR REPLACE VIEW statistics AS
       SELECT
         (SELECT count(*) FROM users) AS total_users,

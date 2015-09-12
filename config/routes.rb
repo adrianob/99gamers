@@ -20,9 +20,15 @@ Catarse::Application.routes.draw do
 
   mount CatarseMoip::Engine => "/", as: :catarse_moip
   mount CatarsePagarme::Engine => "/", as: :catarse_pagarme
-  mount CatarseApi::Engine => "/api", as: :catarse_api
  #mount CatarseWepay::Engine => "/", as: :catarse_wepay
   mount Dbhero::Engine => "/dbhero", as: :dbhero
+
+  resources :bank_accounts, except: [:destroy, :index] do
+    member do
+      get 'confirm'
+      put 'request_refund'
+    end
+  end
 
   resources :categories, only: [] do
     member do
@@ -31,6 +37,7 @@ Catarse::Application.routes.draw do
     end
   end
   resources :auto_complete_projects, only: [:index]
+  resources :auto_complete_cities, only: [:index]
   resources :projects, only: [:index, :create, :update, :edit, :new, :show] do
     resources :metrics, only: [:index], controller: "projects/metrics"
     resources :accounts, only: [:create, :update]
@@ -42,6 +49,10 @@ Catarse::Application.routes.draw do
       collection do
         get :details, to: 'projects/contribution_details#index'
         get :fallback_create, to: 'projects/contributions#create'
+      end
+      member do
+        get 'toggle_anonymous'
+        get :second_slip
       end
       put :credits_checkout, on: :member
     end
@@ -83,9 +94,12 @@ Catarse::Application.routes.draw do
   get "/start" => 'high_voltage/pages#show', id: 'start'
   get "/jobs" => 'high_voltage/pages#show', id: 'jobs'
   get "/hello" => 'high_voltage/pages#show', id: 'hello'
+  get "/press" => 'high_voltage/pages#show', id: 'press'
   get "/assets" => 'high_voltage/pages#show', id: 'assets'
   get "/guides" => 'high_voltage/pages#show', id: 'guides', as: :guides
-
+  get "/new-admin" => 'high_voltage/pages#show', id: 'new_admin'
+  get "/explore" => 'high_voltage/pages#show', id: 'explore'
+  get "/team" => 'high_voltage/pages#show', id: 'team'
 
 
   # User permalink profile
@@ -95,8 +109,6 @@ Catarse::Application.routes.draw do
 
   # Root path should be after channel constraints
   root to: 'projects#index'
-
-  get "/explore" => "explore#index", as: :explore
 
   namespace :reports do
     resources :contribution_reports_for_project_owners, only: [:index]
@@ -124,9 +136,9 @@ Catarse::Application.routes.draw do
         put 'pay'
         put 'change_reward'
         put 'refund'
-        put 'refuse'
-        put 'request_refund'
         put 'trash'
+        put 'request_refund'
+        put 'chargeback'
         put 'gateway_refund'
       end
     end
@@ -136,6 +148,7 @@ Catarse::Application.routes.draw do
       resources :contribution_reports, only: [ :index ]
     end
   end
+
 
   get "/:permalink" => "projects#show", as: :project_by_slug
 

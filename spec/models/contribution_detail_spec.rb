@@ -9,6 +9,41 @@ RSpec.describe ContributionDetail, type: :model do
     it{ should belong_to :payment }
   end
 
+  describe ".for_online_projects" do
+    let(:project) {create(:project, state:'online')}
+
+    let!(:contribution_1) do
+      p = create(:confirmed_contribution, value: 20, project: project).payments.first
+      p.update_attributes(payment_method: 'BoletoBancario', state: 'pending')
+      p.contribution.details.first
+    end
+    let!(:contribution_2) do
+      p = create(:confirmed_contribution, value: 20, project: project).payments.first
+      p.update_attributes(payment_method: 'BoletoBancario')
+      p.contribution.details.first
+    end
+    let!(:contribution_3) do
+      p = create(:confirmed_contribution, value: 20, project: project).payments.first
+      p.update_attributes(payment_method: 'CartaoDeCredito')
+      p.contribution.details.first
+    end
+    let!(:contribution_4) do
+      p = create(:confirmed_contribution, value: 20, project: project).payments.first
+      p.update_attributes(payment_method: 'CartaoDeCredito', state: 'deleted')
+      p.contribution.details.first
+    end
+
+    subject { ContributionDetail.for_online_projects }
+
+    it "should return valid contributions" do
+      expect(subject.include?(contribution_1)).to eq(true)
+      expect(subject.include?(contribution_2)).to eq(true)
+      expect(subject.include?(contribution_3)).to eq(true)
+      expect(subject.include?(contribution_4)).to eq(false)
+    end
+
+  end
+
   describe ".by_payment_id" do
     subject{ ContributionDetail.by_payment_id(search_text) }
     let(:gateway_id){ '1234' }
@@ -44,6 +79,31 @@ RSpec.describe ContributionDetail, type: :model do
       let(:search_text){ gateway_id }
       it{ is_expected.to match_array [detail] }
     end
+  end
+
+  describe ".slips_past_waiting" do
+    subject{ ContributionDetail.slips_past_waiting }
+
+    before do
+      @contribution = create(:contribution)
+      create(:payment, payment_method: 'BoletoBancario', contribution: @contribution, created_at: 6.days.ago, state: 'pending')
+      @credit_contribution = create(:pending_contribution)
+      @confirmed_contribution = create(:confirmed_contribution)
+    end
+    it{is_expected.to match_array [@contribution.details.first] }
+  end
+
+  describe ".no_confirmed_contributions_on_project" do
+    subject{ ContributionDetail.no_confirmed_contributions_on_project }
+
+    before do
+      @contribution = create(:pending_contribution)
+      # Same user has a confirmed contribution for another project
+      create(:confirmed_contribution, user: @contribution.user)
+      @confirmed_contribution = create(:confirmed_contribution)
+      create(:pending_contribution, user: @confirmed_contribution.user, project: @confirmed_contribution.project)
+    end
+    it{is_expected.to match_array [@contribution.details.first] }
   end
 
   describe ".between_values" do
@@ -182,6 +242,52 @@ RSpec.describe ContributionDetail, type: :model do
       @payment_01.paid_at.strftime("%Y-%m-%d %H:%M:%S UTC").to_time => 10,
       @payment_02.paid_at.strftime("%Y-%m-%d %H:%M:%S UTC").to_time => 30,
     })}
+  end
+
+  describe ".available_to_display" do
+    before do
+      create(:confirmed_contribution)
+      create(:deleted_contribution)
+      create(:refused_contribution)
+      create(:pending_contribution)
+      create(:pending_contribution, created_at: Time.now - 1.week)
+    end
+
+    subject{ ContributionDetail.available_to_display }
+
+    its(:count){ is_expected.to eq 2 }
+  end
+
+  describe "#full_text_index" do
+    let!(:contribution){ create(:confirmed_contribution, value: 10) }
+    let(:detail){ ContributionDetail.first }
+    subject{ detail.full_text_index }
+
+    it{ is_expected.to_not be_nil }
+  end
+
+  describe "#project_img" do
+    let!(:contribution){ create(:confirmed_contribution, value: 10) }
+    subject{ ContributionDetail.first.project_img }
+
+    before do
+      CatarseSettings[:aws_host] = 's3.aws.com'
+      CatarseSettings[:aws_bucket] = 'bucket'
+    end
+
+    it{ is_expected.to eq "https://#{CatarseSettings[:aws_host]}/#{CatarseSettings[:aws_bucket]}/uploads/project/uploaded_image/#{contribution.project.id}/project_thumb_small_testimg.png" }
+  end
+
+  describe "#user_profile_img" do
+    let!(:contribution){ create(:confirmed_contribution, value: 10) }
+    subject{ ContributionDetail.first.user_profile_img }
+
+    before do
+      CatarseSettings[:aws_host] = 's3.aws.com'
+      CatarseSettings[:aws_bucket] = 'bucket'
+    end
+
+    it{ is_expected.to eq "https://#{CatarseSettings[:aws_host]}/#{CatarseSettings[:aws_bucket]}/uploads/user/uploaded_image/#{contribution.user.id}/thumb_avatar_testimg.png" }
   end
 
   describe ".total_by_address_state" do

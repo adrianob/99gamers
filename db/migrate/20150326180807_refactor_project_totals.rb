@@ -3,7 +3,7 @@ class RefactorProjectTotals < ActiveRecord::Migration
     execute <<-SQL
       DROP VIEW IF EXISTS project_financials;
       DROP VIEW project_totals;
-      CREATE VIEW "1".project_totals AS
+      CREATE VIEW project_totals AS
       SELECT c.project_id,
         sum(p.value) AS pledged,
         sum(p.value) / projects.goal * 100::numeric AS progress,
@@ -20,7 +20,7 @@ class RefactorProjectTotals < ActiveRecord::Migration
 
   def down
     execute <<-SQL
-      DROP VIEW "1".project_totals;
+      DROP VIEW project_totals;
       CREATE VIEW project_totals AS
       SELECT contributions.project_id,
         sum(contributions.value) AS pledged,

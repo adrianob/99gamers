@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include Concerns::AnalyticsHelpersHandler
   include Pundit
   if Rails.env.production?
-    require "new_relic/agent/instrumentation/rails3/action_controller"
+    #require "new_relic/agent/instrumentation/rails3/action_controller"
     include NewRelic::Agent::Instrumentation::ControllerInstrumentation
     include NewRelic::Agent::Instrumentation::Rails3::ActionController
   end
@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  helper_method :referral_link, :render_projects, :should_show_beta_banner?, :render_feeds
+  helper_method :referral_link, :render_projects, :should_show_beta_banner?,
+    :render_feeds, :can_display_pending_refund_alert?
 
   before_filter :set_locale
 
@@ -26,6 +27,10 @@ class ApplicationController < ActionController::Base
 
   def referral_link
     session[:referral_link]
+  end
+
+  def can_display_pending_refund_alert?
+    @can_display_alert ||= (current_user && current_user.pending_refund_payments.present? && controller_name.to_sym != :bank_accounts)
   end
 
   def render_projects collection, ref, locals = {}
@@ -45,7 +50,7 @@ class ApplicationController < ActionController::Base
   end
 
   def referral_it!
-    session[:referral_link] ||= params[:ref] if params[:ref].present?
+    session[:referral_link] ||= params[:ref] || request.env["HTTP_REFERER"]
   end
 
   private

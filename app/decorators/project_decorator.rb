@@ -10,6 +10,16 @@ class ProjectDecorator < Draper::Decorator
     "#{source.state}_warning"
   end
 
+  def show_city
+    if source.city.present?
+      source.city.show_name
+    elsif source.account && source.account.address_city.present? && source.account.address_state.present?
+      "#{source.account.address_city.capitalize}, #{source.account.address_state} "
+    elsif source.user.address_city.present? && source.user.address_state.present?
+      "#{source.user.address_city.capitalize}, #{source.user.address_state} "
+    end
+  end
+
   def time_to_go
     time_and_unit = nil
     %w(day hour minute second).detect do |unit|
@@ -76,22 +86,21 @@ class ProjectDecorator < Draper::Decorator
     number_to_currency source.pledged, precision: 2
   end
 
-  def status_icon_for group_name
-    if source.errors.present?
+  def status_icon_for group_name, action_name = nil
+    if source.errors.present? && ( ['send_to_analysis', 'publish'].include? action_name )
       has_error = source.errors.any? do |error|
         source.error_included_on_group?(error, group_name)
       end
 
       if has_error
-        content_tag(:span, '', class: 'fa fa-exclamation-circle text-error')
+        content_tag(:span, '', class: 'fa fa-exclamation-circle fa-fw fa-lg text-error')
       else
-        content_tag(:span, '', class: 'fa fa-check-circle text-success') unless source.published?
+        content_tag(:span, '', class: 'fa fa-check-circle fa-fw fa-lg text-success') unless source.published?
       end
     end
   end
 
   def display_errors group_name
-    #source.valid?
     if source.errors.present?
       error_messages = ''
       source.errors.each do |error|
@@ -160,5 +169,6 @@ class ProjectDecorator < Draper::Decorator
   def time_and_unit_attributes(time, unit)
     { time: time, unit: pluralize_without_number(time, I18n.t("datetime.prompts.#{unit}").downcase) }
   end
+
 end
 

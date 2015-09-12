@@ -5,7 +5,7 @@ ruby '2.2.2'
 gem 'rails', '~> 4.1.6'
 
 #gem 'catarse_api', path: '~/code/catarse_api'
-gem 'catarse_api', github: 'catarse/catarse_api'
+#gem 'catarse_api', github: 'catarse/catarse_api'
 gem 'protected_attributes'
 gem 'rails-observers'
 gem 'rb-readline'
@@ -20,7 +20,7 @@ gem 'state_machine', require: 'state_machine/core'
 
 # Database and data related
 gem 'pg', '0.17.1'
-gem 'dbhero', '>= 1.1.6'
+gem 'dbhero', '>= 1.1.8'
 gem 'postgres-copy'
 gem 'pg_search'
 gem 'i18n_alchemy'
@@ -30,7 +30,7 @@ gem 'chartkick'
 gem 'catarse_settings_db', '>= 0.1.0'
 
 # Notifications
-gem 'user_notifier', '~> 0.0.5'
+gem 'user_notifier', '~> 0.2.0'
 
 # Mixpanel for backend tracking
 gem 'mixpanel-ruby'
@@ -38,7 +38,7 @@ gem 'mixpanel_client'
 
 # Payment engines
 gem 'catarse_moip', '~> 3.2.0'
-gem 'catarse_pagarme', '2.6.10'
+gem 'catarse_pagarme', '~> 2.7.10'
 #gem 'catarse_pagarme', path: '../catarse_pagarme'
 
 # Decorators
@@ -54,10 +54,8 @@ gem 'high_voltage'
 
 # Authentication and Authorization
 gem 'omniauth'
-gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'devise'
-gem 'ezcrypto'
 gem 'pundit'
 
 # Email marketing
@@ -153,7 +151,6 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'compass-rails'
 gem 'uglifier'
-gem 'compass-960-plugin'
 gem 'sprockets'
 
 # FIXME: Not-anymore-on-development

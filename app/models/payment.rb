@@ -1,6 +1,10 @@
 class Payment < ActiveRecord::Base
+  DUPLICATION_PERIOD = '30 minutes'
+
   include Shared::StateMachineHelpers
   include Payment::PaymentEngineHandler
+  include Payment::RequestRefundHandler
+
   delegate :user, :project, :invalid_refund, to: :contribution
 
   belongs_to :contribution
@@ -10,6 +14,11 @@ class Payment < ActiveRecord::Base
   validates_presence_of :state, :key, :gateway, :payment_method, :value, :installments
   validate :value_should_be_equal_or_greater_than_pledge
   validate :project_should_be_online, on: :create
+  validate :is_unique_within_period, on: :create
+
+  def is_unique_within_period
+    errors.add(:payment, I18n.t('activerecord.errors.models.payment.duplicate')) if exists_duplicate?
+  end
 
   def project_should_be_online
     return if project && project.online?
@@ -21,7 +30,21 @@ class Payment < ActiveRecord::Base
     self.value ||= self.contribution.try(:value)
   end
 
-  scope :can_delete, ->{ where('payments.can_delete') }
+  scope :waiting_payment, -> { where('payments.waiting_payment') }
+
+
+  def waiting_payment?
+    Payment.where(id: self.id).pluck("payments.waiting_payment").first
+  end
+  # Check current status on pagarme and
+  # move pending payment to deleted state
+  def move_to_trash
+    if ['pending', 'waiting_payment'].include?(self.current_transaction_state)
+      self.trash
+    else
+      self.change_status_from_transaction
+    end
+  end
 
   def generate_key
     self.key ||= SecureRandom.uuid
@@ -35,7 +58,7 @@ class Payment < ActiveRecord::Base
 
   def notification_template_for_failed_project
     if slip_payment?
-      :contribution_project_unsuccessful_slip
+      self.user.bank_account.present? ? :contribution_project_unsuccessful_slip : :contribution_project_unsuccessful_slip_no_account
     else
       :contribution_project_unsuccessful_credit_card
     end
@@ -64,15 +87,15 @@ class Payment < ActiveRecord::Base
     state :chargeback
 
     event :chargeback do
-      transition all => :chargeback
+      transition [:paid] => :chargeback
     end
 
     event :trash do
-      transition all => :deleted
+      transition [:pending, :paid, :refunded, :refused] => :deleted
     end
 
     event :pay do
-      transition [:pending, :pending_refund] => :paid
+      transition [:pending, :pending_refund, :chargeback, :refunded] => :paid
     end
 
     event :refuse do
@@ -93,5 +116,17 @@ class Payment < ActiveRecord::Base
       to_column = "#{transition.to}_at".to_sym
       payment.update_attribute(to_column, DateTime.current) if payment.has_attribute?(to_column)
     end
+  end
+
+  def can_request_refund?
+    !self.slip_payment? || self.user.try(:bank_account).try(:valid?)
+  end
+
+  private
+  def exists_duplicate?
+    self.contribution.payments.
+      where(payment_method: self.payment_method, value: self.value).
+      where("current_timestamp - payments.created_at < '#{DUPLICATION_PERIOD}'::interval").
+      exists?
   end
 end

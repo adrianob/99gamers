@@ -1,8 +1,8 @@
 class MoveStatisticsToMaterializedView < ActiveRecord::Migration
   def up
     execute <<-SQL
-      DROP VIEW "1".statistics;
-      CREATE MATERIALIZED VIEW "1".statistics AS
+      DROP VIEW statistics;
+      CREATE MATERIALIZED VIEW statistics AS
       SELECT
         (SELECT count(*) FROM users) AS total_users,
         contributions_totals.total_contributions,
@@ -41,8 +41,8 @@ class MoveStatisticsToMaterializedView < ActiveRecord::Migration
   end
   def down
     execute <<-SQL
-      DROP MATERIALIZED VIEW "1".statistics;
-      CREATE OR REPLACE VIEW "1".statistics AS
+      DROP MATERIALIZED VIEW statistics;
+      CREATE OR REPLACE VIEW statistics AS
       SELECT
         (SELECT count(*) FROM users) AS total_users,
         contributions_totals.total_contributions,

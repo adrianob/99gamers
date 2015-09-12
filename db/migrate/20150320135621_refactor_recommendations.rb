@@ -2,7 +2,7 @@ class RefactorRecommendations < ActiveRecord::Migration
   def up
     execute <<-SQL
     DROP VIEW recommendations;
-    CREATE OR REPLACE VIEW "1".recommendations AS
+    CREATE OR REPLACE VIEW recommendations AS
       SELECT 
         recommendations.user_id,
         recommendations.project_id,

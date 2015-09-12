@@ -6,7 +6,7 @@ class RefactorUserTotals < ActiveRecord::Migration
       $$ LANGUAGE SQL;
       DROP VIEW IF EXISTS user_totals_detail;
       DROP VIEW user_totals;
-      CREATE VIEW "1".user_totals AS
+      CREATE VIEW user_totals AS
       SELECT b.user_id AS id,
         b.user_id,
         count(DISTINCT b.project_id) AS total_contributed_projects,
@@ -31,7 +31,7 @@ class RefactorUserTotals < ActiveRecord::Migration
 
   def down
     execute <<-SQL
-      DROP VIEW "1".user_totals;
+      DROP VIEW user_totals;
       CREATE VIEW user_totals AS
       SELECT b.user_id AS id,
         b.user_id,

@@ -2,7 +2,7 @@ class RefactorContributionReportsForProjectOwners < ActiveRecord::Migration
   def up
     execute <<-SQL
      DROP VIEW contribution_reports_for_project_owners;
-     CREATE OR REPLACE VIEW "1".contribution_reports_for_project_owners AS
+     CREATE OR REPLACE VIEW contribution_reports_for_project_owners AS
      SELECT b.project_id,
         COALESCE(r.id, 0) AS reward_id,
         p.user_id AS project_owner_id,
@@ -38,7 +38,7 @@ class RefactorContributionReportsForProjectOwners < ActiveRecord::Migration
 
   def down
     execute <<-SQL
-     DROP VIEW "1".contribution_reports_for_project_owners;
+     DROP VIEW contribution_reports_for_project_owners;
      CREATE OR REPLACE VIEW contribution_reports_for_project_owners AS
      SELECT b.project_id,
         COALESCE(r.id, 0) AS reward_id,

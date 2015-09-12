@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
           select true from category_notifications n
           where n.template_name = 'categorized_projects_of_the_week' AND
           n.category_id = ? AND
-          (n.created_at AT TIME ZONE '#{Time.zone.tzinfo.name}' + '7 days'::interval) >= current_timestamp AT TIME ZONE '#{Time.zone.tzinfo.name}' AND
+          (current_timestamp - n.created_at) <= '1 week'::interval AND
           n.user_id = users.id)", category_id)
   }
 
@@ -139,13 +139,31 @@ class User < ActiveRecord::Base
     self.active.where(id: id).first!
   end
 
-  def contributor_number
-    #TODO: if you want to use this method contributor_numbers should be in a model class and have a job for refreshing it
-    self.class.connection.select_one("SELECT number FROM public.contributor_numbers WHERE user_id = #{self.id}")["number"].to_i
+  # Return the projects that user has pending refund payments
+  def pending_refund_payments_projects
+    pending_refund_payments.map(&:project)
+  end
+
+  # Return the pending payments to refund for failed projects
+  def pending_refund_payments
+    payments.joins(contribution: :project).where({
+      projects: {
+        state: 'failed'
+      },
+      state: 'paid',
+      gateway: 'Pagarme',
+      payment_method: 'BoletoBancario'
+    }).select do |payment|
+      !payment.already_in_refund_queue?
+    end
   end
 
   def has_online_project?
     projects.with_state('online').exists?
+  end
+
+  def has_sent_notification?
+    projects.any? {|p| p.posts.exists?}
   end
 
   def created_projects
@@ -158,10 +176,6 @@ class User < ActiveRecord::Base
 
   def failed_contributed_projects
     contributed_projects.where(state: 'failed')
-  end
-
-  def send_credits_notification
-    self.notify(:credits_warning)
   end
 
   def change_locale(language)
@@ -198,10 +212,8 @@ class User < ActiveRecord::Base
   end
 
   def projects_in_reminder
-    reminder_jobs = Sidekiq::ScheduledSet.new.select do |job|
-      job['class'] == 'ReminderProjectWorker' && job.args[0] == self.id
-    end
-    Project.where(id: reminder_jobs.map {|job| job.args[1]})
+    reminder_notifications = ProjectNotification.where(template_name: 'reminder', user_id: self.id).where("deliver_at > ?", Time.current)
+    Project.where(id: reminder_notifications.map {|notification| notification.project})
   end
 
   def total_contributed_projects
@@ -220,11 +232,13 @@ class User < ActiveRecord::Base
     {
       user_id: self.id,
       email: self.email,
+      name: self.name,
       contributions: self.total_contributed_projects,
       projects: self.projects.count,
       published_projects: self.published_projects.count,
       created: self.created_at,
       has_online_project: self.has_online_project?,
+      has_created_post: self.has_sent_notification?,
       last_login: self.last_sign_in_at,
       created_today: self.created_today?
     }

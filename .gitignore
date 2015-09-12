@@ -27,3 +27,5 @@ Cookbooks
 .rvmrc
 config/deploy/
 vendor/assets/components
+node_modules/
+.rbenv-gemsets

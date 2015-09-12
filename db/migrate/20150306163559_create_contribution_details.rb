@@ -1,7 +1,7 @@
 class CreateContributionDetails < ActiveRecord::Migration
   def up
     execute <<-SQL
-    CREATE OR REPLACE VIEW "1".contribution_details AS
+    CREATE OR REPLACE VIEW contribution_details AS
     SELECT
       pa.id,
       c.id AS contribution_id,
@@ -39,7 +39,7 @@ class CreateContributionDetails < ActiveRecord::Migration
 
   def down
     execute '
-    DROP VIEW "1".contribution_details;
+    DROP VIEW contribution_details;
     '
   end
 end

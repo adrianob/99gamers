@@ -13,6 +13,20 @@ module Payment::PaymentEngineHandler
       gateway.downcase == 'pagarme'
     end
 
+    # Get the current status from payment direct on gateway
+    def current_transaction_state
+      payment_delegator.try(:transaction).try(:status)
+    end
+
+    # Change current payment status using the gateway payment current status
+    def change_status_from_transaction
+      payment_delegator.try(:change_status_by_transaction, current_transaction_state)
+    end
+
+    # References to current payment engine delegator
+    def payment_delegator
+      self.try(:pagarme_delegator)
+    end
 
     def payment_engine
       PaymentEngines.find_engine(self.gateway) || PaymentEngines::Interface.new
@@ -23,7 +37,9 @@ module Payment::PaymentEngineHandler
     end
 
     def direct_refund
-      payment_engine.direct_refund(self)
+      if self.can_request_refund?
+        DirectRefundWorker.perform_async(self.id)
+      end
     end
 
     def second_slip_path

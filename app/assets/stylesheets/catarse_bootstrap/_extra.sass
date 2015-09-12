@@ -21,7 +21,10 @@ img, iframe
     color: #409ade
     text-decoration: underline
 
-.project-about:after 
+.edit-project-div
+  height: 520px
+
+.project-about:after
   content: ""
   display: table
   clear: both
@@ -33,6 +36,9 @@ img, iframe
     font-weight: 600
 
 .project-reward-box-hover
+  cursor: pointer
+
+.table-outer.search-pre-result
   cursor: pointer
 
 .nav-tab
@@ -72,8 +78,13 @@ img, iframe
   display: inline
 
 // New contribution page
-.text-field.back-reward-input-reward // fix text-field height conflict
-  height: 70px
+// fix text-field height conflict
+.text-field.back-reward-input-reward
+  height: 60px
+.w-radio-input.back-reward-radio-button
+  height: 20px
+  margin-bottom: 0px
+  margin-top: 2px
 
 .back-reward-radio-reward
   .badge-success
@@ -98,10 +109,16 @@ img, iframe
     display: inline-block
     content: "\f105 "
     +transition(all 1s ease)
-
+.reward-floating
+  +transform(translateX(0px) translateY(-100px))
+  +transition(transform 500ms)
+.reward-floating-display
+  display: block
+  +transform(translateX(0px) translateY(0px))
+  +transition(transform 500ms)
 
 //Fallback for browser that still do not support object-fit
-@supports (object-fit: cover) 
+@supports (object-fit: cover)
   #player, .w-lightbox-figure
     position: absolute
     bottom: 0
@@ -183,6 +200,11 @@ img, iframe
     border-color: #E86666
     background-color: rgba(232, 102, 102, 0.09)
 
+.back-reward-input-reward._2:focus::-webkit-input-placeholder
+  padding-top: 0
+.back-reward-input-reward._2::-webkit-input-placeholder
+  padding-top: 6px
+
 // Links rendered by workable embed
 .whr-title a
   color: #409bff
@@ -192,7 +214,7 @@ img, iframe
 
 #project-header h2,
 #hero h2,
-#learn .headline 
+#learn .headline
   margin-top: 0
 
 // Hero images
@@ -226,6 +248,10 @@ img, iframe
   background-size: cover
   color: white
 
+.hero-who
+  background-image: url('/assets/hero-quemsomos.jpg') !important
+  color: white
+
 .hero-profile
   -webkit-filter: blur(15px) brightness(0.75)
   background-position: 50% 50%
@@ -235,13 +261,12 @@ img, iframe
   width: 100%
 
 //backgrounds hello saiba mais
-.hero-hello, 
-  background-image: url('/assets/hero-hello.jpg') !important  
+.hero-hello,
+  background-image: url('/assets/hero-hello.jpg') !important
   background-size: cover
   overflow: hidden
 
 .hero-knowmore
-  background-color: white
   background-image: url('/assets/hero-new-home.jpg') !important
   background-size: cover
   color: white
@@ -260,18 +285,21 @@ img, iframe
   min-width: 100%
   object-fit: cover
 
-.section-large.hello-idea 
+.section-large.hello-idea
   background-image: url('/assets/bg-hello-idea.jpg') !important
 
-.bg-humberto 
+.bg-humberto
   background-image: url('/assets/bg-hello-user.jpg') !important
 
-.bg-people 
+.bg-people
   background-image: url('/assets/bg-hello-people.jpg') !important
 
-.section-large.hello-catarse 
+.section-large.hello-catarse
   background-image: url('/assets/bg-hello-catarse.jpg') !important
 
+//background imprensa
+.bg-projectgrid
+  background-image: url('/assets/bg-hello-people.jpg') !important
 
 //search form style
 .discover-form
@@ -293,41 +321,41 @@ img, iframe
 
 
 
-.cd-title 
+.cd-title
   position: relative
   height: 160px
   line-height: 230px
   text-align: center
 
 
-.cd-words-wrapper 
+.cd-words-wrapper
   display: inline-block
   position: relative
   text-align: left
 
-.cd-words-wrapper b 
+.cd-words-wrapper b
   display: inline-block
   position: absolute
   white-space: nowrap
   left: 0
   top: 0
 
-.cd-words-wrapper b.is-visible 
+.cd-words-wrapper b.is-visible
   position: relative
 
-.no-js .cd-words-wrapper b 
+.no-js .cd-words-wrapper b
   opacity: 0
 
-.no-js .cd-words-wrapper b.is-visible 
+.no-js .cd-words-wrapper b.is-visible
   opacity: 1
 
 
 
-.cd-headline.type .cd-words-wrapper 
+.cd-headline.type .cd-words-wrapper
   vertical-align: top
   overflow: hidden
 
-.cd-headline.type .cd-words-wrapper::after 
+.cd-headline.type .cd-words-wrapper::after
   /* vertical pulsating cursor bar */
   content: ''
   position: absolute
@@ -339,19 +367,19 @@ img, iframe
   background-color: #7cc142
   +transform(translateY(-50%))
 
-.cd-headline.type .cd-words-wrapper.waiting::after 
+.cd-headline.type .cd-words-wrapper.waiting::after
   +animation(cd-pulse 1s infinite)
 
-.cd-headline.type .cd-words-wrapper.selected 
+.cd-headline.type .cd-words-wrapper.selected
   background-color: #aebcb9
 
-.cd-headline.type .cd-words-wrapper.selected::after 
+.cd-headline.type .cd-words-wrapper.selected::after
   visibility: hidden
 
-.cd-headline.type .cd-words-wrapper.selected b 
+.cd-headline.type .cd-words-wrapper.selected b
   color: #0d0d0d
 
-.cd-headline.type b 
+.cd-headline.type b
   visibility: hidden
   font-weight: 600
 
@@ -363,7 +391,7 @@ img, iframe
   visibility: hidden
   font-style: normal
 
-.cd-headline.type i.in 
+.cd-headline.type i.in
   position: relative
   visibility: visible
 
@@ -373,15 +401,112 @@ img, iframe
   .cd-headline .cd-words-wrapper
     display: inline-block
 
-+keyframes(cd-pulse) 
-  0% 
++keyframes(cd-pulse)
+  0%
     +transform(translateY(-50%) scale(1))
     opacity: 1
-  
-  40% 
+
+  40%
     +transform(translateY(-50%) scale(0.9))
     opacity: 0
 
-  100% 
+  100%
     +transform(translateY(-50%) scale(0))
     opacity: 0
+
+.u-margintop-25
+  margin-top: 25px
+
+//project sidebar
+#project-nav
+  display: block
+  height: 100%
+  left: 0
+  position: fixed
+  top: 0
+  width: 205px
+  z-index: 999
+
+.project-nav-wrapper
+  display: block
+  height: 100%
+  overflow: hidden
+  position: relative
+  width: 100%
+
+.dashboard-nav.side
+  height: 100%
+  overflow: auto
+  position: relative
+  transition: all 500ms ease
+  width: 225px
+
+.dashboard-nav.side::after
+  content: " "
+  position: fixed
+  left: 0px
+  right: 0px
+  bottom: 0px
+  height: 94px
+  width: 205px
+  background-color: #1d2024
+  z-index: 999
+
+#dashboard-links.dashboard-nav-link-left:last-of-type
+  margin-bottom: 124px
+.dashboard-nav-link-left
+  text-align: left
+  background: inherit
+  border-top: 0
+  border-bottom: 0
+  outline: none
+#project-nav
+  +transition(all 500ms ease)
+.body-project.closed
+  #project-nav
+    +transform(translate3d(-205px, 0, 0))
+.btn-dashboard
+  position: absolute
+  margin-left: 205px
+  bottom: 0
+  left: inherit
+
+.project_budget
+  width: 100%
+
+@media screen and (max-width: 991px)
+  .body-project::after
+    content: " "
+    position: fixed
+    left: 0px
+    top: 0px
+    right: 0px
+    bottom: 0px
+    display: block
+    height: 100%
+    background-color: rgba(241, 244, 244, 0.87)
+    opacity: 0
+    pointer-events: none
+    transition: all 500ms ease
+
+  .body-project:not(.closed)::after
+    opacity: 1
+
+.results-admin-contributions
+  overflow-x: none !important
+  overflow-y: none !important
+  min-height: 125px !important
+  height: auto !important
+
+.btn-send-draft-fixed
+  z-index: 9999
+
+#new-admin
+  min-height: 90vh
+  display: block
+
+.arrow-admin
+  background: none
+  border: none
+  position: relative
+  top: auto
