@@ -63,7 +63,6 @@ class AddUserProfileImgToContributionDetails < ActiveRecord::Migration
  SELECT confirmed.user_id,
     row_number() OVER (ORDER BY confirmed.id) AS number
    FROM confirmed;
-   GRANT SELECT on settings to admin;
     SQL
   end
 

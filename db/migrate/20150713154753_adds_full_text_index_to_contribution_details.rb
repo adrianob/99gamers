@@ -57,7 +57,6 @@ class AddsFullTextIndexToContributionDetails < ActiveRecord::Migration
  SELECT confirmed.user_id,
     row_number() OVER (ORDER BY confirmed.id) AS number
    FROM confirmed;
-   GRANT SELECT on settings to admin;
     SQL
   end
 
@@ -116,7 +115,6 @@ class AddsFullTextIndexToContributionDetails < ActiveRecord::Migration
  SELECT confirmed.user_id,
     row_number() OVER (ORDER BY confirmed.id) AS number
    FROM confirmed;
-   GRANT select ON ALL TABLES IN SCHEMA "1" TO admin;
     SQL
   end
 end
