@@ -2,6 +2,8 @@
 deployment:
   staging:
     branch: master
+    heroku:
+      appname: gamers-bootstrap
 dependencies:
   post:
     - bower install
