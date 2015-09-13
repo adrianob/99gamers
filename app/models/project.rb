@@ -206,7 +206,7 @@ class Project < ActiveRecord::Base
   end
 
   def should_fail?
-    expired? && !reached_goal?
+    expired? && !reached_goal? && funding_type.all_or_nothing?
   end
 
   def notify_owner(template_name, params = {})
