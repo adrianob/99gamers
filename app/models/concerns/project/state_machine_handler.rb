@@ -65,7 +65,7 @@ module Project::StateMachineHandler
 
       event :finish do
         transition online: :failed,             if: ->(project) {
-          project.should_fail? && !project.in_time_to_wait?
+          project.funding_type.all_or_nothing? && project.should_fail? && !project.in_time_to_wait?
         }
 
         transition online: :waiting_funds,      if: ->(project) {
@@ -77,11 +77,11 @@ module Project::StateMachineHandler
         }
 
         transition waiting_funds: :successful,  if: ->(project) {
-          project.reached_goal?
+          project.reached_goal? || project.funding_type.flexible?
         }
 
         transition waiting_funds: :failed,      if: ->(project) {
-          project.should_fail?
+          project.funding_type.all_or_nothing? && project.should_fail?
         }
 
       end
