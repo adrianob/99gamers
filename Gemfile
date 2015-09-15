@@ -37,7 +37,6 @@ gem 'mixpanel-ruby'
 gem 'mixpanel_client'
 
 # Payment engines
-gem 'catarse_moip', '~> 3.2.0'
 gem 'catarse_pagarme', '~> 2.7.10'
 #gem 'catarse_pagarme', path: '../catarse_pagarme'
 
@@ -87,7 +86,6 @@ gem 'http_accept_language'
 gem 'routing-filter', '~> 0.4.0.pre'
 
 # Payment
-gem 'moip', github: 'catarse/moip-ruby', ref: 'c0225ad71645cd1df35dafa1e45c9f092b3abb9e'
 gem 'httpclient',     '>= 2.2.5'
 
 group :production do
@@ -104,9 +102,6 @@ group :production do
   # Make heroku serve static assets and loggin with stdout
   #gem 'rails_on_heroku'
   gem 'rails_12factor'
-
-  # Monitoring with the new new relic
-  gem 'newrelic_rpm'
 
   # Using dalli and memcachier have not presented significative performance gains
   # Probably this is due to our pattern of cache usage
