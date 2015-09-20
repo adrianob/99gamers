@@ -103,6 +103,11 @@ pt:
         next_step: "Revisar e realizar pagamento"
         no_reward: Obrigado. Eu só quero ajudar o projeto.
       review:
+        form:
+          labels:
+            submit: Efetuar pagamento
+            build_boleto: Gerar boleto
+
         PayPal: "PayPal"
         MoIP: "MoIP"
         Credits: 'Créditos'
