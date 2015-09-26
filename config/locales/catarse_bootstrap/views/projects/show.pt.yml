@@ -68,6 +68,7 @@ pt:
       send_post: 'Escrever novidade'
       share: "Compartilhe"
       tweet: "Tweet"
+      flexible: Campanha flexível
       contribute_project:
         display_status:
           approved: "Esse projeto já foi aprovado pelo Catarse. Em breve ele entrará no ar e estará pronto para receber apoios."
