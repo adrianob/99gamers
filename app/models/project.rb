@@ -38,6 +38,7 @@ class Project < ActiveRecord::Base
   has_many :unsubscribes
 
   accepts_nested_attributes_for :rewards, allow_destroy: true
+  accepts_nested_attributes_for :plans, allow_destroy: true
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :account
   accepts_nested_attributes_for :posts, allow_destroy: true, reject_if: ->(x) { x[:title].blank? || x[:comment_html].blank? }

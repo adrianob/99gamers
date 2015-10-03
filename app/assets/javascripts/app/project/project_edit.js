@@ -27,6 +27,7 @@ App.addChild('ProjectEdit', _.extend({
     this.route('preview');
     this.route('analysis_success');
     this.route('edit');
+    this.route('plan');
     this.route('user_settings');
     this.route('reports');
 

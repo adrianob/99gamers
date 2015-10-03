@@ -1,0 +1,18 @@
+#dashboard-plans-tab
+  .w-section.section
+    .w-container
+      .w-row
+        .w-col.w-col-10.w-col-push-1
+          = @project.display_errors(:plan)
+          = simple_form_for @project, html: { class: 'project-form w-form' } do |f|
+            =  hidden_field_tag 'project_id', @project.id
+            =  hidden_field_tag 'anchor', 'plan'
+            #dashboard-plans
+              #plans
+                = f.simple_fields_for :plans, @plans do |form|
+                  = render 'plan_fields', f: form
+              = link_to_add_association "+ #{t('.add_plan')}", f, :plans, :'data-association-insertion-node' => '#plans', :'data-association-insertion-method' => :append, class: 'btn btn-large btn-message show_plan_form new_plan_button'
+
+            .w-col.w-col-4.w-col-push-4.u-margintop-40
+              = f.button :submit, t('.submit'),  class:'btn btn-large'
+

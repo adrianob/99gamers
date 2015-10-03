@@ -63,8 +63,12 @@ class ProjectsController < ApplicationController
     #need to check this before setting new attributes
     should_validate = should_use_validate
 
+
     resource.attributes = permitted_params
 
+    if @project.funding_type.recurrent?
+      sync_plans
+    end
     if resource.save(validate: should_validate)
       flash[:notice] = t('project.update.success')
     else
@@ -118,6 +122,10 @@ class ProjectsController < ApplicationController
     @post =  (params[:project_post_id].present? ? resource.posts.where(id: params[:project_post_id]).first : resource.posts.build)
     @rewards = @project.rewards.rank(:row_order)
     @rewards = @project.rewards.build unless @rewards.present?
+    if @project.funding_type.recurrent?
+      @plans = @project.plans
+      @plans = @project.plans.build unless @plans.present?
+    end
     @budget = resource.budgets.build
 
     resource.build_account unless resource.account
@@ -181,4 +189,18 @@ class ProjectsController < ApplicationController
     url.delete_at(3) #remove language from url
     url.join('/')
   end
+
+  private
+  #sync plans with pagarme
+  def sync_plans
+    resource.plans.each do |plan|
+      if plan.new_record?
+        plan.create_plan
+      elsif plan.changed?
+        plan.update_plan
+      end
+    end
+
+  end
+
 end

@@ -17,10 +17,18 @@ pt:
       user_settings_subtitle: 'Com os dados abaixo completos, seu projeto estará pronto para ir ao ar. Após concluir o preenchimento, clique em Salvar. Revise. Se tudo estiver ok, basta apertar o botão Publicar e começar sua campanha!'
       user_about: "Fale mais sobre você!"
       reward: "Crie e edite aqui suas recompensas"
+      plan: "Crie e edite aqui seus planos recorrentes"
+      plan_subtitle: "Planos recorrentes"
       reward_subtitle: "Essa é sua demonstração de gratidão com os apoiadores. Lembre-se de incluir os custos das recompensas no seu orçamento. Prometeu, ENTREGUE! "
       user_about_subtitle: "Apoiadores querem conhecer melhor os realizadores de projetos. Links que ajudam a contar sua história são sempre bem vindos. "
       description: 'Conte a história do seu projeto!'
       description_subtitle: 'Pense bem na narrativa do projeto. É ela quem encantará as pessoas e trará apoiadores. Um bom video e descrição são diferenciais!'
+    plan_fields:
+      plan: Plano
+      name: Título
+      amount: Valor
+      days: Intervalo de cobrança
+      description: Descrição
     reward_fields:
       edit: "Editar recompensa"
       reward: Recompensa
@@ -135,6 +143,7 @@ pt:
       description_tab: Descrição
       video_tab: Vídeo
       rewards_tab: Recompensas
+      plans_tab: Planos
       about_you_tab: Sobre você
     dashboard_user_about:
       submit: "Salvar"
@@ -156,6 +165,10 @@ pt:
       submit: "Salvar"
     dashboard_description:
       submit: "Salvar"
+    dashboard_plan:
+      add_plan: Adicionar plano
+      submit: Salvar
+      plan: Plano
     dashboard_reward:
       submit: "Salvar"
       add_reward: "Adicionar recompensa"
