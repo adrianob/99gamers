@@ -3,7 +3,7 @@ App.addChild('DashboardPlans', {
 
   activate: function() {
     this.$plans = this.$('#dashboard-plans #plans');
-    //this.sortablePlans();
+    this.sortablePlans();
   },
 
   sortablePlans: function() {
@@ -18,7 +18,7 @@ App.addChild('DashboardPlans', {
         var csrfToken, position;
         position = that.$('#dashboard-plans .nested-fields').index(ui.item);
         csrfToken = $("meta[name='csrf-token']").attr("content");
-        update_url = that.$(ui.item).find('.card-persisted').data('update_url');
+        update_url = $(ui.item).find('.card-persisted').data('update_url');
         return $.ajax({
           type: 'POST',
           url: update_url,

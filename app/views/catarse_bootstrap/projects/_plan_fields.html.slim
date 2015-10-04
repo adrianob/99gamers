@@ -3,8 +3,7 @@
 .nested-fields
   .plan-card
     - if plan.persisted?
-      /.w-row.card-persisted.card.card-terciary.u-marginbottom-20.medium[id="plan_#{plan.id}" data-update_url=sort_project_plan_path(@project, plan) class="sortable"]
-      .w-row.card-persisted.card.card-terciary.u-marginbottom-20.medium[id="plan_#{plan.id}" ]
+      .w-row.card-persisted.card.card-terciary.u-marginbottom-20.medium[id="plan_#{plan.id}" data-update_url=sort_project_plan_path(@project, plan) class="sortable"]
         .w-col.w-col-5.w-sub-col
           .fontweight-semibold.fontsize-smallest.u-marginbottom-10
             = t('projects.dashboard_plan.plan')

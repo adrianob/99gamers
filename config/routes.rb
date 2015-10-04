@@ -44,6 +44,9 @@ Catarse::Application.routes.draw do
     resources :rewards, only: [ :index ] do
       post :sort, on: :member
     end
+    resources :plans, only: [ :index ] do
+      post :sort, on: :member
+    end
     resources :contributions, {except: [:index], controller: 'projects/contributions'} do
       collection do
         get :details, to: 'projects/contribution_details#index'

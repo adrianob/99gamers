@@ -7,6 +7,7 @@ class CreatePlans < ActiveRecord::Migration
       t.integer :gateway_id, foreign_key: false
       t.text :name
       t.text :description
+      t.integer :row_order
 
       t.timestamps
     end

@@ -123,7 +123,7 @@ class ProjectsController < ApplicationController
     @rewards = @project.rewards.rank(:row_order)
     @rewards = @project.rewards.build unless @rewards.present?
     if @project.funding_type.recurrent?
-      @plans = @project.plans
+      @plans = @project.plans.rank(:row_order)
       @plans = @project.plans.build unless @plans.present?
     end
     @budget = resource.budgets.build
