@@ -48,7 +48,7 @@
                   .w-col.w-col-3.w-col-small-3.w-col-tiny-3.text-field.positive.prefix.no-hover
                     .fontsize-smallest.fontcolor-secondary.u-text-center R$
                   .w-col.w-col-9.w-col-small-9.w-col-tiny-9
-                    = f.input_field :amount, as: :tel, class: 'postfix positive', required: true
+                    = f.input_field :amount, as: :tel, class: 'postfix positive', required: true, disabled: !plan.new_record?
                 .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="plan_amount"] = t('simple_form.validation_texts.plan.amount')
             .w-row.u-marginbottom-40
               .w-col.w-col-5
@@ -56,7 +56,7 @@
               .w-col.w-col-7
                 .w-row
                   .w-col.w-col-9.w-col-small-9.w-col-tiny-9
-                    = f.input_field :days, as: :tel, class: 'postfix positive', required: true, placeholder: 'Intervalo em dias'
+                    = f.input_field :days, as: :tel, class: 'postfix positive', required: true, placeholder: 'Intervalo em dias', disabled: !plan.new_record?
                 .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="plan_days"] = t('simple_form.validation_texts.plan.days')
             .w-row
               .w-col.w-col-5
