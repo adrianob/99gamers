@@ -15,8 +15,9 @@ GIT
       mime-types
       orm_adapter
 
-PATH
-  remote: ../catarse_pagarme
+GIT
+  remote: git@github.com:adrianob/catarse_pagarme.git
+  revision: de51d1f4adaee0060c1a3e2c33bdc15251575eee
   specs:
     catarse_pagarme (2.7.12)
       pagarme (= 1.10.0)

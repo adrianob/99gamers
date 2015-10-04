@@ -37,8 +37,8 @@ gem 'mixpanel-ruby'
 gem 'mixpanel_client'
 
 # Payment engines
-#gem 'catarse_pagarme', '~> 2.7.12'
-gem 'catarse_pagarme', path: '../catarse_pagarme'
+gem 'catarse_pagarme', git: 'git@github.com:adrianob/catarse_pagarme.git'
+#gem 'catarse_pagarme', path: '../catarse_pagarme'
 
 # Decorators
 gem 'draper'
