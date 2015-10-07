@@ -71,7 +71,7 @@ class ProjectPolicy < ApplicationPolicy
                           :description, :deliver_at, :minimum_value] }
   end
 
-  def plan_attributes
+  def plans_attributes
     { plans_attributes: [:_destroy, :id, :name,
                           :description, :amount, :days] }
   end
