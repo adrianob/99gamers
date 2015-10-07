@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/adrianob/catarse_pagarme.git
+  revision: 9c938c05776a180bde1018046026db8474c48f50
+  specs:
+    catarse_pagarme (2.7.12)
+      pagarme (= 1.10.0)
+      rails (~> 4.0)
+      sidekiq
+      weekdays (>= 1.0.2)
+
+GIT
   remote: git://github.com/bernat/best_in_place
   revision: ee95961e639022e6aa528704b8cb4789596ea61b
   ref: ee95961e639022e6aa528704b8cb4789596ea61b
@@ -14,16 +24,6 @@ GIT
       devise
       mime-types
       orm_adapter
-
-GIT
-  remote: git@github.com:adrianob/catarse_pagarme.git
-  revision: 9c938c05776a180bde1018046026db8474c48f50
-  specs:
-    catarse_pagarme (2.7.12)
-      pagarme (= 1.10.0)
-      rails (~> 4.0)
-      sidekiq
-      weekdays (>= 1.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -533,7 +533,7 @@ GEM
     schema_plus (1.8.9)
       activerecord (>= 3.2, <= 4.2.0)
       valuable
-    selenium-webdriver (2.47.1)
+    selenium-webdriver (2.48.0)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
