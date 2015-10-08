@@ -44,7 +44,7 @@ class ProjectPolicy < ApplicationPolicy
       p_attr.flatten
     else
       [:funding_type, :about_html, :video_url, :uploaded_image, :headline, :budget,
-                 user_attributes, posts_attributes, budget_attributes, reward_attributes, plans_attributes, account_attributes]
+                 user_attributes, posts_attributes, budget_attributes, reward_attributes, plan_attributes, account_attributes]
     end
   end
 
@@ -71,7 +71,7 @@ class ProjectPolicy < ApplicationPolicy
                           :description, :deliver_at, :minimum_value] }
   end
 
-  def plans_attributes
+  def plan_attributes
     { plans_attributes: [:_destroy, :id, :name,
                           :description, :amount, :days] }
   end
