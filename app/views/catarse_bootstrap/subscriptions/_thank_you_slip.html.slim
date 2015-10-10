@@ -6,9 +6,9 @@
         .u-text-center.u-marginbottom-20
           = image_tag resource.plan.project.user.decorate.display_image, class: 'u-round thumb big', alt: project.user.decorate.display_name
         .u-text-center
-          .fontsize-largest.text-success.u-marginbottom-20 = t('.thank_you') 
+          .fontsize-largest.text-success.u-marginbottom-20 = t('projects.contributions.thank_you_slip.thank_you') 
           .fontsize-base.u-marginbottom-40
-            = t('.thank_you_text_html', email: resource.user.email)
+            = t('projects.contributions.thank_you_slip.thank_you_text_html', email: resource.user.email)
 
 .section.u-marginbottom-40
   .w-container
