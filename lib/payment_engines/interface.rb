@@ -7,6 +7,8 @@ class PaymentEngines
 
     def review_path(contribution); end
 
+    def subscription_review_path(subscription); end
+
     def can_do_refund?; end
 
     def direct_refund(contribution); end

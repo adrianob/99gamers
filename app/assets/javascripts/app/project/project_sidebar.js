@@ -5,15 +5,18 @@ App.addChild('ProjectSidebar', {
   activate: function() {
 
     var that = this;
-    
+
     this.$rewards = this.$('#rewards');
-    
+
     $.get(that.$rewards.data('index_path')).success(function(data){
-    
       that.$rewards.html(data);
-    
     });
-  
+
+    this.$plans = this.$('#plans');
+
+    $.get(that.$plans.data('index_path')).success(function(data){
+      that.$plans.html(data);
+    });
   }
 
 });
