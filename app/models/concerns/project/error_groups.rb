@@ -10,6 +10,7 @@ module Project::ErrorGroups
         budget: [:budget],
         card: [:uploaded_image, :headline],
         video: [:video_url],
+        plan: [],
         reward: [:'rewards.size', :'rewards.minimum_value', :'rewards.deliver_at'],
         user_about: [:'user.uploaded_image', :'user.name', :'user.about_html'],
         user_settings: ProjectAccount.attribute_names.map{|attr| ('project_account.' + attr).to_sym} << :account << :'account.agency_size'

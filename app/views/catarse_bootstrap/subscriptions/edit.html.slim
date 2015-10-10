@@ -1,0 +1,33 @@
+- content_for :title, t('.page-title', name: @project.name)
+
+= render 'shared/header'
+
+= render 'projects/project_header'
+
+#project_review.section[data-thank-you-path=plan_subscription_path(plan_id: parent.id, id: resource.id)]
+  .w-container
+    .w-row
+      .w-col.w-col-8
+        = simple_form_for [parent, resource], html: { data: { update_info_path: plan_subscription_path(plan_id: parent.id, id: resource.id, format: :json) }, id: 'review_form', method: 'put' } do |form|
+          = form.input :id, as: :hidden, label: false
+          = form.input :plan_id, as: :hidden, label: false
+          #error-message.card.card-error.u-radius.zindex-10.u-marginbottom-30.w-hidden
+            .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('projects.contributions.edit.review_errors_title')
+            .fontsize-smaller = t('.review_errors')
+        #payment-engines
+          .u-marginbottom-30.u-text-center-small-only
+            .fontsize-large.fontweight-semibold.text-success-small-only= t('projects.contributions.edit.choose_payment')
+            .fontcolor-secondary.fontweight-semibold.fontsize-smallest.fontcolor-secondary
+              span.fa.fa-lock
+              |&nbsp;&nbsp;&nbsp;  
+              = t('projects.contributions.edit.choose_payment_subtitle')
+          #engine[class="payments_type" data-path=engine.subscription_review_path(resource) ]
+            .tab-loader.loader.u-text-center.w-col.w-col-12.u-marginbottom-30 = image_tag "catarse_bootstrap/loader.gif"
+      .w-col.w-col-4
+        .w-hidden-small.w-hidden-tiny
+          = render 'selected_subscription'
+        .w-hidden-small.w-hidden-tiny
+          = render 'faq_box'
+
+= render 'shared/footer'
+

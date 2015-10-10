@@ -1,0 +1,12 @@
+- parent.plans.rank(:row_order).each do |plan|
+
+  = link_to "#{(parent.online? ? plan_subscriptions_path(plan) : '#reward-offline')}", data: {plan_id: plan.id}, method: :post, id: "plan_#{plan.id}", class: "card-reward card card-secondary u-marginbottom-10" do
+    .u-marginbottom-20
+      .fontsize-base.fontweight-semibold = plan.name
+      .fontsize-smaller.fontweight-semibold 0 assinantes
+    .fontsize-smaller =" #{number_to_currency plan.amount} a cada #{plan.days} dias"
+    .fontsize-smaller = plan.description
+    - if parent.online?
+      .project-reward-box-hover
+        .project-reward-box-select-text.u-text-center Selecionar Plano
+

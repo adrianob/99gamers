@@ -1,0 +1,10 @@
+= render 'shared/header'
+/- if @contribution.was_confirmed? || !@contribution.slip_payment?
+  /= render 'thank_you'
+/- else
+  /= render 'thank_you_slip'
+
+= render 'thank_you_slip'
+
+= render 'shared/footer'
+
