@@ -1275,7 +1275,7 @@ p {
 .header-logo {
   position: relative;
   display: inline-block;
-  width: 100px;
+/*  width: 100px;*/
   margin-right: 20px;
   float: left;
   transition: all 500ms ease;
@@ -1867,10 +1867,10 @@ p {
   background-color: white;
 }
 .hero-full {
-  height: 640px;
+  height: 400px;
   margin-bottom: 30px;
-  padding-top: 225px;
-  padding-bottom: 235px;
+  padding-top: 140px;
+  padding-bottom: 200px;
   background-color: #f1f4f4;
 }
 .hero-full.hero-knowmore {
