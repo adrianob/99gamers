@@ -14,4 +14,8 @@ class Plan < ActiveRecord::Base
   def update_plan
     self.update_gateway_plan
   end
+
+  def total_subscribers
+    subscriptions.paid.count
+  end
 end

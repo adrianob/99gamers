@@ -15,7 +15,7 @@
               .w-col.w-col-1.w-col-small-1.w-col-tiny-1
                 = link_to "javascript:void(0);", data: {target: ".edit_plan_content_#{plan.id}", parent: "#plan_#{plan.id}"}, class: 'show_plan_form' do
                   .btn.btn-small.btn-terciary.fa.fa-lg.fa-edit.btn-no-border
-            .fontsize-smaller.u-marginbottom-20.fontweight-semibold= "0 apoiadores"
+            .fontsize-smaller.u-marginbottom-20.fontweight-semibold= t('plans.index.subscribers', count: plan.total_subscribers)
             p.fontsize-small
               br= "#{number_to_currency plan.amount} a cada #{plan.days} dias"
             p.fontsize-small

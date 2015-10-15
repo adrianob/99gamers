@@ -1,4 +1,10 @@
 pt:
+  plans:
+    index:
+      subscribers:
+        zero: 0 assinantes
+        one: "%{count} assinante"
+        other: "%{count} assinantes"
   projects:
     about_mobile:
       by: 'por'
