@@ -1,0 +1,10 @@
+.card.u-radius.u-marginbottom-20
+  .fontsize-smaller.fontweight-semibold.u-marginbottom-20 Valor da assinatura
+  .w-clearfix.u-marginbottom-20
+    .fontsize-large.text-success.u-left = "#{number_to_currency @subscription.plan.amount} a cada #{@subscription.plan.days} dias"
+  .back-payment-info-reward
+    .fontsize-smaller.fontweight-semibold.u-marginbottom-10 Descrição
+    .fontsize-smallest
+      == @subscription.plan.description
+
+
