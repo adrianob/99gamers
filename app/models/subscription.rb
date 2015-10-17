@@ -15,10 +15,6 @@ class Subscription < ActiveRecord::Base
     gateway_data["current_transaction"]["payment_method"]
   end
 
-  def paid?
-    gateway_data["status"] == 'paid'
-  end
-
   def credit_card_payment?
     payment_method == 'credit_card'
   end
