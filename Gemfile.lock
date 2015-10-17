@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/adrianob/catarse_pagarme.git
-  revision: 4250da4454cb34811a68a612660e51fd4585693e
+  revision: 15443d799bf159c82ed0c52b1a9d5bfa53c07af9
   specs:
     catarse_pagarme (2.7.12)
       pagarme (= 1.10.0)

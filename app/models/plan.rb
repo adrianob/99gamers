@@ -16,6 +16,6 @@ class Plan < ActiveRecord::Base
   end
 
   def total_subscribers
-    subscriptions.paid.count
+    subscriptions.active.count
   end
 end
