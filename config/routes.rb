@@ -38,7 +38,11 @@ Catarse::Application.routes.draw do
   resources :auto_complete_projects, only: [:index]
   resources :auto_complete_cities, only: [:index]
   resources :plans do
-    resources :subscriptions
+    resources :subscriptions, except: [:index] do
+      collection do
+        get :fallback_create, to: 'subscriptions#create'
+      end
+    end
   end
   resources :projects, only: [:index, :create, :update, :edit, :new, :show] do
     resources :metrics, only: [:index], controller: "projects/metrics"
@@ -50,7 +54,6 @@ Catarse::Application.routes.draw do
     resources :plans, only: [ :index ] do
       post :sort, on: :member
     end
-    resources :subscriptions, controller: 'projects/subscriptions'
     resources :contributions, {except: [:index], controller: 'projects/contributions'} do
       collection do
         get :details, to: 'projects/contribution_details#index'

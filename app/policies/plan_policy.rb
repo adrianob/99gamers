@@ -20,10 +20,5 @@ class PlanPolicy < ApplicationPolicy
     record.attribute_names.map(&:to_sym)
   end
 
-  protected
-
-  def done_by_owner_or_admin?
-    record.project.user == user || user.try(:admin?)
-  end
 end
 

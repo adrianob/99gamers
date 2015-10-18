@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
   actions :index, :show, :new, :update, :review, :create
   after_filter :verify_authorized, except: [:index]
   belongs_to :plan
-  before_filter :detect_old_browsers, only: [:new, :create]
+  before_filter :detect_old_browsers, only: [:create]
 
   helper_method :engine
 
