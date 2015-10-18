@@ -32,6 +32,10 @@ class ProjectDecorator < Draper::Decorator
     source.time_to_go[:time]
   end
 
+  def display_subscriptions_amount
+    number_to_currency source.subscriptions_per_month.floor, precision: 0
+  end
+
   def display_card_class
     default_card = "card u-radius zindex-10"
     aditional = ""

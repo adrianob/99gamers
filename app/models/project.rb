@@ -33,6 +33,7 @@ class Project < ActiveRecord::Base
   has_many :contributions
   has_many :contribution_details
   has_many :payments, through: :contributions
+  has_many :subscriptions, through: :plans
   has_many :posts, class_name: "ProjectPost", inverse_of: :project
   has_many :budgets, class_name: "ProjectBudget", inverse_of: :project
   has_many :unsubscribes
@@ -144,6 +145,10 @@ class Project < ActiveRecord::Base
     order(sort_field)
   end
 
+  def subscriptions_per_month
+    subscriptions.active.sum("(plans.amount * (30/plans.days::numeric))")
+  end
+
   def user_already_in_reminder?(user_id)
     notifications.where(template_name: 'reminder', user_id: user_id).present?
   end
@@ -174,6 +179,10 @@ class Project < ActiveRecord::Base
 
   def pledged
     @pledged ||= project_total.try(:pledged).to_f
+  end
+
+  def total_subscriptions
+    @total_subscriptions ||= subscriptions.active.count
   end
 
   def total_contributions
