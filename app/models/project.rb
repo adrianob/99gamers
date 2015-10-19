@@ -82,7 +82,7 @@ class Project < ActiveRecord::Base
   scope :name_contains, ->(term) { where("unaccent(upper(name)) LIKE ('%'||unaccent(upper(?))||'%')", term) }
   scope :user_name_contains, ->(term) { joins(:user).where("unaccent(upper(users.name)) LIKE ('%'||unaccent(upper(?))||'%')", term) }
   scope :near_of, ->(address_state) { where("EXISTS(SELECT true FROM users u WHERE u.id = projects.user_id AND lower(u.address_state) = lower(?))", address_state) }
-  scope :to_finish, ->{ expired.with_states(['online', 'waiting_funds']) }
+  scope :to_finish, ->{ expired.with_states(['online', 'waiting_funds']).where.not(funding_type: FundingType.find_by_name('recurrent')) }
   scope :visible, -> { without_states(['draft', 'rejected', 'deleted', 'in_analysis', 'approved']) }
   scope :financial, -> { with_states(['online', 'successful', 'waiting_funds']).where(expires_at: 15.days.ago.. Time.current) }
   scope :expired, -> { where("expires_at < ?", Time.current) }
