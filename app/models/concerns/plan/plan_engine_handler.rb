@@ -7,6 +7,10 @@ module Plan::PlanEngineHandler
       plan_delegator.try(:create_plan)
     end
 
+    def destroy_gateway_plan
+      plan_delegator.try(:destroy_plan)
+    end
+
     def update_gateway_plan
       plan_delegator.try(:update_plan)
     end

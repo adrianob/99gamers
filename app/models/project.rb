@@ -34,12 +34,13 @@ class Project < ActiveRecord::Base
   has_many :contribution_details
   has_many :payments, through: :contributions
   has_many :subscriptions, through: :plans
+  has_many :subscription_notifications, through: :subscriptions
   has_many :posts, class_name: "ProjectPost", inverse_of: :project
   has_many :budgets, class_name: "ProjectBudget", inverse_of: :project
   has_many :unsubscribes
 
   accepts_nested_attributes_for :rewards, allow_destroy: true
-  accepts_nested_attributes_for :plans, allow_destroy: true
+  accepts_nested_attributes_for :plans, allow_destroy: false
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :account
   accepts_nested_attributes_for :posts, allow_destroy: true, reject_if: ->(x) { x[:title].blank? || x[:comment_html].blank? }
@@ -179,6 +180,17 @@ class Project < ActiveRecord::Base
 
   def pledged
     @pledged ||= project_total.try(:pledged).to_f
+  end
+
+  def subscriptions_paid_in_last_month
+    subscription_notifications.where("(extra_data->>'current_status') = 'paid'
+                                     AND subscription_notifications.created_at BETWEEN
+                                     (date_trunc('MONTH', now()) - interval '1 month' + interval '5 days')
+                                     AND date_trunc('MONTH', now()) + interval '5 days'")
+  end
+
+  def subscriptions_amount_in_last_month
+    subscriptions_paid_in_last_month.sum(:amount)
   end
 
   def total_subscriptions

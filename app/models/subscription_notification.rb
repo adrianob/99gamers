@@ -1,6 +1,5 @@
 class SubscriptionNotification < ActiveRecord::Base
   belongs_to :subscription
-  serialize :extra_data, JSON
 
   # This methods should be called by payments engines
   def deliver_process_notification

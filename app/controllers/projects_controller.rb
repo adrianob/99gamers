@@ -123,7 +123,7 @@ class ProjectsController < ApplicationController
     @rewards = @project.rewards.rank(:row_order)
     @rewards = @project.rewards.build unless @rewards.present?
     if @project.funding_type.recurrent?
-      @plans = @project.plans.rank(:row_order)
+      @plans = @project.plans.active.rank(:row_order)
       @plans = @project.plans.build unless @plans.present?
     end
     @budget = resource.budgets.build
@@ -193,6 +193,11 @@ class ProjectsController < ApplicationController
   private
   #sync plans with pagarme
   def sync_plans
+    params[:project][:plans_attributes].each do |plan_destroy|
+      if plan_destroy[1][:_destroy] == "1"
+        Plan.find(plan_destroy[1][:id].to_i).destroy_plan
+      end
+    end
     resource.plans.each do |plan|
       if plan.new_record?
         plan.create_plan

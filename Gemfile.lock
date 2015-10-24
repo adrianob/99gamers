@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/adrianob/catarse_pagarme.git
-  revision: 575b0bb883f39ff49faf2190e1225093e4fd1919
+  revision: 4aebdd36f5afde760cca9aa3bc601e0f2ce4679b
   specs:
-    catarse_pagarme (2.7.13)
+    catarse_pagarme (2.7.14)
       pagarme (= 1.10.0)
       rails (~> 4.0)
       sidekiq
@@ -110,7 +110,7 @@ GEM
     celluloid-supervision (0.20.5)
       timers (>= 4.1.1)
     chartkick (1.4.1)
-    childprocess (0.5.6)
+    childprocess (0.5.7)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
     chunky_png (1.3.4)
@@ -192,14 +192,15 @@ GEM
     ffi (1.9.10)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.34.0)
+    fog (1.35.0)
+      fog-aliyun
       fog-atmos
       fog-aws (>= 0.6.0)
       fog-brightbox (~> 0.4)
       fog-core (~> 1.32)
       fog-dynect (~> 0.0.2)
       fog-ecloud (~> 0.1)
-      fog-google (>= 0.0.2)
+      fog-google (>= 0.1.1)
       fog-json
       fog-local
       fog-powerdns (>= 0.1.1)
@@ -213,9 +214,15 @@ GEM
       fog-terremark
       fog-vmfusion
       fog-voxel
+      fog-xenserver
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
-      nokogiri (~> 1.5, >= 1.5.11)
+      nokogiri
+    fog-aliyun (0.0.10)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      ipaddress (~> 0.8)
+      xml-simple (~> 1.1)
     fog-atmos (0.1.0)
       fog-core
       fog-xml
@@ -286,6 +293,9 @@ GEM
       fission
       fog-core
     fog-voxel (0.1.0)
+      fog-core
+      fog-xml
+    fog-xenserver (0.2.2)
       fog-core
       fog-xml
     fog-xml (0.1.2)
@@ -407,7 +417,7 @@ GEM
       rack (~> 1.0)
     omniauth-facebook (2.0.1)
       omniauth-oauth2 (~> 1.2)
-    omniauth-oauth2 (1.3.1)
+    omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     open_uri_redirections (0.2.1)
@@ -415,7 +425,7 @@ GEM
     pagarme (1.10.0)
       multi_json
       rest-client
-    passenger (5.0.20)
+    passenger (5.0.21)
       rack
       rake (>= 0.8.1)
     pg (0.17.1)
@@ -571,7 +581,7 @@ GEM
     slop (3.6.0)
     spectator-validates_email (0.2.0)
       activemodel (>= 3.0.0)
-    spreadsheet (1.0.7)
+    spreadsheet (1.0.8)
       ruby-ole (>= 1.0)
     sprockets (2.12.4)
       hike (~> 1.2)
@@ -623,6 +633,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     weekdays (1.0.2)
+    xml-simple (1.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     zonebie (0.5.1)

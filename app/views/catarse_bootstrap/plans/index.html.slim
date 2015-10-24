@@ -1,4 +1,4 @@
-- parent.plans.rank(:row_order).each do |plan|
+- parent.plans.active.rank(:row_order).each do |plan|
 
   = link_to "#{(parent.online? ? fallback_create_plan_subscriptions_path(plan) : '#reward-offline')}", data: {plan_id: plan.id}, method: :get, id: "plan_#{plan.id}", class: "card-reward card card-secondary u-marginbottom-10" do
     .u-marginbottom-20
