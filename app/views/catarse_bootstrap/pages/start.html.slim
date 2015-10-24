@@ -1,13 +1,13 @@
 - content_for :title, t('.page-title')
 
-= render 'shared/header_big'
+= render 'shared/header_big', overlayer: true
 
 .project-start-wrapper
-  .page-header
+  .page-header.dark.hero-medium
     .w-container.no-responsive
-      h1.fontsize-largest.u-text-center.u-marginbottom-70.u-margintop-40 = t('.title')
+      h1.fontweight-semibold.fontsize-jumbo.u-marginbottom-20 = t('.title')
       - statistics = Statistics.first
-      .w-row.u-text-center.u-marginbottom-80
+      .w-row.u-text-center.u-marginbottom-80.est-saiba
         .w-col.w-col-4
           .fontsize-jumbo.text-success.lineheight-loose = number_with_delimiter(statistics.total_contributors)
           p.start-stats.fontsize-base = t('.header.people')
@@ -45,6 +45,22 @@
         .w-col.w-col-6
           h2.headline = t('.work.title')
           p.fontsize-base = t('.work.content')
+          
+
+      article.w-row.u-marginbottom-80
+        .w-col.w-col-6
+          h2.headline = t('.time.title')
+          p.fontsize-base = t('.flexi.content')
+        .w-col.w-col-6.u-text-center
+          = image_tag "catarse_bootstrap/start/flexivel.png"
+
+
+      article.w-row.u-marginbottom-80
+        .w-col.w-col-6.u-text-center
+          = image_tag "catarse_bootstrap/start/recorrente.png"
+        .w-col.w-col-6
+          h2.headline = t('.recgs.title')
+          p.fontsize-base = t('.recgs.content')
           
 
       article.w-row.u-marginbottom-80
