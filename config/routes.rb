@@ -120,6 +120,7 @@ Catarse::Application.routes.draw do
 
   namespace :reports do
     resources :contribution_reports_for_project_owners, only: [:index]
+    resources :recurrent_reports_for_project_owners, only: [:index]
   end
 
   # Feedback form
@@ -154,6 +155,7 @@ Catarse::Application.routes.draw do
 
     namespace :reports do
       resources :contribution_reports, only: [ :index ]
+      resources :recurrent_reports, only: [ :index ]
     end
   end
 

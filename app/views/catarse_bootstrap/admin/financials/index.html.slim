@@ -37,12 +37,12 @@
         thead.card.card-secondary
           tr
             th style="width: 200px"= t('.name')
-            th= t('.user')
             th= t('.goal')
             th= t('.pledged')
             th= t('.total_payment_service_fee')
             th= t('.total_catarse_fee')
             th= t('.repass_value')
+            th Repasse recorrente
             th= t('.expires_at')
             th= t('.reports')
             th= t('.zero_fee')
@@ -50,7 +50,6 @@
         tbody
           tr id=project.id
             td= link_to project.name, project_by_slug_path(permalink: project.permalink), target: '_blank'
-            td= link_to (project.user.moip_login.blank? ? 'Não preenchido' : project.user.moip_login), user_path(project.user, anchor: :settings), target: '_blank'
             td= project.display_goal
             td= project.display_pledged_with_cents
             td= number_to_currency project.total_payment_service_fee, precision: 2
@@ -59,6 +58,8 @@
               = number_to_currency catarse_fee, precision: 2
             td
               = number_to_currency ((project.pledged*0.87)), precision: 2
+            td
+              = number_to_currency project.subscriptions_amount_in_last_month, precision: 2
             td
               = project.display_expires_at
             td

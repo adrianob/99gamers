@@ -22,16 +22,24 @@
               div= metric[0] || 'Internacional'
             .w-col.w-col-6.w-col-small-6.w-col-tiny-6
               div= metric[1]
-        .u-marginbottom-40.u-margintop-40
-          .fontsize-base.fontweight-bold Total de usuários que clicaram no botão Lembrar-me
-          .fontsize-smaller Esses usuários receberão um lembrete por email 48 horas antes do término de sua campanha
-          = @project.total_reminders
+        - if !@project.funding_type.recurrent?
+          .u-marginbottom-40.u-margintop-40
+            .fontsize-base.fontweight-bold Total de usuários que clicaram no botão Lembrar-me
+            .fontsize-smaller Esses usuários receberão um lembrete por email 48 horas antes do término de sua campanha
+            = @project.total_reminders
       .w-col.w-col-4
         .card.u-radius.u-marginbottom-20.card-terciary data-ix="new-interaction" 
           .fontsize-small.fontweight-semibold.u-marginbottom-20
             span.fa.fa-download 
             | Baixar relatórios
           ul.w-list-unstyled
+            li.fontsize-smaller.u-marginbottom-10
+              div
+                | Apoiadores recorrentes &nbsp;
+                = link_to 'CSV', reports_recurrent_reports_for_project_owners_path(project_id: @project.id, format: :csv), class: 'alt-link'
+                | &nbsp;\&nbsp;
+                = link_to 'XLS', reports_recurrent_reports_for_project_owners_path(project_id: @project.id, format: :xls), class: 'alt-link'
+            li.divider.u-marginbottom-10
             li.fontsize-smaller.u-marginbottom-10
               div
                 | Apoiadores confirmados &nbsp;

@@ -282,6 +282,13 @@ pt:
       máximo de apoiadores
     value_must_be_at_least_rewards_value: deve ser pelo menos %{minimum_value} para
       a recompensa selecionada
+
+  recurrent_report_to_project_owner:
+    amount: 'valor do plano'
+    plan_name: 'plano'
+    days: 'intervalo em dias'
+    user_name: 'nome do apoiador'
+    user_email: 'email do apoiador'
   contribution_report_to_project_owner:
     reward_description: Descrição da recompensa
     deliver_at: Data de entrega da recompensa
