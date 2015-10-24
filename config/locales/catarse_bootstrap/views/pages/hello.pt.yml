@@ -14,41 +14,47 @@ pt:
         subtitle: "As pessoas precisam tomar conhecimento da sua existência, só assim ele poderá ter os recursos necessários para ser executado."
       fund:
         title: "Financiamento Coletivo"
-        subtitle: "Já imaginou Gamers Realizadores de projetos se conectando a vários Gamers Apoiadores interessados em contribuir e tudo em um só lugar? Na 99Gamers, isso é possível."
+        subtitle: "Já imaginou Gamers Realizadores de projetos conectando-se a vários Gamers Apoiadores interessados em contribuir e tudo em um só lugar? Na 99Gamers, isso é possível."
       campaign:
         title: "Campanhas de arrecadação"
-        subtitle: "Realizadores têm até 60 dias para captar a meta financeira que determinaram para o projeto acontecer. Em troca dos apoios, oferecem recompensas criativas."
+        subtitle_html: "Caso a campanha seja &#8220;Tudo ou nada&#8221; ou &#8220;Flexível&#8221;, os realizadores têm até 60 dias para captar a meta financeira que determinaram para o projeto acontecer. Em troca dos apoios, oferecem recompensas criativas. Caso seja &#8220;Recorrente/Gamer Sócio&#8221;, ela não terá um tempo determinado, o realizador poderá receber apoios como nos outros tipos de campanha e criar planos de recebimentos."
       allornothing:
         title: "Tudo ou nada!"
-        subtitle: "O objetivo é bater a meta no prazo para receber o valor arrecadado ou todos apoiadores recebem o dinheiro de volta. Planejar a campanha é o segredo!"
+        subtitle: "Ideal para projetos que estão começando, o objetivo é bater a meta no prazo para receber os valores arrecadados ou todos os apoiadores recebem o dinheiro de volta."
+      flex:
+        title: "Flexível"
+        subtitle: "Ideal para projetos que já estão em andamento, o objetivo é arrecadar o máximo de contribuições possíveis, de modo que a meta seja atingida e contribua significamente na realização do projeto. Neste modo de campanha, os realizadores recebem os valores mesmo que a meta do projeto não seja atingida."
+      recs:
+        title: "Recorrente / Gamer Sócio"
+        subtitle: "Ideal para youtubers, streamers, organizações de e-sports, clubes ou criadores de conteúdo que precisam de contribuições recorrentes, o objetivo é arrecadar valores mensais ou com outros períodos, de modo que contribua de maneira fixa para a realização de determinados projetos."
       success:
         title: "O projeto sai do papel"
-        subtitle: "Apoiadores querem ver o projeto acontecer. Com o sucesso da campanha, realizadores produzem o projeto e preparam a entrega das recompensas aos apoiadores!"
+        subtitle: "Gamers Apoiadores querem ver o projeto acontecer de qualquer maneira. Com o sucesso da campanha, os Gamers Realizadores produzem o projeto e preparam a entrega das recompensas ou conteúdos para os apoiadores."
       cta:
-        title: "Conheça o Catarse na prática"
-        backer-cta: "Torne-se um apoiador, ajude pessoas e receba recompensas exclusivas"
+        title: "Conheça a 99Gamers na prática"
+        backer-cta: "Torne-se um Gamer Apoiador, ajude pessoas a criarem os seus projetos e receba recompensas exclusivas."
         backer-link: "Apoie um projeto"
-        maker-cta: "Seja um realizador, mostre seu projeto ao mundo e arrecade dinheiro"
+        maker-cta: "Seja um Gamer Realizador, mostre seu projeto ao mundo e arrecade dinheiro para torná-lo realidade."
         maker-link: "Comece seu projeto"
       testimonial:
         humberto:
-          text_html: "&#8220; É uma oportunidade fascinante ser convidado a compartilhar o sonho de uma pessoa e ainda receber uma recompensa pela experiência. &#8221;"
-          name: "Humberto Figueira"
-          credentials: "apoiou mais de 150 projetos no Catarse"
+          text_html: "&#8220; A possibilidade de contribuir para o desenvolvimento de um cenário pelo qual sou apaixonado é surpreendente. E se torna melhor ainda quando podemos ganhar algo em troca do nosso apoio. &#8221;"
+          name: "Tedson Santos"
+          credentials: "Idealizador da 99Gamers"
       details:
         fund:
           title: "Financiamento Coletivo ou Crowdfunding?"
-          text: "Dois nomes para a mesma prática em que pessoas contribuem com pequenas quantias para juntas viabilizarem projetos. Crowd é multidão em inglês, funding, financiamento. Crowdfunding é financiamento pela multidão."
+          text: "Os dois nomes significam a mesma coisa, crowfunding é a prática onde uma determinada quantidade de pessoas contribui com pequenas quantias para juntas viabilizarem projetos. Crowd é multidão em inglês, funding, financiamento. Crowdfunding é financiamento pela multidão."
         allornothing:
-          title: "Por que Tudo ou nada?"
-          text_html: "Acreditamos no modelo &#8220;tudo ou nada&#8221; pois além das campanhas arrecadarem mais, essa é uma das formas de assegurarmos que um projeto só acontecerá se ele puder ser entregue como foi descrito e prometido aos apoiadores."
+          title: "Porque 3 tipos de campanhas diferentes?"
+          text_html: "Um estudo nos levou a crer que apenas o formato &#8220;tudo ou nada&#8221; não seria o suficiente para atender a demanda da nossa comunidade. Pensando nisso, resolvemos criar mais 2 tipos de campanhas visando suprir a necessidade dos mais diversos tipos de projetos. A &#8220;flexível&#8221;, visando campanhas já em andamento e a &#8220;Gamer Sócio&#8221;, visando criadores de conteúdo e organizações de e-sports."
         services:
-          title: "Nossos serviços"
-          text: "O Catarse fornece suporte aos usuários do site e torna possível que projetos captem recursos de forma ágil e direta utilizando a internet. Qualquer pessoa acima de 18 anos (ou menor, mas com um representante legal) pode utilizar nossos serviços e fazer uma campanha de crowdfunding desde que o projeto esteja de acordo com nossos critérios de seleção."
+          title: "Nós iremos te ajudar"
+          text: "A 99Gamers fornece suporte aos usuários da plataforma e torna possível que projetos captem recursos de forma ágil e direta utilizando a internet. Qualquer pessoa acima de 18 anos (ou menor, mas com um representante legal) pode utilizar nossos serviços e fazer uma campanha de crowdfunding, desde que o projeto esteja de acordo com nossos critérios de seleção."
         fees:
-          title: "Como nos sustentamos"
-          text: "Cobramos 13% sobre o valor total de projetos que atingiram ou ultrapassaram a meta de arrecadação. Ficamos com cerca de 9% e 4% é repassado ao Pagar.me, meio de pagamento utilizado no Catarse. Projetos que não atingiram a meta não têm qualquer custo e todos os apoiadores recebem o dinheiro de volta."
+          title: "Como sobrevimemos!"
+          text_html: "Cobramos 14% sobre o valor total de projetos que atingiram ou ultrapassaram a meta de arrecadação. Sendo que ficamos com cerca de 9% e os outros 5% é repassado ao Pagar.me, meio de pagamento utilizado na 99Gamers. Projetos &#8220;tudo ou nada&#8221; que não atingiram a meta não têm qualquer custo e todos os apoiadores recebem o dinheiro de volta. Projetos &#8220;flexíveis&#8221; que não atingirem a meta possuem um acréscimo de 3.5% no valor da porcentagem cobrada."
         work:
-          title: "Trabalhamos com propósito e amor"
-          text: "O Catarse é independente, sem investidores, de código aberto e construído com amor. Nossa paixão é construir um ambiente onde cada vez mais projetos possam ganhar vida. Hoje somos uma equipe de 23 pessoas com muita vontade de ajudar a distribuir mais recursos para projetos espalhados pelo Brasil."
+          title: "#EuApoioGamers"
+          text: "A 99 Gamers é uma organização independente, sem investimentos de terceiros, que está muito empenhada em realizar grandes feitos para o cenário gamer nacional. Pensando nisso, nos comprometemos a realizar a primeira contribuição no valor de R$10,00 (dez reais) para todas as novas campanhas na nossa plataforma. Além disso, pretendemos reinvestir parte do valor arrecadado por nós em projetos que acreditamos fazerem a diferença no desenvolvimento da nossa comunidade."
       staff: "Esses são alguns de nós esperando você tirar um projeto do papel..."

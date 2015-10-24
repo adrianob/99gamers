@@ -4,20 +4,20 @@
 .hero-jobs.hero-medium
   .w-container.u-text-center
     = image_tag "icon-assets.png", class: "icon-hero"
-    .u-text-center.u-marginbottom-20.fontsize-largest = t('.hero.title')
-.section-large.bg-gray
+    .fontweight-semibold.fontsize-jumbo.u-marginbottom-20 = t('.hero.title')
+.section-large.bg-gray.nocenter
   .w-container
     .w-row
       .w-col.w-col-8.w-col-push-2
         .u-marginbottom-20.fontsize-large = t('.abstract.title')
-.section-large
+.section-large.nocenter
   .w-container
     .w-row
       .w-col.w-col-8.w-col-push-2
         .fontsize-large.fontweight-semibold.u-marginbottom-10 = t('.history.title')
         .fontsize-large.u-marginbottom-20 = t('.history.subtitle')
         a.alt-link.fontsize-large href="https://docs.google.com/document/d/1g29ITtXrqBnThAWDHdPz1KqCrmIAb07urVF8Ru6735Q/edit?usp=sharing" target="_blank"  = t('.history.cta_html')
-.section-large.bg-gray
+.section-large.bg-gray.est-saiba
   .w-container
     .w-row
       .w-col.w-col-8.w-col-push-2
@@ -35,7 +35,7 @@
             .text-success.lineheight-loose.fontsize-larger= number_to_human(statistics.total_contributed)
             .fontsize-smaller = t('.stats.money_html')        
         a.alt-link.fontsize-large href="https://www.catarse.me/dbhero/dataclips/fa0d3570-9fa7-4af3-b070-2b2e386ef060" target="_blank"  = t('.stats.cta_html')
-.section-large
+.section-large.bg-gray
   .w-container
     .w-row.u-marginbottom-30.u-text-center
       .w-col.w-col-8.w-col-push-2
