@@ -53,7 +53,7 @@ gem 'high_voltage'
 
 # Authentication and Authorization
 gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '~> 1.4.0'
 gem 'devise'
 gem 'pundit'
 
