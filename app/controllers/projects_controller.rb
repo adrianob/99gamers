@@ -193,9 +193,11 @@ class ProjectsController < ApplicationController
   private
   #sync plans with pagarme
   def sync_plans
-    params[:project][:plans_attributes].each do |plan_destroy|
-      if plan_destroy[1][:_destroy] == "1"
-        Plan.find(plan_destroy[1][:id].to_i).destroy_plan
+    if params[:project][:plans_attributes]
+      params[:project][:plans_attributes].each do |plan_destroy|
+        if plan_destroy[1][:_destroy] == "1"
+          Plan.find(plan_destroy[1][:id].to_i).destroy_plan
+        end
       end
     end
     resource.plans.each do |plan|
