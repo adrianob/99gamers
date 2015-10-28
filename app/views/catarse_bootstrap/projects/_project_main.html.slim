@@ -47,7 +47,7 @@ section.section[itemtype="http://schema.org/CreativeWork"]
         .project-stats
           .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
             .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-              .fontsize-largest = @project.funding_type.recurrent? ? @project.decorator.display_subscriptions_amount : @project.display_pledged
+              .fontsize-largest = @project.display_pledged
               .fontsize-small = t('.sidebar.goal', total: @project.display_goal).html_safe
             .w-hidden-small.w-hidden-tiny.u-marginbottom-10
               .fontsize-largest = @project.funding_type.recurrent? ? @project.total_subscriptions : @project.total_contributions
@@ -83,6 +83,6 @@ section.section[itemtype="http://schema.org/CreativeWork"]
             .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
         #rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
           .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
-        - if @project.published?
+        - if @project.published? && !@project.funding_type.recurrent?
           .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
           .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"

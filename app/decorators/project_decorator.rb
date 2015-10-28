@@ -79,11 +79,16 @@ class ProjectDecorator < Draper::Decorator
 
   def progress
     return 0 if source.goal == 0.0 || source.goal.nil?
-    ((source.pledged / source.goal) * 100).to_i
+    amount = if source.funding_type.recurrent?
+      source.subscriptions_per_month
+    else
+      source.pledged
+    end
+    ((amount / source.goal) * 100).to_i
   end
 
   def display_pledged
-    number_to_currency source.pledged.floor
+    number_to_currency (source.funding_type.recurrent? ? source.subscriptions_per_month : source.pledged).floor
   end
 
   def display_pledged_with_cents
