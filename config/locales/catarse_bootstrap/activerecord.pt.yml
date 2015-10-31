@@ -87,7 +87,7 @@ pt:
         funding_type: 'Modelo de arrecadação'
         city: 'Local do projeto'
         more_links: 'Indique links para as pessoas conhecerem mais sobre o seu projeto e sua trajetória.'
-        traffic_sources: 'Como você conheceu o Catarse?'
+        traffic_sources: 'Como você conheceu a 99Gamers?'
         first_contributions: "Quem são as primeiras pessoas que você vai pedir para apoiar o seu projeto?"
         budget: 'Orçamento do projeto'
         uploaded_image: 'Imagem do projeto'
@@ -107,7 +107,7 @@ pt:
         full_name: "Nome completo / Razão Social"
         bio: 'Mini Bio'
         name: "Apelido"
-        newsletter: 'Quero receber novidades do Catarse'
+        newsletter: 'Quero receber novidades da 99Gamers'
         password: Senha
         password_confirmation: "Confirmação de senha"
         phone_number: "Telefone"

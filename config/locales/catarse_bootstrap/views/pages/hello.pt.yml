@@ -4,10 +4,10 @@ pt:
       page-title: "Saiba mais"
       hero:
         title: "De Gamers para Gamers"
-        people_html: "Pessoas já apoiaram pelo menos <br>1 projeto no Catarse"
-        projects_html: "Projetos já foram <br>financiados no Catarse"
+        people_html: "Pessoas já apoiaram pelo menos <br>1 projeto na 99Gamers"
+        projects_html: "Projetos já foram <br>financiados na 99Gamers"
         money_html: "Doados para projetos <br>publicados por aqui"
-        success: "Projetos já foram financiados no Catarse"
+        success: "Projetos já foram financiados na 99Gamers"
         money: "Doados para projetos publicados por aqui"
       idea:
         title: "O projeto é só o início!"

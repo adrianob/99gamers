@@ -7,8 +7,8 @@ pt:
       stats:
         title: "Nossos números"
         subtitle: "Muitos artistas, designers, pesquisadores, gamers, cientistas, empreendedores e ativistas encontraram na plataforma uma poderosa ferramenta para viabilizar financeiramente suas ações e projetos. Essa história pode ser contada em números."
-        people_html: "Pessoas já apoiaram pelo menos <br>1 projeto no Catarse"
-        projects_html: "Projetos já foram <br>financiados no Catarse"
+        people_html: "Pessoas já apoiaram pelo menos <br>1 projeto na 99Gamers"
+        projects_html: "Projetos já foram <br>financiados na 99Gamers"
         money_html: "Doados para projetos <br>publicados por aqui"
         cta_html: "Veja dados completos separados por categoria &gt;"
       abstract:
@@ -25,4 +25,4 @@ pt:
         cta_html: "Baixe nossas marcas &gt;" 
       email:
         title: "Quer falar com a gente?"
-        cta: "comunicacao@catarse.me"
+        cta: "contato@99gamers.me"
