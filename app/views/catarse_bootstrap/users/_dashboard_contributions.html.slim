@@ -1,4 +1,4 @@
-- if resource.contributions.empty?
+- if resource.contributions.empty? && resource.subscriptions.empty?
   .w-container
     .w-row.u-margintop-30.u-text-center
       .w-col.w-col-3
@@ -12,6 +12,10 @@
       .w-col.w-col-3
 
 - else
+  - if resource.subscriptions.present?
+    .section-one-column.u-marginbottom-30
+      .fontsize-large.fontweight-semibold.u-marginbottom-30.u-text-center Assinaturas
+      = render 'contribution_row', collection: resource.subscriptions
   - if resource.contribution_details.for_online_projects.present?
     .section-one-column.u-marginbottom-30
       .fontsize-large.fontweight-semibold.u-marginbottom-30.u-text-center Projetos em andamento

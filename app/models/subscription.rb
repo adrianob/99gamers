@@ -23,6 +23,14 @@ class Subscription < ActiveRecord::Base
     payment_method == 'boleto'
   end
 
+  def waiting_payment?
+    ['unpaid','pending_payment'].include? self.state
+  end
+
+  def can_show_slip?
+    self.slip_payment? && self.waiting_payment?
+  end
+
   state_machine :state, initial: :unpaid do
     state :pending_payment
     state :unpaid

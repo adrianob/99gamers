@@ -261,6 +261,8 @@ pt:
     state:
       pending: "Aguardando confirmação do pagamento"
       paid: "Confirmado em %{date}"
+      unpaid: 'Não pago'
+      canceled: 'Cancelado'
       refunded: "Reembolsado em %{date}"
       pending_refund: "Reembolso solicitado em %{date}"
       refused: "Pagamento recusado em %{date}"
