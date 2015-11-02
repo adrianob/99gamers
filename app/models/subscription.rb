@@ -4,6 +4,7 @@ class Subscription < ActiveRecord::Base
 
   belongs_to :plan
   belongs_to :user
+  delegate :project, to: :plan
   has_many :subscription_notifications
 
   scope :active, ->{ with_states(['paid','pending_payment']) }
