@@ -52,9 +52,7 @@ class User < ActiveRecord::Base
   end, class_name: 'Project'
   has_many :unsubscribes
   has_many :project_posts
-  has_many :contributed_projects, -> do
-    distinct.joins(:subscriptions).where("contributions.was_confirmed OR subscriptions.state IN ('paid', 'pending_payment')").order('projects.created_at DESC')
-  end, through: :contributions, source: :project
+  has_many :contributed_projects, foreign_key: 'paying_user_id'
   has_many :category_followers, dependent: :destroy
   has_many :categories, through: :category_followers
   has_many :links, class_name: 'UserLink', inverse_of: :user
