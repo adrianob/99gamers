@@ -118,10 +118,10 @@ class FixProjectTotalsView < ActiveRecord::Migration
       $$
       LANGUAGE plpgsql;
     SQL
-    execute "select deps_save_and_drop_dependencies('public', 'project_totals');"
+    execute "select deps_save_and_drop_dependencies('1', 'project_totals');"
     execute "drop view project_totals;"
     execute "
-      CREATE OR REPLACE VIEW project_totals AS
+      CREATE OR REPLACE VIEW "1".project_totals AS
        with recurrent_projects as(
             SELECT pl.project_id,
             sum(pl.amount * (30/pl.days::numeric)) AS pledged,
@@ -176,6 +176,6 @@ class FixProjectTotalsView < ActiveRecord::Migration
       LEFT JOIN recurrent_projects rp ON rp.project_id = p.id
       LEFT JOIN all_or_nothing_projects anp ON anp.project_id = p.id ;
   "
-    execute "select deps_restore_dependencies('public', 'project_totals');"
+    execute "select deps_restore_dependencies('1', 'project_totals');"
   end
 end
