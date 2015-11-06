@@ -121,7 +121,7 @@ class FixProjectTotalsView < ActiveRecord::Migration
     execute "select deps_save_and_drop_dependencies('1', 'project_totals');"
     execute "drop view project_totals;"
     execute "
-      CREATE OR REPLACE VIEW "1".project_totals AS
+      CREATE OR REPLACE VIEW \"1\".project_totals AS
        with recurrent_projects as(
             SELECT pl.project_id,
             sum(pl.amount * (30/pl.days::numeric)) AS pledged,
