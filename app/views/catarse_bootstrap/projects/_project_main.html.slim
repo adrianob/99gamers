@@ -50,7 +50,7 @@ section.section[itemtype="http://schema.org/CreativeWork"]
               .fontsize-largest = @project.display_pledged
               .fontsize-small = t('.sidebar.goal', total: @project.display_goal).html_safe
             .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-              .fontsize-largest = @project.funding_type.recurrent? ? @project.total_subscriptions : @project.total_contributions
+              .fontsize-largest = @project.total_contributions
               .fontsize-small = t('.sidebar.contributions')
             - if !@project.funding_type.recurrent?
               .w-hidden-small.w-hidden-tiny.u-marginbottom-10

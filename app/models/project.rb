@@ -146,10 +146,6 @@ class Project < ActiveRecord::Base
     order(sort_field)
   end
 
-  def subscriptions_per_month
-    subscriptions.active.sum("(plans.amount * (30/plans.days::numeric))")
-  end
-
   def user_already_in_reminder?(user_id)
     notifications.where(template_name: 'reminder', user_id: user_id).present?
   end
