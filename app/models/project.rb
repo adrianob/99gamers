@@ -178,6 +178,13 @@ class Project < ActiveRecord::Base
     @pledged ||= project_total.try(:pledged).to_f
   end
 
+  def pledged_last_month
+    contributions.joins(:payments).where("contributions.is_confirmed AND
+                        payments.paid_at BETWEEN
+                                     (date_trunc('MONTH', now()) - interval '1 month' + interval '5 days')
+                                     AND date_trunc('MONTH', now()) + interval '5 days' ").sum('contributions.value')
+  end
+
   def subscriptions_paid_in_last_month
     subscription_notifications.where("(extra_data->>'current_status') = 'paid'
                                      AND subscription_notifications.created_at BETWEEN
@@ -185,8 +192,9 @@ class Project < ActiveRecord::Base
                                      AND date_trunc('MONTH', now()) + interval '5 days'")
   end
 
+  #amount the project owner should receive each month
   def subscriptions_amount_in_last_month
-    subscriptions_paid_in_last_month.sum(:amount)
+    subscriptions_paid_in_last_month.sum(:amount) * (1 - CatarseSettings[:catarse_fee].to_f) - subscriptions_paid_in_last_month.sum(:gateway_fee)
   end
 
   def total_subscriptions
