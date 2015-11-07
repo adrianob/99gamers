@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/adrianob/catarse_pagarme.git
-  revision: f42fed18a367247fd67cc98ad32af232bbcc06b6
+  revision: f459e9d89eafd61c8cc337a9e2cc80df390fd8b8
   specs:
-    catarse_pagarme (2.7.15)
+    catarse_pagarme (2.7.16)
       pagarme (= 1.10.0)
       rails (~> 4.0)
       sidekiq
@@ -400,7 +400,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
-    netrc (0.10.3)
+    netrc (0.11.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)

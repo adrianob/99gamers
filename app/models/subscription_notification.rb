@@ -1,5 +1,14 @@
 class SubscriptionNotification < ActiveRecord::Base
   belongs_to :subscription
+  delegate :plan, to: :subscription
+
+  def payment_method
+    subscription.payment_method
+  end
+
+  def gateway_data
+    subscription.gateway_data
+  end
 
   # This methods should be called by payments engines
   def deliver_process_notification
