@@ -18,7 +18,7 @@ class Project < ActiveRecord::Base
   mount_uploader :uploaded_image, ProjectUploader
 
   delegate  :display_online_date, :display_card_status, :display_status, :progress,
-            :display_image, :display_expires_at, :remaining_text, :time_to_go,
+            :display_image, :display_expires_at, :remaining_text, :time_to_go, :display_pledged_last_month,
             :display_pledged, :display_pledged_with_cents, :display_goal, :remaining_days, :progress_bar,
             :status_flag, :state_warning_template, :display_card_class, :display_errors, to: :decorator
 
@@ -178,11 +178,15 @@ class Project < ActiveRecord::Base
     @pledged ||= project_total.try(:pledged).to_f
   end
 
-  def pledged_last_month
+  def payments_last_month
     contributions.joins(:payments).where("contributions.is_confirmed AND
                         payments.paid_at BETWEEN
                                      (date_trunc('MONTH', now()) - interval '1 month' + interval '5 days')
-                                     AND date_trunc('MONTH', now()) + interval '5 days' ").sum('contributions.value')
+                                     AND date_trunc('MONTH', now()) + interval '5 days' ")
+  end
+
+  def pledged_last_month
+    payments_last_month.sum('contributions.value')
   end
 
   def subscriptions_paid_in_last_month
@@ -192,9 +196,13 @@ class Project < ActiveRecord::Base
                                      AND date_trunc('MONTH', now()) + interval '5 days'")
   end
 
+  def total_payment_service_fee_last_month
+    subscriptions_paid_in_last_month.sum('subscription_notifications.gateway_fee').to_f + payments_last_month.sum('payments.gateway_fee').to_f
+  end
+
   #amount the project owner should receive each month
   def subscriptions_amount_in_last_month
-    subscriptions_paid_in_last_month.sum(:amount) * (1 - CatarseSettings[:catarse_fee].to_f) - subscriptions_paid_in_last_month.sum(:gateway_fee)
+    (subscriptions_paid_in_last_month.sum(:amount) * (1 - CatarseSettings[:catarse_fee].to_f)) - subscriptions_paid_in_last_month.sum(:gateway_fee)
   end
 
   def total_subscriptions
@@ -207,6 +215,10 @@ class Project < ActiveRecord::Base
 
   def total_payment_service_fee
     project_total.try(:total_payment_service_fee).to_f
+  end
+
+  def catarse_fee_last_month
+    CatarseSettings[:catarse_fee].to_f * (pledged_last_month + subscriptions_paid_in_last_month.sum(:amount))
   end
 
   def selected_rewards
