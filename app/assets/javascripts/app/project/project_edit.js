@@ -31,6 +31,9 @@ App.addChild('ProjectEdit', _.extend({
     this.route('user_settings');
     this.route('reports');
 
+    if(window.location.hash === ''){
+      window.location.hash = 'home';
+    }
     if($('.fa-exclamation-circle').length >= 1) {
       window.location.hash = $('.fa-exclamation-circle:eq(0)').parent().attr('href');
     } else {
