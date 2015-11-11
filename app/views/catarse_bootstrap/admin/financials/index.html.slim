@@ -56,17 +56,18 @@
             td= project.display_goal
             td= project.display_pledged_with_cents
             - if project.funding_type.recurrent?
-              td= project.display_pledged_last_month
+              td= project.display_pledged_in_last_month
             td= number_to_currency (project.funding_type.recurrent? ? project.total_payment_service_fee_last_month : project.total_payment_service_fee), precision: 2
             - catarse_fee = project.funding_type.recurrent? ? project.catarse_fee_last_month : CatarseSettings[:catarse_fee].to_f * project.pledged
             td
               = number_to_currency catarse_fee, precision: 2
-            /valor repasse
+            /valor repasse contributions
             td
-              = number_to_currency project.funding_type.recurrent? ? (( project.pledged_last_month * 0.86 ) - project.payments_last_month.sum('payments.gateway_fee').to_f ) : project.pledged*0.86 - project.total_payment_service_fee, precision: 2
+              = number_to_currency project.funding_type.recurrent? ? project.recurrent_transfer_amount : project.transfer_amount, precision: 2
+            /repasse assinaturas
             - if project.funding_type.recurrent?
               td
-                = number_to_currency project.subscriptions_amount_in_last_month, precision: 2
+                = number_to_currency project.subscriptions_transfer_amount, precision: 2
             td
               = project.display_expires_at
             td

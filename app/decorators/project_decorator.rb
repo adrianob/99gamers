@@ -82,8 +82,8 @@ class ProjectDecorator < Draper::Decorator
     number_to_currency (source.pledged).floor
   end
 
-  def display_pledged_last_month
-    number_to_currency (source.pledged_last_month).floor
+  def display_pledged_in_last_month
+    number_to_currency (source.pledged_in_last_month).floor
   end
 
   def display_pledged_with_cents
