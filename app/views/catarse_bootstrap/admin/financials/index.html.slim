@@ -58,7 +58,7 @@
             - if project.funding_type.recurrent?
               td= project.display_pledged_in_last_month
             td= number_to_currency (project.funding_type.recurrent? ? project.total_payment_service_fee_last_month : project.total_payment_service_fee), precision: 2
-            - catarse_fee = project.funding_type.recurrent? ? project.catarse_fee_last_month : CatarseSettings[:catarse_fee].to_f * project.pledged
+            - catarse_fee = project.funding_type.recurrent? ? project.catarse_fee_last_month : catarse_fee
             td
               = number_to_currency catarse_fee, precision: 2
             /valor repasse contributions

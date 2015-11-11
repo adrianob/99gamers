@@ -197,7 +197,7 @@ class Project < ActiveRecord::Base
   end
 
   def transfer_amount
-    pledged*(1 - CatarseSettings[:catarse_fee].to_f) - total_payment_service_fee - contributions.where('contributions.is_confirmed').count * 1.00
+    pledged*(1 - CatarseSettings[:catarse_fee].to_f) - total_payment_service_fee - ( contributions.where('contributions.is_confirmed').count * 1.00 )
   end
 
   def recurrent_transfer_amount
@@ -212,7 +212,6 @@ class Project < ActiveRecord::Base
     subscriptions_in_last_month.sum('subscription_notifications.gateway_fee').to_f + contributions_in_last_month.sum('payments.gateway_fee').to_f
   end
 
-  #amount the project owner should receive each month
   def subscriptions_transfer_amount
     (subscriptions_in_last_month.sum(:amount) * (1 - CatarseSettings[:catarse_fee].to_f)) - subscriptions_in_last_month.sum(:gateway_fee) - subscriptions_in_last_month.count * fixed_fee
   end
@@ -230,8 +229,12 @@ class Project < ActiveRecord::Base
     project_total.try(:total_payment_service_fee).to_f
   end
 
+  def catarse_fee
+    CatarseSettings[:catarse_fee].to_f * pledged + ( total_contributions * fixed_fee )
+  end
+
   def catarse_fee_last_month
-    CatarseSettings[:catarse_fee].to_f * (pledged_in_last_month + subscriptions_in_last_month.sum(:amount))
+    CatarseSettings[:catarse_fee].to_f * (pledged_in_last_month + subscriptions_in_last_month.sum(:amount)) + ( contributions_in_last_month.count + subscriptions_in_last_month.count ) * fixed_fee
   end
 
   def selected_rewards
