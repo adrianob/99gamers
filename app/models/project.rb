@@ -32,6 +32,7 @@ class Project < ActiveRecord::Base
   has_many :rewards
   has_many :contributions
   has_many :contribution_details
+  has_many :subscription_details
   has_many :payments, through: :contributions
   has_many :subscriptions, through: :plans
   has_many :subscription_notifications, through: :subscriptions
@@ -216,9 +217,12 @@ class Project < ActiveRecord::Base
     (subscriptions_in_last_month.sum(:amount) * (1 - CatarseSettings[:catarse_fee].to_f)) - subscriptions_in_last_month.sum(:gateway_fee) - subscriptions_in_last_month.count * fixed_fee
   end
 
-
   def total_subscriptions
     @total_subscriptions ||= subscriptions.active.count
+  end
+
+  def total_recurrent_contributions
+    @total_recurrent_contributions ||= contributions.where('contributions.is_confirmed').count
   end
 
   def total_contributions

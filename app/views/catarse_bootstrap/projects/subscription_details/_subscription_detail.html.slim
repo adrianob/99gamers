@@ -1,0 +1,18 @@
+- subsbcription = subscription_detail
+.w-clearfix.u-marginbottom-20
+
+  .w-row
+    .w-col.w-col-2  
+      = link_to user_path(subsbcription.user) do
+        .thumb.u-left.u-round[style="background-image: url('#{subsbcription.user.display_image}'); background-size: contain;"]
+
+    .w-col.w-col-10
+      .fontsize-base.fontweight-semibold
+        = link_to user_path(subsbcription.user), class: 'link-hidden-dark' do
+          = subsbcription.user.short_name
+      - if policy(@project).update?
+        .fontsize-smaller 
+          = number_to_currency subsbcription.value
+      .fontsize-smaller = l(subsbcription.created_at, format: :simple)
+      .fontsize-smaller = subsbcription.user.contributions_text
+.divider.u-marginbottom-20

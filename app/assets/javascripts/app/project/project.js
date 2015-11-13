@@ -14,6 +14,7 @@ App.addChild('Project', _.extend({
     this.route('about');
     this.route('posts');
     this.route('contributions');
+    this.route('subscriptions');
     this.route('comments');
     this.route('edit');
     this.route('reports');
