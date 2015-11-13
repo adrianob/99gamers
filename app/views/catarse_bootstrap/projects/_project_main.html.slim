@@ -63,7 +63,7 @@ section.section[itemtype="http://schema.org/CreativeWork"]
             .w-hidden-small.w-hidden-tiny.u-marginbottom-10
               .fontsize-largest = @project.total_contributions
               .fontsize-small = t('.sidebar.contributions')
-            - if !@project.funding_type.recurrent?
+            - if !@project.recurrent?
               .w-hidden-small.w-hidden-tiny.u-marginbottom-10
                 - if @project.draft? || @project.rejected?
                   .fontsize-largest = @project.online_days
@@ -77,7 +77,7 @@ section.section[itemtype="http://schema.org/CreativeWork"]
           - if @project.online? && !@project.expired?
             = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn btn-large u-marginbottom-20"
 
-          - if !@project.funding_type.recurrent?
+          - if !@project.recurrent?
             .fontsize-smaller.u-marginbottom-30[class=@project.display_card_class]
               = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
 
@@ -89,11 +89,11 @@ section.section[itemtype="http://schema.org/CreativeWork"]
             .btn.btn-medium.btn-fb.btn-tweet
               = render_twitter_mobile(url: project_by_slug_url(permalink: @project.permalink, ref: 'twitter'), title: @project.name)
               = t('.tweet')
-        - if @project.funding_type.recurrent?
+        - if @project.recurrent?
           #plans.u-marginbottom-30[data-index_path=project_plans_path(@project)]
             .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
         #rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
           .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
-        - if @project.published? && !@project.funding_type.recurrent?
+        - if @project.published? && !@project.recurrent?
           .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
           .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"

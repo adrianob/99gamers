@@ -175,6 +175,18 @@ class Project < ActiveRecord::Base
     notifications.where(template_name: 'reminder').count
   end
 
+  def recurrent?
+    funding_type.recurrent?
+  end
+
+  def flexible?
+    funding_type.flexible?
+  end
+
+  def all_or_nothing?
+    funding_type.all_or_nothing?
+  end
+
   def pledged
     @pledged ||= project_total.try(:pledged).to_f
   end

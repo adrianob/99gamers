@@ -66,7 +66,7 @@ class ProjectsController < ApplicationController
 
     resource.attributes = permitted_params
 
-    if @project.funding_type.recurrent?
+    if @project.recurrent?
       sync_plans
     end
     if resource.save(validate: should_validate)
@@ -122,7 +122,7 @@ class ProjectsController < ApplicationController
     @post =  (params[:project_post_id].present? ? resource.posts.where(id: params[:project_post_id]).first : resource.posts.build)
     @rewards = @project.rewards.rank(:row_order)
     @rewards = @project.rewards.build unless @rewards.present?
-    if @project.funding_type.recurrent?
+    if @project.recurrent?
       @plans = @project.plans.active.rank(:row_order)
       @plans = @project.plans.build unless @plans.present?
     end

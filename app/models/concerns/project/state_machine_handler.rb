@@ -11,7 +11,7 @@ module Project::StateMachineHandler
       state :in_analysis, :approved, :online, :successful, :waiting_funds, :failed do
         validates_presence_of :about_html, :headline, :goal, :budget
         validates_presence_of :uploaded_image, if: ->(project) { project.video_thumbnail.blank? }
-        validates_presence_of :online_days, if: ->(project) { !project.funding_type.recurrent? }
+        validates_presence_of :online_days, if: ->(project) { !project.recurrent? }
         validate do
           [:uploaded_image, :about_html, :name].each do |attr|
             self.user.errors.add_on_blank(attr)

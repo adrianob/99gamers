@@ -39,12 +39,12 @@
             th style="width: 200px"= t('.name')
             th= t('.goal')
             th= t('.pledged')
-            - if project.funding_type.recurrent?
+            - if project.recurrent?
               th Avulso
             th= t('.total_payment_service_fee')
             th= t('.total_catarse_fee')
             th= t('.repass_value')
-            - if project.funding_type.recurrent?
+            - if project.recurrent?
               th Repasse recorrente
             th= t('.expires_at')
             th= t('.reports')
@@ -55,17 +55,17 @@
             td= link_to project.name, project_by_slug_path(permalink: project.permalink), target: '_blank'
             td= project.display_goal
             td= project.display_pledged_with_cents
-            - if project.funding_type.recurrent?
+            - if project.recurrent?
               td= project.display_pledged_in_last_month
-            td= number_to_currency (project.funding_type.recurrent? ? project.total_payment_service_fee_last_month : project.total_payment_service_fee), precision: 2
-            - catarse_fee = project.funding_type.recurrent? ? project.catarse_fee_last_month : catarse_fee
+            td= number_to_currency (project.recurrent? ? project.total_payment_service_fee_last_month : project.total_payment_service_fee), precision: 2
+            - catarse_fee = project.recurrent? ? project.catarse_fee_last_month : catarse_fee
             td
               = number_to_currency catarse_fee, precision: 2
             /valor repasse contributions
             td
-              = number_to_currency project.funding_type.recurrent? ? project.recurrent_transfer_amount : project.transfer_amount, precision: 2
+              = number_to_currency project.recurrent? ? project.recurrent_transfer_amount : project.transfer_amount, precision: 2
             /repasse assinaturas
-            - if project.funding_type.recurrent?
+            - if project.recurrent?
               td
                 = number_to_currency project.subscriptions_transfer_amount, precision: 2
             td

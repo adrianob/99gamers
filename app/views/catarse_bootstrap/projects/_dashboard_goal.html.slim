@@ -18,7 +18,7 @@
                 preppend_input_text: 'R$',
                 preppend_input_text_wrapper_html: { class: 'fontsize-base lineheight-tightest' }
 
-              -if !@project.funding_type.recurrent?
+              -if !@project.recurrent?
                 = form.input :online_days,
                   type: 'number',
                   wrapper: :two_columns_with_postfix,

@@ -2,7 +2,7 @@ class ProjectObserver < ActiveRecord::Observer
   observe :project
 
   def before_save(project)
-    if !project.funding_type.recurrent? && (project.try(:online_date_changed?) || (project.online_date && project.try(:online_days_changed?)))
+    if !project.recurrent? && (project.try(:online_date_changed?) || (project.online_date && project.try(:online_days_changed?)))
       project.expires_at = (project.online_date + project.online_days.days).end_of_day
     end
   end

@@ -22,7 +22,7 @@
               div= metric[0] || 'Internacional'
             .w-col.w-col-6.w-col-small-6.w-col-tiny-6
               div= metric[1]
-        - if !@project.funding_type.recurrent?
+        - if !@project.recurrent?
           .u-marginbottom-40.u-margintop-40
             .fontsize-base.fontweight-bold Total de usuários que clicaram no botão Lembrar-me
             .fontsize-smaller Esses usuários receberão um lembrete por email 48 horas antes do término de sua campanha
