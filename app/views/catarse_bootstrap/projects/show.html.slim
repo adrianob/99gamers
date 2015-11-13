@@ -41,9 +41,10 @@ nav.project-nav.w-hidden-small.w-hidden-tiny
           => t('.menu.contributions')
           span.badge = @project.funding_type.recurrent? ?  @project.total_recurrent_contributions : @project.total_contributions
 
-        = link_to '#subscriptions', id: 'subscriptions_link', class: 'nav-tab' , data: {target: '#project_subscriptions'} do
-          | Assinantes
-          span.badge = @project.total_subscriptions
+        - if @project.funding_type.recurrent?
+          = link_to '#subscriptions', id: 'subscriptions_link', class: 'nav-tab' , data: {target: '#project_subscriptions'} do
+            ' Assinantes
+            span.badge = @project.total_subscriptions
 
         = link_to '#comments', id: 'comments_link', class: 'nav-tab' , data: {target: '#project_comments'} do
           => t('.menu.comments')
