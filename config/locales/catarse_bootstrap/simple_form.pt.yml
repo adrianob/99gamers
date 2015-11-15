@@ -4,7 +4,7 @@ pt:
       project:
         traffic_sources:
           one: "eu já tive outro projeto na 99Gamers"
-          two: "indicação de uma pessoa que já teve um projeto no Catarse"
+          two: "indicação de uma pessoa que já teve um projeto na 99Gamers"
           three: "indicação de amigo/colega/contato profissional"
           four: "a partir de um projeto que estava captando na plataforma"
           five: "artigo em um blog"
@@ -14,7 +14,7 @@ pt:
           nine: "Outro"
     validation_texts:
       reward:
-        minimum_value: "Informe um valor mínimo maior ou igual a 10"
+        minimum_value: "Informe um valor mínimo maior ou igual a 5"
         description: "Informe uma descrição para a recompensa"
       bank_account:
         input_bank_number: "Número do banco inválido"

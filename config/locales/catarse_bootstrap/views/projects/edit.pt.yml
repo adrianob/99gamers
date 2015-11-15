@@ -86,7 +86,7 @@ pt:
         header2: "Não deixe de ler:"
       rejected:
         title: "%{name}, infelizmente não foi dessa vez."
-        subtitle_html: "Você enviou seu projeto para análise do Catarse e entendemos que ele não está de acordo com o perfil do site. Ter um projeto recusado não impede que você envie novos projetos para avaliação ou reformule seu projeto atual. Converse com nosso atendimento! Recomendamos que você dê uma boa olhada nos %{link1}  e no %{link2}."
+        subtitle_html: "Você enviou seu projeto para análise da 99Gamers e entendemos que ele não está de acordo com o perfil do site. Ter um projeto recusado não impede que você envie novos projetos para avaliação ou reformule seu projeto atual. Converse com nosso atendimento! Recomendamos que você dê uma boa olhada nos %{link1}  e no %{link2}."
       online:
         title: "%{name}, sua campanha está no ar!"
         subtitle_html: "Seu projeto está no ar e sua campanha se encerrará às 23hs59min59s do dia %{date}. Até esse dia e horário você poderá receber apoios. Lembre-se, é tudo-ou-nada e você só levará os recursos captados se bater a meta que foi estipulada. Acesse a nossa %{link2} para outras dúvidas!"
@@ -109,7 +109,7 @@ pt:
       failed:
         title: "%{name}, não desanime!"
         subtitle_html: "Seu projeto não bateu a meta e sabemos que isso não é a melhor das sensações. Mas não desanime. Encare o processo como um aprendizado e não deixe de cogitar uma segunda tentativa. Não se preocupe, todos os seus apoiadores receberão o dinheiro de volta. %{link}."
-        questions: "Enviamos também um email para você com duas perguntinhas. Se você tiver tempo e cabeça, seria ótimo se pudesse dar uma olhada. Seu feedback nos ajuda a construir um Catarse melhor e mais legal pra você."
+        questions: "Enviamos também um email para você com duas perguntinhas. Se você tiver tempo e cabeça, seria ótimo se pudesse dar uma olhada. Seu feedback nos ajuda a construir uma 99Gamers melhor e mais legal pra você."
       draft:
         title: "%{name}, construa seu projeto!"
         subtitle: "Quanto mais cuidadoso e bem formatado for um projeto, maiores as chances de ele ser bem sucedido na sua campanha de captação. Antes de enviar seu projeto para a nossa análise, preencha todas as abas ao lado com carinho. Você pode salvar as alterações e voltar ao rascunho de projeto quantas vezes quiser. Quando tudo estiver pronto, clique no botão ENVIAR e entraremos em contato para avaliar o seu projeto."
@@ -160,7 +160,7 @@ pt:
       name_label: "Nome"
       name_hint: "Esse é o nome que os usuários irão ver no seu perfil."
       email_label: Email de Cadastro
-      email_hint: Email para você se logar no Catarse e se comunicar com a nossa equipe e com os seus apoiadores
+      email_hint: Email para você se logar na 99Gamers e se comunicar com a nossa equipe e com os seus apoiadores
     dashboard_goal:
       submit: "Salvar"
     dashboard_description:
@@ -192,7 +192,7 @@ pt:
       submit: Salvar
       card_label: "Vídeo"
       video_url: "Vídeo do projeto"
-      video_url_hint: "Importante: Qualquer projeto pode ser enviado sem o vídeo para análise do atendimento do Catarse . O vídeo pode ser analisado posteriormente. Lembrando que ele só é obrigatório para projetos com metas acima de 5 mil reais."
+      video_url_hint: "Importante: Qualquer projeto pode ser enviado sem o vídeo para análise do atendimento da 99Gamers. O vídeo pode ser analisado posteriormente. Lembrando que ele só é obrigatório para projetos com metas acima de 5 mil reais."
       video_url_subtitle: "Link do Vimeo ou Youtube"
     dashboard_basics:
       city: 'Local do projeto'
@@ -207,6 +207,6 @@ pt:
       online_days: 'Prazo para arrecadação'
       online_days_label: 'Você pode escolher entre 1 e 60 dias para a sua campanha. Confira o guia dos realizadores para dicas sobre prazos.'
       value: 'Valor a ser arrecadado'
-      value_secondary: 'Planeje uma meta coerente com o que seu projeto propõe. Revise seu orçamento e não esqueça de incluir a taxa de 13% cobrada pelo Catarse caso seu projeto seja bem-sucedido'
+      value_secondary: 'Planeje uma meta coerente com o que seu projeto propõe. Revise seu orçamento e não esqueça de incluir a taxa de 14% cobrada pela 99Gamers caso seu projeto seja bem-sucedido'
       form:
         submit: 'Salvar'

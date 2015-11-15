@@ -296,9 +296,9 @@ pt:
     deliver_at: Data de entrega da recompensa
     confirmed_at: Data da confirmação do pagamento
     contribution_value: Valor do apoio
-    service_fee: Taxa do Catarse
+    service_fee: Taxa da 99Gamers
     user_name: Nome do apoiador
-    user_email: Email perfil Catarse
+    user_email: Email perfil 99Gamers
     cpf: Cpf do apoiador
     payer_email: Email do meio de pagamento
     gateway: Meio de pagamento
