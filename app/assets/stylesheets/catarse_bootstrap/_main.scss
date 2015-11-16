@@ -274,7 +274,7 @@ p {
 }
 .project-stats {
   padding-top: 24px;
-  padding-left: 20px;
+  /*padding-left: 20px;*/
   text-align: left;
 }
 .project-stats.mf {
@@ -584,7 +584,7 @@ p {
 .project-author-contacts {
   margin-top: 15px;
   padding-top: 8px;
-  padding-bottom: 21px;
+  padding-bottom: 0px;
   border-top: 1px solid rgba(255, 255, 255, 0.61);
   font-family: proxima-nova, sans-serif;
 }
@@ -1454,7 +1454,7 @@ p {
   margin-bottom: 20px;
 }
 .project-stats-numbers {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-weight: 600;
 }
 .u-marginbottom-10 {
@@ -1467,8 +1467,8 @@ p {
   background-color: #f1f4f4;
 }
 .card-user {
-  border-color: rgba(64, 155, 255, 0.09);
-  background-color: rgba(64, 155, 255, 0.09);
+  border-color: rgba(117, 117, 117, 0.1);
+  background-color: rgba(146, 157, 170, 0.1);
 }
 .u-round {
   border-radius: 50%;
@@ -4173,4 +4173,49 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
 }
 .nocenter{
     text-align:left;
+}
+@media screen and (max-height: 850px) {
+.project-nav-wrapper #edit-menu-items #dashboard-links{
+    display: block;
+    height: 250px;
+    width: 205px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+}
+.footer-simple {
+    background-color: #333;
+}
+.card-terciary {
+    border-color: rgba(240, 240, 240, 0.49);
+    background-color: rgba(240, 240, 240, 0.49);
+}
+.yellow{
+    background:#E8CC12;
+    border-color:#E8CC12;
+}
+.tcampanha{
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    font-size: 20px;
+}
+.htit{
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:10px;
+}
+#plans .card-secondary {
+    /*background-color: #eee;*/
+}
+#plans .project-reward-box-hover{
+    background-color:#E8CC12;
+}
+#hplans{
+    margin-top:-20px;
+    padding-top:20px;
+}
+.bold{
+    font-weight:600;
+    font-size:15px;
 }
