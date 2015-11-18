@@ -96,10 +96,12 @@ section.section[itemtype="http://schema.org/CreativeWork"]
               = render_twitter_mobile(url: project_by_slug_url(permalink: @project.permalink, ref: 'twitter'), title: @project.name)
               = t('.tweet')
         - if @project.recurrent?
+          -if @project.subscriptions.present?
           h3#hplans.htit Planos de assinatura
           #plans.u-marginbottom-30[data-index_path=project_plans_path(@project)]
             .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
-        h3.htit Recompensas
+        -if @project.rewards.present?
+          h3.htit Recompensas
         #rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
           .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
         - if @project.published? && !@project.recurrent?
