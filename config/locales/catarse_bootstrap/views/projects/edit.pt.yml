@@ -89,7 +89,7 @@ pt:
         subtitle_html: "Você enviou seu projeto para análise da 99Gamers e entendemos que ele não está de acordo com o perfil do site. Ter um projeto recusado não impede que você envie novos projetos para avaliação ou reformule seu projeto atual. Converse com nosso atendimento! Recomendamos que você dê uma boa olhada nos %{link1}  e no %{link2}."
       online:
         title: "%{name}, sua campanha está no ar!"
-        subtitle_html: "Seu projeto está no ar e sua campanha se encerrará às 23hs59min59s do dia %{date}. Até esse dia e horário você poderá receber apoios. Lembre-se, é tudo-ou-nada e você só levará os recursos captados se bater a meta que foi estipulada. Acesse a nossa %{link2} para outras dúvidas!"
+        subtitle_html: "Seu projeto está no ar e sua campanha se encerrará às 23hs59min59s do dia %{date}. Até esse dia e horário você poderá receber apoios. Caso seja recorrente, não há limite de tempo. Lembre-se, se for tudo-ou-nada você só levará os recursos captados se bater a meta que foi estipulada. Acesse a nossa %{link2} para outras dúvidas!"
         explanation_html: |
                     <div class='fontsize-base u-marginbottom-40 card card-terciary'>
                       <p class='fontweight-bold'>
@@ -108,7 +108,7 @@ pt:
 
       failed:
         title: "%{name}, não desanime!"
-        subtitle_html: "Seu projeto não bateu a meta e sabemos que isso não é a melhor das sensações. Mas não desanime. Encare o processo como um aprendizado e não deixe de cogitar uma segunda tentativa. Não se preocupe, todos os seus apoiadores receberão o dinheiro de volta. %{link}."
+        subtitle_html: "Seu projeto não bateu a meta e sabemos que isso não é a melhor das sensações. Mas não desanime. Encare o processo como um aprendizado e não deixe de cogitar uma segunda tentativa. Não se preocupe, caso seja tudo ou nada, todos os seus apoiadores receberão o dinheiro de volta. %{link}."
         questions: "Enviamos também um email para você com duas perguntinhas. Se você tiver tempo e cabeça, seria ótimo se pudesse dar uma olhada. Seu feedback nos ajuda a construir uma 99Gamers melhor e mais legal pra você."
       draft:
         title: "%{name}, construa seu projeto!"
@@ -116,7 +116,7 @@ pt:
         study_title: "Sentiu que precisa estudar mais para montar seu projeto? Confira os links no box ao lado."
       approved:
         title: "%{name}, seu projeto foi aprovado!"
-        subtitle_html: "Para colocar o seu projeto no ar é preciso apenas que você preencha os dados necessários na aba %{link1}. É importante saber que cobramos a taxa de 13% do valor total arrecadado apenas por projetos bem sucedidos. Entenda %{link2}. "
+        subtitle_html: "Para colocar o seu projeto no ar é preciso apenas que você preencha os dados necessários na aba %{link1}. É importante saber que cobramos a taxa de 14% do valor total arrecadado. Se for uma campanha tudo ou nada, cobraremos apenas de projetos bem sucedidos. Entenda %{link2}. "
       in_analysis:
         title: "%{name}, você enviou seu projeto para análise e receberá nossa resposta em até 4 dias úteis"
         subtitle_html: "Muito obrigado! Nossa equipe vai avaliar todo o conteúdo do seu projeto e em até 4 dias úteis você receberá um email informando se ele foi Aprovado, Recusado ou se vai continuar Em Análise por mais algum tempo para que você possa realizar ajustes sugeridos. Aproveite esse período para coletar feedbacks com pessoas próximas!"
