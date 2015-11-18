@@ -12,6 +12,7 @@ div[itemtype="http://schema.org/CreativeWork" class="#{defined?(wrapper_class) ?
       .w-hidden-small.w-hidden-tiny.fontcolor-secondary.fontsize-smaller
         = link_to project_by_slug_path(@project.permalink, ref: ref), title: @project.headline, target: target, class: 'link-hidden' do
           = truncate(@project.headline, length: 140)
+    = image_tag @project.user.display_image, width: "100", class: "thumb u-round", itemprop: "image"
     - if @project.decorate.show_city
       .w-hidden-small.w-hidden-tiny.card-project-author.altt
         .fontsize-smallest.fontcolor-secondary
