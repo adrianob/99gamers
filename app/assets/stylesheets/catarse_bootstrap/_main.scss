@@ -962,7 +962,7 @@ p {
   height: 54px;
   padding: 3px 13px 13px;
   border-top: 1px none #ddd;
-  background-color: #f1f4f4;
+  background-color: #efefef;
 }
 .card-project-stats._2 {
   height: 90px;
@@ -1941,7 +1941,7 @@ p {
   padding-top: 10px;
   padding-right: 13px;
   padding-left: 13px;
-  background-color: #f1f4f4;
+  background-color: #efefef;
 }
 .card-project-meter.successful {
   padding-top: 4px;
@@ -4218,4 +4218,18 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
 .bold{
     font-weight:600;
     font-size:15px;
+}
+.cardimg .thumb {
+    width: 50px;
+    height: 50px;
+}
+.cardat{
+   padding-top:15px;
+   font-size:16px;
+}
+.cardtxt{
+   font-size:14px;
+}
+.card-project-description .fontsize-base a{
+    font-size: 22px;
 }
