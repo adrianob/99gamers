@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
       return
     end
     user = User.find_by_authentication_token params[:authentication_token]
-    subscriptions = user.projects.with_state(:online).last.subscriptions.order('subscriptions.created_at desc').limit(25)
+    subscriptions = user.projects.with_state(:online).last.subscriptions.active.order('subscriptions.created_at desc').limit(25)
     api_response = {
       "_total": subscriptions.count,
       "subscriptions": subscriptions_json(subscriptions)
