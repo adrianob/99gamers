@@ -60,6 +60,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
+    return if params['controller'] == 'api/users'
     return redirect_to url_for(locale: I18n.default_locale, only_path: true) unless is_locale_available?
     I18n.locale = params[:locale] || I18n.default_locale
   end
