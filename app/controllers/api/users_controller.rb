@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
       u.save!
       u.reload
     rescue
-      render :json => { :error => "Error creating user" }, :status => 401
+      render :json => { :error => "Error creating user" }, :status => 400
       return
     end
 
