@@ -13,7 +13,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def payment_method
-    gateway_data["current_transaction"]["payment_method"]
+    gateway_data ? gateway_data["current_transaction"]["payment_method"] : nil
   end
 
   def credit_card_payment?
