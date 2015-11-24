@@ -1,4 +1,27 @@
 class Api::UsersController < ApplicationController
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+
+  def connect
+    if params[:secret] != CatarseSettings[:api_secret]
+      failure
+      return
+    end
+    user = params['user']
+    begin
+      u= User.new(raiseit_id: user['id'],
+                   raiseit_key: user['api_key'],
+                   email: user['email'],
+                   name: user['name']
+                  )
+      u.save!
+      u.reload
+    rescue
+      render :json => { :error => "Error creating user" }, :status => 401
+      return
+    end
+
+    render json: {api_key: u.authentication_token, id: u.id}.to_json, status: 200
+  end
 
   def subscriptions
     if params[:secret] != CatarseSettings[:api_secret]
@@ -14,11 +37,11 @@ class Api::UsersController < ApplicationController
     render json: api_response.to_json, status: 200
   end
 
+  private
   def failure
     render :json => { :error => "Login Credentials Failed" }, :status => 401
   end
 
-  private
   def subscriptions_json(subscriptions)
     json = []
     subscriptions.each do |subscription|
