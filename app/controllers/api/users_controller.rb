@@ -29,6 +29,10 @@ class Api::UsersController < ApplicationController
       return
     end
     user = User.find_by_authentication_token params[:authentication_token]
+    if !user
+      render json: { :error => "User not found" }.to_json, status: 404
+      return
+    end
     subscriptions = user.projects.with_state(:online).last.subscriptions.active.order('subscriptions.created_at desc').limit(25)
     api_response = {
       "_total": subscriptions.count,
