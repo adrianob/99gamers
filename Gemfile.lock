@@ -670,7 +670,7 @@ DEPENDENCIES
   heroku-deflater (>= 0.4.1)
   high_voltage
   http_accept_language
-  httparty (~> 0.6.1)
+  httparty
   httpclient (>= 2.2.5)
   i18n_alchemy
   inherited_resources

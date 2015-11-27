@@ -1,6 +1,23 @@
 class Api::UsersController < ApplicationController
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format.json? }
 
+  def create
+    @result = HTTParty.post('http://raiseit.tv/api/connect',
+    :body => {
+              secret: CatarseSettings[:raiseit_secret],
+              user: {
+                id: current_user.id,
+                api_key: current_user.authentication_token,
+                email: current_user.email,
+                name: current_user.name
+               }
+             }.to_json,
+    :headers => { 'Content-Type' => 'application/json' } )
+
+    current_user.update_attributes(raiseit_key: @result.parsed_response['api_key'], raiseit_id: @result.parsed_response['id'])
+    redirect_to(:back)
+  end
+
   def connect
     if params[:secret] != CatarseSettings[:api_secret]
       failure
@@ -8,12 +25,11 @@ class Api::UsersController < ApplicationController
     end
     user = params['user']
     begin
-      u= User.new(raiseit_id: user['id'],
-                   raiseit_key: user['api_key'],
-                   email: user['email'],
-                   name: user['name']
-                  )
-      u.save!
+      u = User.find_or_create_by(email: user['email']) do |new_user|
+        new_user.raiseit_id = user['id']
+        new_user.raiseit_key = user['api_key']
+        new_user.name = user['name']
+      end
       u.reload
     rescue
       render :json => { :error => "Error creating user" }, :status => 400
