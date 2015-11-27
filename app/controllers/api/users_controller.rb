@@ -15,6 +15,7 @@ class Api::UsersController < ApplicationController
     :headers => { 'Content-Type' => 'application/json' } )
 
     current_user.update_attributes(raiseit_key: @result.parsed_response['api_key'], raiseit_id: @result.parsed_response['id'])
+    flash[:alert] = 'Integração com o Raiseit bem sucedida'
     redirect_to(:back)
   end
 

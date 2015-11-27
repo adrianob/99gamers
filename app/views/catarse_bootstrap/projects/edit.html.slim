@@ -3,6 +3,11 @@
 - content_for :stylesheets do
   = stylesheet_link_tag 'redactor'
 = render 'shared/header'
+- if @project.recurrent?
+  - if current_user.raiseit_id.nil?
+    = link_to  'Integrar com Raiseit', api_create_path, class:'btn btn-large', id: 'raiseit-save', method: :post
+  -else
+    |Integrado com Raiseit
 .w-section.dashboard-header.u-text-center
   .w-container
     .w-row
