@@ -37,7 +37,9 @@ class Api::UsersController < ApplicationController
       return
     end
 
-    render json: {api_key: u.authentication_token, id: u.id}.to_json, status: 200
+    render json: {api_key: u.authentication_token,
+                  id: u.id,
+                  reset_password_url: edit_user_url( u, user_email: u.email, user_token: u.authentication_token, anchor: 'settings')}.to_json, status: 200
   end
 
   def subscriptions

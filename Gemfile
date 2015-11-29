@@ -56,6 +56,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'devise'
 gem 'pundit'
+gem 'simple_token_authentication', '~> 1.0' # see semver.org
 
 # Email marketing
 gem 'catarse_monkeymail', '>= 0.1.6'
