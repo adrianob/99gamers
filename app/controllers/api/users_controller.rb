@@ -26,7 +26,9 @@ class Api::UsersController < ApplicationController
     end
     begin
       user = User.find_by_email params['user']['email']
+      new_dbuser = false
       if !user
+        new_dbuser = true
         user = User.create(email: params['user']['email']) do |new_user|
           new_user.raiseit_id = params['user']['id']
           new_user.raiseit_key = params['user']['api_key']
@@ -42,6 +44,7 @@ class Api::UsersController < ApplicationController
 
     render json: {api_key: user.authentication_token,
                   id: user.id,
+                  new_user: new_dbuser,
                   reset_password_url: edit_user_password_url(user, reset_password_token: user.authentication_token)}.to_json, status: 200
   end
 
