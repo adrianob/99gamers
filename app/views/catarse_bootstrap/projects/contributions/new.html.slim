@@ -13,6 +13,26 @@
     .fontweight-semibold.lineheight-tight.text-success.fontsize-base= t('.choose_reward')
 
 
+-if @project.recurrent?
+
+  #new-subscription.section
+    .w-container
+      .w-row
+        .w-col.w-col-8
+          .fontweight-semibold.fontsize-bigger Planos
+          - @project.plans.active.rank(:row_order).each do |plan|
+
+            = link_to "#{(parent.online? ? fallback_create_plan_subscriptions_path(plan) : '#reward-offline')}", data: {plan_id: plan.id}, method: :get, id: "plan_#{plan.id}", class: "card-reward card card-secondary u-marginbottom-10" do
+              .u-marginbottom-20
+                .fontsize-base.fontweight-semibold = plan.name
+                .fontsize-smaller.fontweight-semibold= t('.subscribers', count: plan.total_subscribers)
+              p.fontsize-smaller = plan.decorate.display_description
+              .fontsize-smaller.bold =" #{number_to_currency plan.amount} a cada #{plan.days} dias"
+              - if parent.online?
+                .project-reward-box-hover
+                  .project-reward-box-select-text.u-text-center Selecionar Plano
+
+
 #new-contribution.section
   .w-container
     .w-row

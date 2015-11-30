@@ -72,14 +72,12 @@ section.section[itemtype="http://schema.org/CreativeWork"]
                   .fontsize-largest = @project.remaining_days
                   .fontsize-small #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
 
-          - if @project.funding_type.flexible?
+          - if @project.flexible?
             .u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.flexible')
-          - if @project.funding_type.recurrent?
+          - if @project.recurrent?
             .u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.recurrent')
-          - if @project.funding_type.all_or_nothing?
+          - if @project.all_or_nothing?
             .u-text-center.fontsize-large.u-marginbottom-20=t('.all_or_nothing')
-          - if @project.online? && !@project.expired? && @project.funding_type.recurrent?
-            a.btn.btn-large.yellow.u-marginbottom-20 href="#hplans"  #{t('.assinar')}
           - if @project.online? && !@project.expired?
             = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn btn-large u-marginbottom-20"
 
