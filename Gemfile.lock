@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/adrianob/catarse_pagarme.git
-  revision: 2a9761bc2a4f6cb0ea415c9f2334eeeb1a823036
+  revision: 1a31cee2ff3934bd164e24cd72548a595415c56f
   specs:
-    catarse_pagarme (2.7.17)
+    catarse_pagarme (2.7.18)
       pagarme (= 1.10.0)
       rails (~> 4.0)
       sidekiq
@@ -110,10 +110,10 @@ GEM
     celluloid-supervision (0.20.5)
       timers (>= 4.1.1)
     chartkick (1.4.1)
-    childprocess (0.5.7)
+    childprocess (0.5.8)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
-    chunky_png (1.3.4)
+    chunky_png (1.3.5)
     cliver (0.3.2)
     cocoon (1.2.6)
     coderay (1.1.0)
@@ -123,7 +123,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.10.0)
     compass (1.0.3)
       chunky_png (~> 1.2)
       compass-core (~> 1.0.2)
@@ -141,7 +141,6 @@ GEM
       sass-rails (< 5.1)
       sprockets (< 2.13)
     connection_pool (2.2.0)
-    crack (0.1.8)
     daemons (1.2.3)
     database_cleaner (1.5.1)
     dbhero (1.1.9)
@@ -192,15 +191,15 @@ GEM
     ffi (1.9.10)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.35.0)
-      fog-aliyun
+    fog (1.36.0)
+      fog-aliyun (>= 0.1.0)
       fog-atmos
       fog-aws (>= 0.6.0)
       fog-brightbox (~> 0.4)
       fog-core (~> 1.32)
       fog-dynect (~> 0.0.2)
       fog-ecloud (~> 0.1)
-      fog-google (>= 0.1.1)
+      fog-google (<= 0.1.0)
       fog-json
       fog-local
       fog-powerdns (>= 0.1.1)
@@ -217,8 +216,8 @@ GEM
       fog-xenserver
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
-      nokogiri
-    fog-aliyun (0.0.10)
+      nokogiri (~> 1.5, >= 1.5.11)
+    fog-aliyun (0.1.0)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       ipaddress (~> 0.8)
@@ -231,17 +230,14 @@ GEM
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
       ipaddress (~> 0.8)
-    fog-brightbox (0.9.0)
+    fog-brightbox (0.10.0)
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.32.1)
+    fog-core (1.35.0)
       builder
       excon (~> 0.45)
       formatador (~> 0.2)
-      mime-types
-      net-scp (~> 1.1)
-      net-ssh (>= 2.1.3)
     fog-dynect (0.0.2)
       fog-core
       fog-json
@@ -249,7 +245,7 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (0.1.1)
+    fog-google (0.1.0)
       fog-core
       fog-json
       fog-xml
@@ -274,13 +270,13 @@ GEM
       fog-core
       fog-json
       fog-xml
-    fog-sakuracloud (1.3.3)
+    fog-sakuracloud (1.4.0)
       fog-core
       fog-json
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (1.0.0)
+    fog-softlayer (1.0.2)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -315,9 +311,8 @@ GEM
       multi_json (~> 1.10)
       retriable (~> 1.4)
       signet (~> 0.6)
-    google_drive (1.0.2)
+    google_drive (1.0.4)
       google-api-client (>= 0.7.0, < 0.9)
-      minitest (>= 5.1.0)
       nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
@@ -332,7 +327,7 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashie (3.4.3)
-    heroku-deflater (0.5.3)
+    heroku-deflater (0.6.2)
       rack (>= 1.4.5)
     high_voltage (2.4.0)
     hike (1.2.3)
@@ -341,9 +336,10 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     http_accept_language (2.0.5)
-    httparty (0.6.1)
-      crack (= 0.1.8)
-    httpclient (2.6.0.1)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
+    httpclient (2.7.0.1)
     i18n (0.7.0)
     i18n_alchemy (0.2.2)
       activesupport (>= 3.2.0, < 5.0.0)
@@ -357,7 +353,7 @@ GEM
     ipaddress (0.8.0)
     iso8601 (0.8.7)
     jasmine-core (2.3.4)
-    jasmine-rails (0.12.1)
+    jasmine-rails (0.12.2)
       jasmine-core (>= 1.3, < 3.0)
       phantomjs (>= 1.9)
       railties (>= 3.2.0)
@@ -385,11 +381,11 @@ GEM
     mailchimp-api (2.0.6)
       excon (>= 0.16.0)
       json (>= 1.7.7)
-    memoist (0.12.0)
+    memoist (0.13.0)
     method_source (0.8.2)
     mime-types (2.99)
     mini_magick (4.3.6)
-    mini_portile (0.6.2)
+    mini_portile2 (2.0.0)
     minitest (5.8.3)
     mixpanel-ruby (2.2.0)
     mixpanel_client (4.1.3)
@@ -397,12 +393,9 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-ssh (3.0.1)
     netrc (0.11.0)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.7)
+      mini_portile2 (~> 2.0.0.rc2)
     oauth (0.4.7)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
@@ -435,7 +428,7 @@ GEM
       activesupport (>= 3.1)
       arel
     phantomjs (1.9.8.0)
-    poltergeist (1.7.0)
+    poltergeist (1.8.1)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
@@ -494,7 +487,7 @@ GEM
     redis (3.2.2)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    request_store (1.2.0)
+    request_store (1.2.1)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     rest-client (1.8.0)
@@ -507,26 +500,26 @@ GEM
       actionpack (< 4.2)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
-    rspec-core (3.3.2)
-      rspec-support (~> 3.3.0)
-    rspec-expectations (3.3.1)
+    rspec-core (3.4.1)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.3.0)
+      rspec-support (~> 3.4.0)
     rspec-its (1.2.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-    rspec-mocks (3.3.2)
+    rspec-mocks (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.3.0)
-    rspec-rails (3.3.3)
+      rspec-support (~> 3.4.0)
+    rspec-rails (3.4.0)
       actionpack (>= 3.0, < 4.3)
       activesupport (>= 3.0, < 4.3)
       railties (>= 3.0, < 4.3)
-      rspec-core (~> 3.3.0)
-      rspec-expectations (~> 3.3.0)
-      rspec-mocks (~> 3.3.0)
-      rspec-support (~> 3.3.0)
-    rspec-support (3.3.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+      rspec-support (~> 3.4.0)
+    rspec-support (3.4.1)
     ruby-graphviz (1.2.2)
     ruby-ll (2.1.2)
       ansi
@@ -570,7 +563,7 @@ GEM
     simple_form (3.2.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    simple_token_authentication (1.10.0)
+    simple_token_authentication (1.10.1)
       actionmailer (>= 3.2.6, < 5)
       actionpack (>= 3.2.6, < 5)
       devise (~> 3.2)
@@ -586,7 +579,7 @@ GEM
     slop (3.6.0)
     spectator-validates_email (0.2.0)
       activemodel (>= 3.0.0)
-    spreadsheet (1.0.8)
+    spreadsheet (1.0.9)
       ruby-ole (>= 1.0)
     sprockets (2.12.4)
       hike (~> 1.2)
@@ -634,7 +627,7 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.2.2)
-    websocket-driver (0.6.2)
+    websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     weekdays (1.0.2)

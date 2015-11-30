@@ -14,7 +14,7 @@ pt:
           nine: "Outro"
     validation_texts:
       reward:
-        minimum_value: "Informe um valor mínimo maior ou igual a 5"
+        minimum_value: "Informe um valor mínimo maior ou igual a 3"
         description: "Informe uma descrição para a recompensa"
       bank_account:
         input_bank_number: "Número do banco inválido"

@@ -5,6 +5,7 @@ class Plan < ActiveRecord::Base
 
   belongs_to :project
   has_many :subscriptions
+  validates_numericality_of :amount, greater_than_or_equal_to: 3.00, message: 'Valor deve ser maior ou igual a R$ 3'
   scope :active, ->{ where(enabled: true) }
   ranks :row_order, with_same: :project_id
 

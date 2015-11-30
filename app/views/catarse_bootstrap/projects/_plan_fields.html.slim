@@ -19,7 +19,7 @@
             p.fontsize-small
               br= "#{number_to_currency plan.amount} a cada #{plan.days} dias"
             p.fontsize-small
-              br= plan.description
+              br= plan.decorate.display_description
   
     .w-row.card.card-terciary.u-marginbottom-20.card-edition.medium class=(plan.new_record? ? '' : "w-hidden edit_plan_content_#{plan.id}")
       .w-col.w-col-5.w-sub-col

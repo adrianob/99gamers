@@ -4,7 +4,7 @@
     .u-marginbottom-20
       .fontsize-base.fontweight-semibold = plan.name
       .fontsize-smaller.fontweight-semibold= t('.subscribers', count: plan.total_subscribers)
-    p.fontsize-smaller = plan.description
+    p.fontsize-smaller = plan.decorate.display_description
     .fontsize-smaller.bold =" #{number_to_currency plan.amount} a cada #{plan.days} dias"
     - if parent.online?
       .project-reward-box-hover
