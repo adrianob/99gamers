@@ -24,26 +24,25 @@ class Api::UsersController < ApplicationController
       failure
       return
     end
-    user = params['user']
     begin
-      u = User.find_by_email user['email']
-      if !u
-        u = User.create(email: user['email']) do |new_user|
-          new_user.raiseit_id = user['id']
-          new_user.raiseit_key = user['api_key']
-          new_user.name = user['name']
+      user = User.find_by_email params['user']['email']
+      if !user
+        user = User.create(email: params['user']['email']) do |new_user|
+          new_user.raiseit_id = params['user']['id']
+          new_user.raiseit_key = params['user']['api_key']
+          new_user.name = params['user']['name']
         end
-        u.reload
-        u.send_reset_password_instructions
+        user.reload
+        user.send_reset_password_instructions
       end
     rescue
       render :json => { :error => "Error creating user" }, :status => 400
       return
     end
 
-    render json: {api_key: u.authentication_token,
-                  id: u.id,
-                  reset_password_url: edit_user_password_url(u, reset_password_token: u.authentication_token)}.to_json, status: 200
+    render json: {api_key: user.authentication_token,
+                  id: user.id,
+                  reset_password_url: edit_user_password_url(user, reset_password_token: user.authentication_token)}.to_json, status: 200
   end
 
   def subscriptions
