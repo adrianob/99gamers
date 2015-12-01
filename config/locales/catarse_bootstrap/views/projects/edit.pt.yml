@@ -163,6 +163,7 @@ pt:
       email_hint: Email para você se logar na 99Gamers e se comunicar com a nossa equipe e com os seus apoiadores
     dashboard_goal:
       submit: "Salvar"
+      goal: Meta
     dashboard_description:
       submit: "Salvar"
     dashboard_plan:

@@ -4,6 +4,7 @@ pt:
       channel: Canal
       project: Projeto
       reward: Recompensa
+      goal: Meta
       contribution: Apoiador
       category: Categoria
       bank_account: Dados bancários

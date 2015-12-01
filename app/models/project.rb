@@ -29,6 +29,7 @@ class Project < ActiveRecord::Base
   has_one :project_total
   has_one :account, class_name: "ProjectAccount", inverse_of: :project
   has_many :plans
+  has_many :goals, class_name: "Goal", inverse_of: :project
   has_many :rewards
   has_many :contributions
   has_many :contribution_details
@@ -41,6 +42,7 @@ class Project < ActiveRecord::Base
   has_many :unsubscribes
 
   accepts_nested_attributes_for :rewards, allow_destroy: true
+  accepts_nested_attributes_for :goals, allow_destroy: true
   accepts_nested_attributes_for :plans, allow_destroy: false
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :account
@@ -323,7 +325,7 @@ class Project < ActiveRecord::Base
       pledged: self.pledged,
       project_state: self.state,
       category: self.category.name_pt,
-      project_goal: self.goal,
+      project_goal: self.goals.present? ? self.goals.order(:value).first : self.goal,
       project_online_date: self.online_date,
       project_expires_at: self.expires_at,
       project_address_city: self.account.try(:address_city),

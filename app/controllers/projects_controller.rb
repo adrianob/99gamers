@@ -125,6 +125,8 @@ class ProjectsController < ApplicationController
     if @project.recurrent?
       @plans = @project.plans.active.rank(:row_order)
       @plans = @project.plans.build unless @plans.present?
+      @goals = @project.goals.order(:value)
+      @goals = @project.goals.build unless @goals.present?
     end
     @budget = resource.budgets.build
 

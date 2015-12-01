@@ -56,14 +56,29 @@ section.section[itemtype="http://schema.org/CreativeWork"]
 
       #project-sidebar.aside.w-col.w-col-4
         .project-stats
-          .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
-            .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-              .fontsize-largest = @project.display_pledged
-              .fontsize-small = t('.sidebar.goal', total: @project.display_goal).html_safe
-            .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-              .fontsize-largest = @project.total_contributions
-              .fontsize-small = t('.sidebar.contributions')
-            - if !@project.recurrent?
+          - if @project.recurrent?
+            .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
+              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                .fontsize-large.fontweight-semibold.u-marginbottom-10 META ATUAL
+                - @project.goals.each do |goal|
+                  .card.card-goal
+                    .fontsize-large= goal.title
+                    = goal.decorate.display_value
+                    .meter
+                      = goal.decorate.progress_bar
+                    .fontsize-normal.fontweight-light= goal.decorate.display_description
+              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                .fontsize-largest = @project.total_contributions
+                .fontsize-small = t('.sidebar.contributions')
+
+          - else
+            .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
+              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                .fontsize-largest = @project.display_pledged
+                .fontsize-small = t('.sidebar.goal', total: @project.display_goal).html_safe
+              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                .fontsize-largest = @project.total_contributions
+                .fontsize-small = t('.sidebar.contributions')
               .w-hidden-small.w-hidden-tiny.u-marginbottom-10
                 - if @project.draft? || @project.rejected?
                   .fontsize-largest = @project.online_days

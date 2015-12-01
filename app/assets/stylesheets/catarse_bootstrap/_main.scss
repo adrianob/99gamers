@@ -1779,6 +1779,9 @@ p {
 .btn-no-border:hover {
   border: 1px solid transparent;
 }
+.card-goal {
+  padding: 10px;
+}
 .card-project {
   margin-bottom: 40px;
   padding: 0px;
@@ -3008,6 +3011,9 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
   .share-block {
     margin-right: 0px;
   }
+  .card-goal {
+    padding: 10px;
+  }
   .card-project {
     margin-bottom: 20px;
     padding: 0px;
@@ -3498,6 +3504,9 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
   }
   .w-sub-col {
     padding-right: 0px;
+  }
+  .card-goal {
+    padding: 10px;
   }
   .card-project {
     margin-bottom: 30px;
