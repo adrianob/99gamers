@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include Concerns::AnalyticsHelpersHandler
   include Pundit
 
-  acts_as_token_authentication_handler_for User, unless: lambda { |controller| controller.request.format.json? }
+  acts_as_token_authentication_handler_for User, unless: lambda { |controller| controller.request.format.json? }, fallback: :none
   layout 'catarse_bootstrap'
   protect_from_forgery
 
