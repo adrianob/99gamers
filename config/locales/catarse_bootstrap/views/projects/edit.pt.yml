@@ -29,6 +29,11 @@ pt:
       amount: Valor
       days: Intervalo de cobrança
       description: Descrição
+    goal_fields:
+      goal: Meta
+      title: Título
+      value: Valor
+      description: Descrição
     reward_fields:
       edit: "Editar recompensa"
       reward: Recompensa
