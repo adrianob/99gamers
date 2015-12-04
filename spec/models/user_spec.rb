@@ -135,62 +135,6 @@ RSpec.describe User, type: :model do
     it{ is_expected.to eq [user] }
   end
 
-  describe ".has_credits" do
-    subject{ User.has_credits }
-
-    context "when he has credits in the user_total" do
-      before do
-        with_credit = create(:confirmed_contribution, project: failed_project)
-        with_credit.payments.first.update_attributes({gateway: 'MoIP'})
-
-        @user_with_credits = with_credit.user
-        failed_project.update_attributes state: 'failed'
-        payment = create(:confirmed_contribution, project: successful_project).payments.first
-        payment.update_attributes({gateway: 'MoIP'})
-
-        UserTotal.refresh_view
-      end
-      it{ is_expected.to eq([@user_with_credits]) }
-    end
-
-    context "when he has credits in the user_total but is checked with zero credits" do
-      before do
-        b = create(:confirmed_contribution, value: 100, project: failed_project)
-        b.payments.first.update_attributes({gateway: 'MoIP'})
-        failed_project.update_attributes state: 'failed'
-        @u = b.user
-
-        b = create(:confirmed_contribution, value: 100, project: successful_project)
-        b.payments.first.update_attributes({gateway: 'MoIP'})
-        @u.update_attributes(zero_credits: true)
-        UserTotal.refresh_view
-      end
-      it{ is_expected.to eq([]) }
-    end
-  end
-
-  describe ".has_not_used_credits_last_month" do
-    subject{ User.has_not_used_credits_last_month }
-
-    context "when he has used credits in the last month" do
-      before do
-        create(:contribution_with_credits)
-      end
-      it{ is_expected.to eq([]) }
-    end
-
-    context "when he has not used credits in the last month" do
-      before do
-        with_credits  = create(:confirmed_contribution, project: failed_project)
-        with_credits.payments.first.update_attributes({gateway: 'MoIP'})
-        @user_with_credits = with_credits.user
-        failed_project.update_attributes state: 'failed'
-        UserTotal.refresh_view
-      end
-      it{ is_expected.to eq([@user_with_credits]) }
-    end
-  end
-
   describe ".by_payer_email" do
     before do
       p = create(:payment_notification)
@@ -431,32 +375,6 @@ RSpec.describe User, type: :model do
         created_today: user.created_today?
       }.to_json)
     end
-  end
-
-  describe "#credits" do
-    def create_contribution_with_payment user, project, value, credits, payment_state = 'paid'
-      c = create(:confirmed_contribution, user_id: user.id, project: project)
-      c.payments.first.update_attributes gateway: (credits ? 'Credits' : 'AnyButCredits'), value: value, state: payment_state
-    end
-    before do
-      @u = create(:user)
-      create_contribution_with_payment @u, successful_project, 100, false
-      create_contribution_with_payment @u, unfinished_project, 100, false
-      create_contribution_with_payment @u, failed_project, 200, false
-      create_contribution_with_payment @u, successful_project, 100, true
-      create_contribution_with_payment @u, unfinished_project, 50, true
-      create_contribution_with_payment @u, failed_project, 100, true
-      create_contribution_with_payment @u, failed_project, 200, false, 'pending_refund'
-      create_contribution_with_payment @u, failed_project, 200, false, 'refunded'
-
-      failed_project.update_attributes state: 'failed'
-      successful_project.update_attributes state: 'successful'
-      UserTotal.refresh_view
-    end
-
-    subject{ @u.credits }
-
-    it{ is_expected.to eq(50.0) }
   end
 
   describe "#update_attributes" do
