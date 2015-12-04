@@ -266,8 +266,13 @@ class Project < ActiveRecord::Base
   def accept_contributions?
     online? && !expired?
   end
+
   def reached_goal?
-    pledged >= goal
+    if self.recurrent?
+      pledged >= goals.order('value').first.value
+    else
+      pledged >= goal
+    end
   end
 
   def expired?
