@@ -62,11 +62,11 @@ section.section[itemtype="http://schema.org/CreativeWork"]
                 .fontsize-large.fontweight-semibold.u-marginbottom-10 META ATUAL
                 - if @project.goals.present?
                   .card.card-goal
-                    .fontsize-large= @project.current_goal.title
-                    = @project.current_goal.decorate.display_value
+                    .fontsize-large= @project.current_goal.try(:title)
+                    = @project.current_goal.try(:decorate).try(:display_value)
                     .meter
-                      = @project.current_goal.decorate.progress_bar
-                    .fontsize-normal.fontweight-light= @project.current_goal.decorate.display_description
+                      = @project.current_goal.try(:decorate).try(:progress_bar)
+                    .fontsize-normal.fontweight-light= @project.current_goal.try(:decorate).try(:display_description)
                   .card.card-goal
                     #toggle-goals.fontsize-normal.fontweight-light.u-text-center Mostrar todas metas
                   #other-goals.w-hidden
