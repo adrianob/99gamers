@@ -127,6 +127,7 @@ class ProjectsController < ApplicationController
       @plans = @project.plans.build unless @plans.present?
       @goals = @project.goals.order(:value)
       @goals = @project.goals.build unless @goals.present?
+      @goals_to_show = @project.goals.order(:value).reject {|goal| goal == @project.current_goal}
     end
     @budget = resource.budgets.build
 

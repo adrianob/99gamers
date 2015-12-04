@@ -189,6 +189,10 @@ class Project < ActiveRecord::Base
     funding_type.all_or_nothing?
   end
 
+  def current_goal
+    goals.order('value').where('value > ?', self.pledged).first || goals.order('value').first
+  end
+
   def pledged
     @pledged ||= project_total.try(:pledged).to_f
   end

@@ -9,7 +9,7 @@ class GoalDecorator < Draper::Decorator
   end
 
   def display_value
-    number_to_currency source.value
+    "#{number_to_currency source.value}  (#{number_with_precision source.progress.floor, precision: 0}% alcançada)"
   end
 
   def short_description
