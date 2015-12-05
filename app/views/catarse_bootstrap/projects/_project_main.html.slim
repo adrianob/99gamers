@@ -58,57 +58,57 @@ section.section[itemtype="http://schema.org/CreativeWork"]
         .project-stats
           - if @project.recurrent?
             .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
-              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+              .w-hidden-small.w-hidden-tiny.u-marginbottom-10.proinfo
                 .fontsize-largest = @project.display_pledged
-                .fontsize-small = t('.sidebar.goal', total: @project.display_goal).html_safe
-              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-                .fontsize-largest = @project.total_contributions
-                .fontsize-small = t('.sidebar.contributions')
-              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-                .fontsize-large.fontweight-semibold.u-marginbottom-10 META ATUAL
+                .fontsize-small.u-marginbottom-10 = t('.sidebar.goal', total: @project.display_goal).html_safe
+                .w-hidden-small.w-hidden-tiny
+                  .fontsize-largest = @project.total_contributions
+                  .fontsize-small = t('.sidebar.contributions')
+              .w-hidden-small.w-hidden-tiny
+                .fontsize-large.fontweight-semibold.u-marginbottom-10.meta-atual META ATUAL
                 - if @project.goals.present?
-                  .card.card-goal
+                  .card.card-goal.card-goal-metas
                     .fontsize-large= @project.current_goal.try(:title)
-                    = @project.current_goal.try(:decorate).try(:display_value)
+                    .test = @project.current_goal.try(:decorate).try(:display_value)
                     .meter
                       = @project.current_goal.try(:decorate).try(:progress_bar)
-                    .fontsize-normal.fontweight-light= @project.current_goal.try(:decorate).try(:display_description)
+                    .fontsize-normal.fontweight-light.goal-txt= @project.current_goal.try(:decorate).try(:display_description)
                   - if @goals_to_show.present?
-                    .card.card-goal
+                    .card.card-goal.card-toggle
                       #toggle-goals.fontsize-normal.fontweight-light.u-text-center Mostrar todas metas
                   #other-goals.w-hidden
                     - @goals_to_show.each do |goal|
-                      .card.card-goal.other-goals class="#{goal.reached? ? 'reached-goal' : ''}"
+                      .card.card-goal.other-goals.card-goal-metas class="#{goal.reached? ? 'reached-goal' : ''}"
                         .fontsize-large= goal.title
                         = goal.decorate.display_value
                         .meter
                           = goal.decorate.progress_bar
-                        .fontsize-normal.fontweight-light= goal.decorate.display_description
+                        .fontsize-normal.fontweight-light.goal-txt= goal.decorate.display_description
 
           - else
             .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
-              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+              .w-hidden-small.w-hidden-tiny.proinfo
                 .fontsize-largest = @project.display_pledged
-                .fontsize-small = t('.sidebar.goal', total: @project.display_goal).html_safe
-              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-                .fontsize-largest = @project.total_contributions
-                .fontsize-small = t('.sidebar.contributions')
-              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-                - if @project.draft? || @project.rejected?
-                  .fontsize-largest = @project.online_days
-                  .fontsize-small #{@project.online_days} #{pluralize_without_number(@project.online_days, I18n.t('datetime.prompts.day').downcase)} #{pluralize_without_number(@project.online_days, t('remaining_singular'), t('remaining_plural'))}
-                - else
-                  .fontsize-largest = @project.remaining_days
-                  .fontsize-small #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
+                .fontsize-small.u-marginbottom-10 = t('.sidebar.goal', total: @project.display_goal).html_safe
+                .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                  .fontsize-largest = @project.total_contributions
+                  .fontsize-small = t('.sidebar.contributions')
+                .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                  - if @project.draft? || @project.rejected?
+                    .fontsize-largest = @project.online_days
+                    .fontsize-small #{@project.online_days} #{pluralize_without_number(@project.online_days, I18n.t('datetime.prompts.day').downcase)} #{pluralize_without_number(@project.online_days, t('remaining_singular'), t('remaining_plural'))}
+                  - else
+                    .fontsize-largest = @project.remaining_days
+                    .fontsize-small #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
 
           - if @project.flexible?
             .u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.flexible')
           - if @project.recurrent?
             .u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.recurrent')
           - if @project.all_or_nothing?
-            .u-text-center.fontsize-large.u-marginbottom-20=t('.all_or_nothing')
+            .u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.all_or_nothing')
           - if @project.online? && !@project.expired?
-            = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn btn-large u-marginbottom-20"
+            = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn btn-large u-marginbottom-20 btn-apoio"
 
           - if !@project.recurrent?
             .fontsize-smaller.u-marginbottom-30[class=@project.display_card_class]

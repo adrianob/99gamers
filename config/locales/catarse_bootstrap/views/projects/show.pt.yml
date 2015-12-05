@@ -88,7 +88,7 @@ pt:
           successful: "Este projeto foi bem-sucedido e foi financiado em %{date}"
           waiting_funds: "O prazo de captação desse projeto está encerrado. Estamos aguardando a confirmação dos últimos pagamentos."
           draft: "Este projeto é apenas um rascunho e ainda não pode receber apoios."
-        submit: Apoiar este projeto
+        submit: Apoiar com R$3 ou +
       project_by: projeto por
       funding_period: Período de campanha
       project_header:
