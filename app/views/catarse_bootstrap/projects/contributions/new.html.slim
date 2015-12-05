@@ -6,7 +6,10 @@
 
 .w-section.header-cont-new
   .w-container
-    .fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only= t('.choose_reward')
+    -if @project.recurrent?
+      .fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only= t('.choose_rewardp.')  
+    -else
+      .fontweight-semibold.lineheight-tight.text-success.fontsize-large.u-text-center-small-only= t('.choose_reward')
 .w-section.header-cont-new.reward-floating
   .w-container
     .fontweight-semibold.fontsize-small= @project.name
@@ -18,11 +21,11 @@
   #new-subscription.section
     .w-container
       .w-row
-        .w-col.w-col-8
-          .fontweight-semibold.fontsize-bigger Planos
+        .w-col-12
+          h3.htit.u-marginbottom-20.w-col.w-col-12 Planos
           - @project.plans.active.rank(:row_order).each do |plan|
 
-            = link_to "#{(parent.online? ? fallback_create_plan_subscriptions_path(plan) : '#reward-offline')}", data: {plan_id: plan.id}, method: :get, id: "plan_#{plan.id}", class: "card-reward card card-secondary u-marginbottom-10" do
+            .w-col.w-col-4 = link_to "#{(parent.online? ? fallback_create_plan_subscriptions_path(plan) : '#reward-offline')}", data: {plan_id: plan.id}, method: :get, id: "plan_#{plan.id}", class: "card-reward card card-secondary u-marginbottom-10" do
               .u-marginbottom-20
                 .fontsize-base.fontweight-semibold = plan.name
                 .fontsize-smaller.fontweight-semibold= t('.subscribers', count: plan.total_subscribers)
@@ -34,6 +37,11 @@
 
 
 #new-contribution.section
+  -if @project.recurrent?
+    .w-container
+      .w-row
+        .w-col.w-col-8
+      h3.htit.u-marginbottom-20.w-col.w-col-12 Apoio e Recompensas
   .w-container
     .w-row
       .w-col.w-col-8
