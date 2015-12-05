@@ -74,7 +74,7 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def progress
-    goal = source.recurrent? ? source.current_goal.value : source.goal
+    goal = source.recurrent? ? source.current_goal.try(:value) : source.goal
     return 0 if goal == 0.0 || goal.nil?
     ((source.pledged / goal) * 100).to_i
   end
@@ -124,7 +124,7 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def display_goal
-    goal = source.recurrent? ? source.current_goal.value : source.goal
+    goal = source.recurrent? ? source.current_goal.try(:value) : source.goal
     number_to_currency goal
   end
 

@@ -4,10 +4,7 @@
   = stylesheet_link_tag 'redactor'
 = render 'shared/header'
 - if @project.recurrent?
-  - if @project.user.integrated_to_raiseit?
-    = link_to  'Integrado com Raiseit! Clique aqui para redefinir sua senha', @project.user.reset_password_url, class:'btn btn-large', target: '_blank'
-  -else
-    = link_to  'Integrar com Raiseit', api_create_path(user_id: @project.user.id), class:'btn btn-large', id: 'raiseit-save', method: :post
+  = render 'raiseit'
 .w-section.dashboard-header.u-text-center
   .w-container
     .w-row

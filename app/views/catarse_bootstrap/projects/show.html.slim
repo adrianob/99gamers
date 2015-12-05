@@ -24,6 +24,9 @@
 
 = render 'shared/header_big'
 
+- if policy(@project).update? && @project.recurrent?
+  = render 'raiseit'
+
 = render 'project_header'
 
 = render 'mobile_video'
