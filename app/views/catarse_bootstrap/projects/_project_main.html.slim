@@ -67,8 +67,9 @@ section.section[itemtype="http://schema.org/CreativeWork"]
                     .meter
                       = @project.current_goal.try(:decorate).try(:progress_bar)
                     .fontsize-normal.fontweight-light= @project.current_goal.try(:decorate).try(:display_description)
-                  .card.card-goal
-                    #toggle-goals.fontsize-normal.fontweight-light.u-text-center Mostrar todas metas
+                  - if @goals_to_show.present?
+                    .card.card-goal
+                      #toggle-goals.fontsize-normal.fontweight-light.u-text-center Mostrar todas metas
                   #other-goals.w-hidden
                     - @goals_to_show.each do |goal|
                       .card.card-goal.other-goals

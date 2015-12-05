@@ -12,6 +12,7 @@ module Project::ErrorGroups
         video: [:video_url],
         plan: [:'plans.amount'],
         reward: [:'rewards.minimum_value', :'rewards.deliver_at'],
+        goal: [:'goals.value'],
         user_about: [:'user.uploaded_image', :'user.name', :'user.about_html'],
         user_settings: ProjectAccount.attribute_names.map{|attr| ('project_account.' + attr).to_sym} << :account << :'account.agency_size'
       }
