@@ -4,10 +4,10 @@
   = stylesheet_link_tag 'redactor'
 = render 'shared/header'
 - if @project.recurrent?
-  - if current_user.raiseit_id.nil?
-    = link_to  'Integrar com Raiseit', api_create_path, class:'btn btn-large', id: 'raiseit-save', method: :post
+  - if @project.user.integrated_to_raiseit?
+    = link_to  'Integrado com Raiseit! Clique aqui para redefinir sua senha', @project.user.reset_password_url, class:'btn btn-large', target: '_blank'
   -else
-    |Integrado com Raiseit
+    = link_to  'Integrar com Raiseit', api_create_path(user_id: @project.user.id), class:'btn btn-large', id: 'raiseit-save', method: :post
 .w-section.dashboard-header.u-text-center
   .w-container
     .w-row

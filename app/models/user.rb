@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     :address_complement, :address_neighbourhood, :address_city, :address_state, :address_zip_code, :phone_number,
     :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link, :moip_login, :deactivated_at, :reactivate_token,
     :bank_account_attributes, :country_id, :zero_credits, :links_attributes, :about_html, :cover_image, :category_followers_attributes, :category_follower_ids,
-    :subscribed_to_project_posts, :raiseit_id, :raiseit_key
+    :subscribed_to_project_posts, :raiseit_id, :raiseit_key, :reset_password_url
 
   mount_uploader :uploaded_image, UserUploader
   mount_uploader :cover_image, CoverUploader
@@ -276,6 +276,10 @@ class User < ActiveRecord::Base
 
   def nullify_permalink
     self.permalink = nil if self.permalink.blank?
+  end
+
+  def integrated_to_raiseit?
+    raiseit_id.present?
   end
 
   def fix_facebook_link

@@ -2,19 +2,23 @@ class Api::UsersController < ApplicationController
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format.json? }
 
   def create
+    user = User.find params['user_id']
+    authorize user
     @result = HTTParty.post('http://raiseit.tv/api/connect',
     :body => {
               secret: CatarseSettings[:raiseit_secret],
               user: {
-                id: current_user.id,
-                api_key: current_user.authentication_token,
-                email: current_user.email,
-                name: current_user.name
+                id: user.id,
+                api_key: user.authentication_token,
+                email: user.email,
+                name: user.name
                }
              }.to_json,
     :headers => { 'Content-Type' => 'application/json' } )
 
-    current_user.update_attributes(raiseit_key: @result.parsed_response['api_key'], raiseit_id: @result.parsed_response['id'])
+    user.update_attributes(raiseit_key: @result.parsed_response['api_key'],
+                                   reset_password_url: @result.parsed_response['reset_password_url'],
+                                   raiseit_id: @result.parsed_response['id'])
     flash[:alert] = 'Integração com o Raiseit bem sucedida'
     redirect_to(:back)
   end
