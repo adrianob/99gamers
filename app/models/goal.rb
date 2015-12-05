@@ -6,4 +6,8 @@ class Goal < ActiveRecord::Base
     ( project.pledged / self.value ) * 100
   end
 
+  def reached?
+    progress >= 100
+  end
+
 end

@@ -59,6 +59,12 @@ section.section[itemtype="http://schema.org/CreativeWork"]
           - if @project.recurrent?
             .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
               .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                .fontsize-largest = @project.display_pledged
+                .fontsize-small = t('.sidebar.goal', total: @project.display_goal).html_safe
+              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                .fontsize-largest = @project.total_contributions
+                .fontsize-small = t('.sidebar.contributions')
+              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
                 .fontsize-large.fontweight-semibold.u-marginbottom-10 META ATUAL
                 - if @project.goals.present?
                   .card.card-goal
@@ -72,15 +78,12 @@ section.section[itemtype="http://schema.org/CreativeWork"]
                       #toggle-goals.fontsize-normal.fontweight-light.u-text-center Mostrar todas metas
                   #other-goals.w-hidden
                     - @goals_to_show.each do |goal|
-                      .card.card-goal.other-goals
+                      .card.card-goal.other-goals class="#{goal.reached? ? 'reached-goal' : ''}"
                         .fontsize-large= goal.title
                         = goal.decorate.display_value
                         .meter
                           = goal.decorate.progress_bar
                         .fontsize-normal.fontweight-light= goal.decorate.display_description
-              .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-                .fontsize-largest = @project.total_contributions
-                .fontsize-small = t('.sidebar.contributions')
 
           - else
             .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny

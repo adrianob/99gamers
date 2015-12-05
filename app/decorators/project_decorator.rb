@@ -123,7 +123,8 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def display_goal
-    number_to_currency source.goal
+    goal = source.recurrent? ? source.current_goal.value : source.goal
+    number_to_currency goal
   end
 
   def progress_bar

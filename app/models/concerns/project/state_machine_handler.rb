@@ -9,7 +9,8 @@ module Project::StateMachineHandler
 
       #validations starting in in_analysis
       state :in_analysis, :approved, :online, :successful, :waiting_funds, :failed do
-        validates_presence_of :about_html, :headline, :goal, :budget
+        validates_presence_of :goal, if: ->(project) { !project.recurrent? }
+        validates_presence_of :about_html, :headline, :budget
         validates_presence_of :uploaded_image, if: ->(project) { project.video_thumbnail.blank? }
         validates_presence_of :online_days, if: ->(project) { !project.recurrent? }
         validate do
@@ -17,7 +18,8 @@ module Project::StateMachineHandler
             self.user.errors.add_on_blank(attr)
           end
           self.user.errors.each {|error, error_message| self.errors.add('user.' + error.to_s, error_message)}
-          self.errors['rewards.size'] << "Deve haver pelo menos uma recompensa" if self.rewards.size == 0 && !self.funding_type.recurrent?
+          self.errors['rewards.size'] << "Deve haver pelo menos uma recompensa" if self.rewards.size == 0 && !self.recurrent?
+          self.errors['goals.size'] << "Deve haver pelo menos uma meta" if self.goals.size == 0 && self.recurrent?
           self.errors['account.agency_size'] << "Agência deve ter pelo menos 4 dígitos" if self.account && self.account.agency.size < 4
         end
       end
@@ -78,7 +80,7 @@ module Project::StateMachineHandler
         }
 
         transition waiting_funds: :successful,  if: ->(project) {
-          project.reached_goal? || project.funding_type.flexible?
+          project.reached_goal? || project.flexible?
         }
 
         transition waiting_funds: :failed,      if: ->(project) {
