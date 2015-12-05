@@ -9,7 +9,7 @@ class GoalDecorator < Draper::Decorator
   end
 
   def display_value
-    "#{number_to_currency source.value}  (#{number_with_precision source.progress.floor, precision: 0}% alcançada)"
+    "<div class=\"meta-info\"> <span class=\"meta-valor\">#{number_to_currency source.value}</span>  <span class=\"meta-porc\">(#{number_with_precision source.progress.floor, precision: 0}% alcançada)</span> </div>".html_safe
   end
 
   def short_description

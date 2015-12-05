@@ -10,7 +10,8 @@ module Project::StateMachineHandler
       #validations starting in in_analysis
       state :in_analysis, :approved, :online, :successful, :waiting_funds, :failed do
         validates_presence_of :goal, if: ->(project) { !project.recurrent? }
-        validates_presence_of :about_html, :headline, :budget
+        validates_presence_of :budget, if: ->(project) { !project.recurrent? }
+        validates_presence_of :about_html, :headline
         validates_presence_of :uploaded_image, if: ->(project) { project.video_thumbnail.blank? }
         validates_presence_of :online_days, if: ->(project) { !project.recurrent? }
         validate do

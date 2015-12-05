@@ -17,9 +17,10 @@
   = link_to (edit ? '#video' : edit_project_path(@project, anchor: 'video')), id: 'dashboard_video_link', class: link_class , data: {target: '#dashboard_video', tab_group: 'edit'} do
     = @project.decorate.status_icon_for('video', params[:action])
     = t('.video_tab')
-  = link_to (edit ? '#budget' : edit_project_path(@project, anchor: 'budget')), id: 'budget_link', class: link_class , data: {target: '#dashboard_budget', tab_group: 'edit'} do
-    = @project.decorate.status_icon_for('budget', params[:action])
-    = t('.budget_tab')
+  - if !@project.recurrent?
+    = link_to (edit ? '#budget' : edit_project_path(@project, anchor: 'budget')), id: 'budget_link', class: link_class , data: {target: '#dashboard_budget', tab_group: 'edit'} do
+      = @project.decorate.status_icon_for('budget', params[:action])
+      = t('.budget_tab')
   = link_to (edit ? '#card' : edit_project_path(@project, anchor: 'card')), id: 'card_link', class: link_class , data: {target: '#dashboard_card', tab_group: 'edit'} do
     = @project.decorate.status_icon_for('card', params[:action])
     = t('.card_tab')
