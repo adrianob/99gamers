@@ -39,15 +39,15 @@ RSpec.describe Reward, type: :model do
     it { expect(reward.persisted?).to eq(true) }
   end
 
-  it "should have a greater than 10.00 minimum value" do
+  it "should have a greater than 3.00 minimum value" do
     r = build(:reward)
     r.minimum_value = -0.01
     expect(r).not_to be_valid
-    r.minimum_value = 9.99
+    r.minimum_value = 2
     expect(r).not_to be_valid
-    r.minimum_value = 10.00
+    r.minimum_value = 3.00
     expect(r).to be_valid
-    r.minimum_value = 10.01
+    r.minimum_value = 3.01
     expect(r).to be_valid
   end
 
