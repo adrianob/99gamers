@@ -53,7 +53,6 @@ class User < ActiveRecord::Base
   end, class_name: 'Project'
   has_many :unsubscribes
   has_many :project_posts
-  has_many :contributed_projects, foreign_key: 'paying_user_id'
   has_many :category_followers, dependent: :destroy
   has_many :categories, through: :category_followers
   has_many :links, class_name: 'UserLink', inverse_of: :user
@@ -172,6 +171,10 @@ class User < ActiveRecord::Base
 
   def following_this_category?(category_id)
     category_followers.pluck(:category_id).include?(category_id)
+  end
+
+  def contributed_projects
+    Project.where(id: [contributions.where('contributions.is_confirmed').map {|contrib| contrib.project.id}, subscriptions.active.map {|s| s.project.id}].flatten).uniq
   end
 
   def failed_contributed_projects
