@@ -7,10 +7,12 @@ class Reward < ActiveRecord::Base
 
   belongs_to :project
   has_many :payments, through: :contributions
+  has_many :benefits, class_name: 'RewardBenefit'
   has_many :contributions, dependent: :nullify
 
   ranks :row_order, with_same: :project_id
 
+  accepts_nested_attributes_for :benefits, reject_if: :all_blank, allow_destroy: true
   validates_presence_of :minimum_value, :description, :deliver_at #, :days_to_delivery
   validates_numericality_of :minimum_value, greater_than_or_equal_to: 3.00, message: 'Valor deve ser maior ou igual a R$ 3'
   validates_numericality_of :maximum_contributions, only_integer: true, greater_than: 0, allow_nil: true

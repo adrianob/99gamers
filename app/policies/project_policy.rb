@@ -69,7 +69,7 @@ class ProjectPolicy < ApplicationPolicy
 
   def reward_attributes
     { rewards_attributes: [:_destroy, :id, :maximum_contributions,
-                          :description, :deliver_at, :minimum_value] }
+                          :description, :deliver_at, :minimum_value, benefits_attributes: [:description, :_destroy, :id]] }
   end
 
   def goal_attributes
@@ -79,7 +79,7 @@ class ProjectPolicy < ApplicationPolicy
 
   def plan_attributes
     { plans_attributes: [:_destroy, :id, :name,
-                          :description, :amount, :days] }
+                          :description, :amount, :days, benefits_attributes: [:description, :_destroy, :id]] }
   end
 
   def account_attributes

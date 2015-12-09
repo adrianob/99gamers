@@ -5,6 +5,10 @@ class Plan < ActiveRecord::Base
 
   belongs_to :project
   has_many :subscriptions
+  has_many :benefits, class_name: 'PlanBenefit'
+
+  accepts_nested_attributes_for :benefits, reject_if: :all_blank, allow_destroy: true
+
   validates_numericality_of :amount, greater_than_or_equal_to: 3.00, message: 'Valor deve ser maior ou igual a R$ 3'
   scope :active, ->{ where(enabled: true) }
   ranks :row_order, with_same: :project_id

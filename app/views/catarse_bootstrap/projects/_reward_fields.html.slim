@@ -74,6 +74,13 @@
                 = f.input_field :description, as: :text,  class: 'positive', placeholder: "Descreva sua recompensa", required: true
                 .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="reward_description"] = t('simple_form.validation_texts.reward.description')
             .w-row
+              h3 Benefícios
+              #plan-benefits
+                = f.simple_fields_for :benefits do |benefit|
+                  = render 'benefit_fields', f: benefit
+                .links
+                  = link_to_add_association 'Adicionar benefício', f, :benefits
+            .w-row
               .w-col.w-col-5
                 .w-checkbox
                   .w-checkbox-input= check_box_tag  "limit_reward", '', (reward.maximum_contributions.present?), id: 'limit_reward' 
