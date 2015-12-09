@@ -4321,19 +4321,19 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
     border: 0px none;
     font-size:15px;
 }
-.card-reward .u-marginbottom-20{
+.card-reward .card-planos, .card-reward .card-rew{
     color: #FFF;
     border-bottom: 5px solid #E8CC12;
     background:#1e1e1e;
     padding:10px;
 }
-.card-reward .u-marginbottom-20 .fontsize-base {
+.card-reward .card-planos .fontsize-base {
     color: #E8CC12;
 }
-#rewards .card-reward .u-marginbottom-20{
+.card-reward .card-rew{
    border-color:#08DA3D;
 }
-#rewards .card-reward .u-marginbottom-20 .fontsize-base{
+.card-reward .card-rew .fontsize-base{
    color:#08DA3D;
 }
 .card-reward p{
@@ -4363,7 +4363,7 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
 .card-reward .beneficios {
     padding-left: 0px;
     list-style: outside none none;
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
 }
 .card-reward .beneficios li{
@@ -4390,4 +4390,40 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
     border-color:#139F97;
     border-radius:0;
     background:#139F97;
+}
+#plan-benefits{
+    margin:30px 0;
+}
+#plan-benefits .field-label{
+    font-size:14px;
+}
+#plan-benefits .add_fields, #plan-benefits .remove_fields{
+    margin-bottom: 0px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(64, 155, 255, 0);
+    background-color: rgba(64, 155, 255, 0.09);
+    transition-delay: initial;
+    color: #409BFF;
+    text-decoration: none;
+    font-size:16px;
+    border-radius: 5px;
+    padding: 12px 10px;
+}
+#plan-benefits .add_fields:hover{
+    border-color: rgba(64, 155, 255, 0.09);
+    background-color: rgba(64, 155, 255, 0.2);
+}
+#plan-benefits .remove_fields{
+    color:#FF6F40;
+    font-size: 14px;
+    padding: 12px 7px;
+    border-color:rgba(255, 158, 64, 0);
+    background-color:rgba(255, 158, 64, 0.1);
+}
+#plan-benefits .remove_fields:hover{
+    border-color:rgba(255, 158, 64, 0.09);
+    background-color:rgba(255, 158, 64, 0.3);
 }
