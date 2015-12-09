@@ -4,7 +4,7 @@
     .card-planos.u-marginbottom-20
       .fontsize-base.fontweight-semibold = plan.name
       .fontsize-smaller.fontweight-semibold= t('.subscribers', count: plan.total_subscribers)
-    p.fontsize-smaller = plan.decorate.display_description
+    .fontsize-smaller = plan.decorate.display_description
     ul.beneficios.u-marginbottom-20
       - plan.benefits.each_with_index do |benefit, index|
         li class="#{( index % 2 == 0 ) ? 'odd' : ''}"= benefit.description
