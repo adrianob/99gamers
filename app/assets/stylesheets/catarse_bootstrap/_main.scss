@@ -4377,3 +4377,17 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
     padding:10px;
     padding-top:0px;
 }
+.raiseit-on, .raiseit-on:hover{
+   border-radius:0;
+}
+.raiseit-off{
+    border-color:#1fb5ac;
+    border-radius:0;
+    background:#1fb5ac;
+
+}
+.raiseit-off:hover{
+    border-color:#139F97;
+    border-radius:0;
+    background:#139F97;
+}
