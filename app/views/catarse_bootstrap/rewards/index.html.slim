@@ -21,6 +21,9 @@
                 => t('.limited')
               = " (" + reward.display_remaining + ")"
     .fontsize-smaller = reward.display_description
+    ul.beneficios.u-marginbottom-20
+      - reward.benefits.each_with_index do |benefit, index|
+        li class="#{( index % 2 == 0 ) ? 'odd' : ''}"= benefit.description
     - if reward.deliver_at.present?
       .fontsize-smallest.est-rew = "#{t('.reward_deliver_time', estimate: reward.display_deliver_estimate)}".html_safe
     - if current_user && current_user.admin
