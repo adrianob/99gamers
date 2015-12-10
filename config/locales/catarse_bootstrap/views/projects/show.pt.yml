@@ -54,7 +54,7 @@ pt:
         com boleto impresso
       link_reward: Baixar relatório dos apoiadores da recompensa de %{value}
     project_about:
-      embed: < embed >
+      embed: < incorporar >
       embed_title: Incorpore este projeto no seu site
       active_btn: ' Lembrar-me'
       deactive_btn: ' Lembrete ativo'

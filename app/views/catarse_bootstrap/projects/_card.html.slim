@@ -32,7 +32,11 @@ div[itemtype="http://schema.org/CreativeWork" class="#{defined?(wrapper_class) ?
       .w-row
         .w-col.w-col-4.w-col-small-4.w-col-tiny-4
           .fontsize-base.fontweight-semibold 
-            = "#{@project.progress}%"
+            - if @project.recurrent?
+              = "#{@project.progress}%"
+              span.fontsize-smallest<> da meta atual
+            - else
+              = "#{@project.progress}%"
         .w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only
           .fontsize-smaller.fontweight-semibold 
             = @project.display_pledged
