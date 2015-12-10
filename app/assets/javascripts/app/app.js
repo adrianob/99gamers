@@ -6,6 +6,7 @@ var App = window.App = Skull.View.extend({
     "click a#user-menu" : "toggleMenu",
     "click a.mobile-menu-link" : "mobileMenu",
     "click .zendesk_widget" : "showWidget",
+    "click .raiseit-off" : "confirmIntegration",
     "click #pg_search_submit" : "searchProject",
   },
 
@@ -21,6 +22,12 @@ var App = window.App = Skull.View.extend({
     }
     else{
       this.closeAlert();
+    }
+  },
+
+  confirmIntegration: function(event){
+    if(!confirm('Tem certeza que deseja integrar?')){
+      e.preventDefault();
     }
   },
 

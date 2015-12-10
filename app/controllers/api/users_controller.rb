@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
 
   def create
     user = User.find params['user_id']
-    authorize user
+    return if current_user != user && !current_user.admin?
     @result = HTTParty.post('http://raiseit.tv/api/connect',
     :body => {
               secret: CatarseSettings[:raiseit_secret],

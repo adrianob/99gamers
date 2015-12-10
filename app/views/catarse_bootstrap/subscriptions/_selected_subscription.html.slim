@@ -4,7 +4,7 @@
     .fontsize-large.text-success.u-left = "#{number_to_currency @subscription.plan.amount} a cada #{@subscription.plan.days} dias"
   .back-payment-info-reward
     .fontsize-smaller.fontweight-semibold.u-marginbottom-10 Descrição
-    .fontsize-smallest
+    .fontsize-smallest.u-marginbottom-20
       == @subscription.plan.description
     ul.beneficios.u-marginbottom-20
       - @subscription.plan.benefits.each_with_index do |benefit, index|
