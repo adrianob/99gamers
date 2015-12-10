@@ -230,6 +230,21 @@ pt:
             headline:
               blank: "A frase de efeito do projeto não pode ficar em branco"
               too_long: "A frase de efeito é muito longa. Você pode usar um máximo de 140 caracteres."
+        reward:
+          attributes:
+            description:
+              blank: "A descrição não pode ficar em branco"
+            minimum_value:
+              blank: "O valor não pode ficar em branco"
+        plan:
+          attributes:
+            name:
+              blank: "O nome não pode ficar em branco"
+            amount:
+              blank: "O valor não pode ficar em branco"
+              invalid: "O valor deve ser maior que R$3"
+            days:
+              blank: "O intervalor de cobrança não pode ficar em branco"
         user:
           attributes:
             email:

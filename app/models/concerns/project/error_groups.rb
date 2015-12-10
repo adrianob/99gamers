@@ -9,7 +9,7 @@ module Project::ErrorGroups
         budget: [:budget],
         card: [:uploaded_image, :headline],
         video: [:video_url],
-        plan: [:'plans.amount'],
+        plan: [:'plans.amount', :'plans.name', :'plans.days'],
         reward: [:'rewards.minimum_value', :'rewards.deliver_at'],
         goal: [:'goals.value', :goal],
         user_about: [:'user.uploaded_image', :'user.name', :'user.about_html'],
