@@ -66,13 +66,12 @@ class ProjectsController < ApplicationController
 
     resource.attributes = permitted_params
 
+    sync_plans if @project.recurrent?
     if resource.save(validate: should_validate)
       flash[:notice] = t('project.update.success')
-      sync_plans if @project.recurrent?
     else
       flash[:notice] = t('project.update.failed')
       build_dependencies
-      sync_plans if @project.recurrent?
       return render :edit
     end
 
