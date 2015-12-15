@@ -90,7 +90,7 @@ class Api::UsersController < ApplicationController
           "updated_at": subscription.user.updated_at,
           "display_name": subscription.user.display_name,
         },
-        "created_at": subscription.created_at,
+        "created_at": subscription.paid_at,
       }
     end
     json
