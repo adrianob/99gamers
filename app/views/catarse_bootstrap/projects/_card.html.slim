@@ -30,12 +30,14 @@ div[itemtype="http://schema.org/CreativeWork" class="#{defined?(wrapper_class) ?
           = @project.progress_bar
     .card-project-stats
       .w-row
-        .w-col.w-col-4.w-col-small-4.w-col-tiny-4
-          .fontsize-base.fontweight-semibold 
-            - if @project.recurrent?
+        - if @project.recurrent?
+          .w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only
+            .fontsize-smaller.fontweight-semibold 
               = "#{@project.progress}%"
-              span.fontsize-smallest<> da meta atual
-            - else
+            .fontsize-smallest.lineheight-tightest da meta atual
+        - else
+          .w-col.w-col-4.w-col-small-4.w-col-tiny-4
+            .fontsize-base.fontweight-semibold 
               = "#{@project.progress}%"
         .w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only
           .fontsize-smaller.fontweight-semibold 
