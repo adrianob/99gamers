@@ -17,7 +17,7 @@
     "backbone": "~1.2.0",
     "underscore": "~1.8.3",
     "jquery-sticky": "~1.0.1",
-    "jquery-smooth-scroll": "~1.5.5",
+    "jquery-smooth-scroll": "~1.5.7",
     "jquery-typewatch": "~2.2.1",
     "store": "~2.3.0",
     "jQuery-Mask-Plugin": "~1.11.4",
