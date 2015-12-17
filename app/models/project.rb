@@ -235,6 +235,11 @@ class Project < ActiveRecord::Base
     (subscriptions_in_last_month.sum(:amount) * (1 - CatarseSettings[:catarse_fee].to_f)) - subscriptions_in_last_month.sum(:gateway_fee) - subscriptions_in_last_month.count * fixed_fee
   end
 
+  def active_subscribed_users
+    subscriptions.active.group(:user).count(:user)
+  end
+
+  #active subscriptions
   def total_subscriptions
     @total_subscriptions ||= subscriptions.active.count
   end
