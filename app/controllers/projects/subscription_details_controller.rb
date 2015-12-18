@@ -6,7 +6,11 @@ class Projects::SubscriptionDetailsController < ApplicationController
   end
 
   def collection
-    @subscriptions ||= apply_scopes(parent.subscription_details).active.order("created_at DESC").per(10)
+    if current_user && (current_user.admin? || @project.user == current_user)
+      @subscriptions ||= apply_scopes(parent.subscription_details).active.order("created_at DESC").per(10)
+    else
+      @subscriptions ||= apply_scopes(parent.subscription_details).public_active.order("created_at DESC").per(10)
+    end
   end
 
   def parent

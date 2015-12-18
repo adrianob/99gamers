@@ -244,6 +244,10 @@ class Project < ActiveRecord::Base
     @total_subscriptions ||= subscriptions.active.count
   end
 
+  def public_total_subscriptions
+    @total_subscriptions ||= subscriptions.public_active.count
+  end
+
   def total_recurrent_contributions
     @total_recurrent_contributions ||= contributions.where('contributions.is_confirmed').count
   end

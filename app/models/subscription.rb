@@ -7,6 +7,9 @@ class Subscription < ActiveRecord::Base
   delegate :project, to: :plan
   has_many :subscription_notifications
 
+  #do not show canceled
+  scope :public_active, ->{ with_states(['paid','pending_payment']) }
+
   scope :active, ->{ joins(:plan).where("(state in ('paid','pending_payment')) OR (state = 'canceled' AND ((SELECT created_at from subscription_notifications sn where sn.subscription_id = subscriptions.id order by created_at DESC LIMIT 1 ) + (interval '1 days' * plans.days)) > current_timestamp)") }
   scope :paid, -> do
    where("subscriptions.gateway_data->>'status' IN ('paid')")

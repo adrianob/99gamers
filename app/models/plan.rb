@@ -28,4 +28,8 @@ class Plan < ActiveRecord::Base
   def total_subscribers
     subscriptions.active.count
   end
+
+  def public_total_subscribers
+    subscriptions.public_active.count
+  end
 end
