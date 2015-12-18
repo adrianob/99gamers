@@ -11,7 +11,7 @@ pt:
       available: "Quantidade disponível"
       submit: "Salvar"
     index:
-      select_reward: "Selecione essa recompensa"
+      select_reward: "Selecionar essa Recompensa"
       display_remaining: "%{remaining} de %{maximum} disponíveis"
       dont_want: "Não quero recompensa"
       or_more: "ou mais"

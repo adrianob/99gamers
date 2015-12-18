@@ -4427,3 +4427,21 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
     border-color:rgba(255, 158, 64, 0.09);
     background-color:rgba(255, 158, 64, 0.3);
 }
+#project-sidebar .b-select{
+    text-align:center;
+}
+#project-sidebar .btn-select{
+    padding:10px 20px;
+    width: auto;
+    display: inline-block;
+    font-size:15px;
+}
+#project-sidebar #plans .btn-select{
+    background-color:#E8CC12;
+    border-color:#E8CC12;
+}
+#project-sidebar #rewards .btn-select{
+    background-color:#08DA3D;
+    border-color:#08DA3D;
+}
+
