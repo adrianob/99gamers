@@ -8,9 +8,11 @@
     ul.beneficios.u-marginbottom-20
       - plan.benefits.each_with_index do |benefit, index|
         li class="#{( index % 2 == 0 ) ? 'odd' : ''}"= benefit.description
+    .u-marginbottom-20.b-select
+      span.btn.btn-select Selecionar
     .fontsize-smaller.bold.valor-plano 
       span = " #{number_to_currency plan.amount}"
       = " a cada #{plan.days} dias"
     - if parent.online?
       .project-reward-box-hover
-        .project-reward-box-select-text.u-text-center Selecionar Plano
+        .project-reward-box-select-text.u-text-center Selecionar esse Plano
