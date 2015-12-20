@@ -8,6 +8,8 @@
         .fontweight-semibold.u-text-center.fontsize-large.u-marginbottom-30= t '.titles.header'
         .login-fb
           = link_to t('.form.inputs.facebook'), user_omniauth_authorize_path(provider: :facebook, locale: nil), class: 'btn btn-medium btn-fb'
+        .login-fb
+          = link_to 'Entrar com Twitch', user_omniauth_authorize_path(provider: :twitchtv, locale: nil), class: 'btn btn-medium btn-fb'
         .separator
           .text.or= t('or')
         .w-form

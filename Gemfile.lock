@@ -25,6 +25,14 @@ GIT
       mime-types
       orm_adapter
 
+GIT
+  remote: git://github.com/masterkain/omniauth-twitchtv.git
+  revision: 7bd23695af7e54441b92350516696570cc78b31e
+  specs:
+    omniauth-twitchtv (0.3.0)
+      httpclient
+      omniauth-oauth2 (~> 1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -680,6 +688,7 @@ DEPENDENCIES
   mixpanel_client
   omniauth
   omniauth-facebook
+  omniauth-twitchtv!
   passenger
   pg (= 0.17.1)
   pg_search

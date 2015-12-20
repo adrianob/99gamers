@@ -54,6 +54,7 @@ gem 'high_voltage'
 # Authentication and Authorization
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitchtv', github: 'masterkain/omniauth-twitchtv'
 gem 'devise'
 gem 'pundit'
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
