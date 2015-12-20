@@ -3,15 +3,16 @@ pt:
     collections:
       project:
         traffic_sources:
-          one: "eu já tive outro projeto na 99Gamers"
-          two: "indicação de uma pessoa que já teve um projeto na 99Gamers"
-          three: "indicação de amigo/colega/contato profissional"
-          four: "a partir de um projeto que estava captando na plataforma"
-          five: "artigo em um blog"
-          six: "uma matéria na imprensa (portal de notícias na internet, TV, jornal, revista)"
-          seven: "em uma aula/curso/palestra/evento"
-          eight: "fiz uma busca na internet sobre financiamento coletivo / formas alternativas de captação"
-          nine: "Outro"
+          one: "Eu já tive outro projeto na 99Gamers"
+          two: "Raiseit / EGL Network"
+          three: "Indicação de uma pessoa que já teve um projeto na 99Gamers"
+          four: "Indicação de amigo/colega/contato profissional"
+          five: "A partir de um projeto que estava captando na plataforma"
+          six: "Artigo em um blog"
+          seven: "Uma matéria na imprensa (portal de notícias na internet, TV, jornal, revista)"
+          eight: "Em uma aula/curso/palestra/evento"
+          nine: "Fiz uma busca na internet sobre financiamento coletivo / formas alternativas de captação"
+          ten: "Outro"
     validation_texts:
       reward:
         minimum_value: "Informe um valor mínimo maior ou igual a 3"

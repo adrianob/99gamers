@@ -114,7 +114,7 @@ section.section[itemtype="http://schema.org/CreativeWork"]
             .fontsize-smaller.u-marginbottom-30[class=@project.display_card_class]
               = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
 
-        = render 'users/card', resource: @project.user
+
         .w-hidden-main.w-hidden-medium.project-share
           .div-share-mobile-fb
             = render_facebook_share_mobile(url: project_by_slug_url(permalink: @project.permalink, ref: 'facebook'), title: @project.name)
@@ -123,11 +123,11 @@ section.section[itemtype="http://schema.org/CreativeWork"]
               = render_twitter_mobile(url: project_by_slug_url(permalink: @project.permalink, ref: 'twitter'), title: @project.name)
               = t('.tweet')
         - if @project.recurrent? && @project.plans.present?
-          h3#hplans.htit Planos de assinatura
+          h3#hplans.htit Planos de assinatura (Subscribe)
           #plans.u-marginbottom-30[data-index_path=project_plans_path(@project)]
             .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
         -if @project.rewards.count > 0
-          h3.htit Recompensas
+          h3.htit Recompensas (Donation)
           #rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
             .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
         - if @project.published? && !@project.recurrent?

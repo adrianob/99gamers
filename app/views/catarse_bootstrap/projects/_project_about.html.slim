@@ -5,8 +5,32 @@
   .w-embed.w-video.project-video
     = image_tag @project.cover_image, height: '379'
 
+.u-marginbottom-20
+  .fontsize-large[itemprop="name"] = @project.headline.try(:strip)
 
-.project-share.u-marginbottom-30.w-row
+.card.card-user.u-radius.u-marginbottom-10[itemprop="author"]
+  .w-row
+    .w-col.w-col-2.w.col-small-2.w-col-tiny-2.w-clearfix  
+      = image_tag @project.user.display_image, width: "100", class: "thumb u-round", itemprop: "image"
+    .w-col.w-col-4.w-col-small-4.w-col-tiny-4
+      .fontsize-small.fontweight-semibold.lineheight-tighter[itemprop="name"] = link_to @project.user.display_name, user_path(@project.user), class: 'link-hidden'
+      .fontsize-smallest.lineheight-looser[itemprop="address"] = @project.user.address_city
+      .fontsize-smallest = t('created_project', count: @project.user.created_projects.size)
+      .fontsize-smallest = t('contributed_project', count: @project.user.total_contributed_projects)
+    .w-col.w-col-4.w-col-small-4.w-col-tiny-4
+      ul.w-list-unstyled.fontsize-smaller.fontweight-semibold
+        - if @project.user.facebook_link.present?
+          li
+            = link_to t('.facebook_profile'), @project.user.facebook_link, target: '_blank', class: 'link-hidden', itemprop: "url"
+        - if @project.user.twitter_link
+          li
+            = link_to t('.twitter_profile'), @project.user.twitter_link, target: '_blank', class: 'link-hidden', itemprop: "url"
+        - @project.user.links.with_link.each do |link|
+          li
+            = link_to truncate(link.hostname, length: 30), link.link, target: '_blank', class: 'link-hidden', itemprop: "url"
+
+
+.project-share.u-marginbottom-20.w-row
   .w-col.w-col-3
     #facebook_share.img-share = render_facebook_share title: @project.name, href: project_by_slug_url(@project.permalink, locale: I18n.locale, ref: 'facebook')
   .w-col.w-col-3
@@ -25,7 +49,6 @@
 #project_embed.w-hidden data-path=embed_panel_project_path(@project)
 
 .project-about
-  .fontsize-large.u-marginbottom-30[itemprop="name"] = @project.headline.try(:strip)
   .no-mobile
     .fontsize-base[itemprop="about"]
       = @project.about_html.try(:html_safe)

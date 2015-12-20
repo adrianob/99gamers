@@ -2,7 +2,7 @@ pt:
   shared:
     all_or_nothing: 'Tudo ou nada'
     flexible: 'Flexível'
-    recurrent: 'Recorrente'
+    recurrent: 'Recorrente (Subscribe)'
     no_bank_label: 'Outro'
     alerts:
       pending_payment_text: "Você possui reembolsos pendentes de %{value}."

@@ -43,7 +43,7 @@
             = render 'dashboard_reward'
           - if @project.recurrent?
             #dashboard_plan.content.w-hidden data-page_title="#{t('.plan')}" data-page_subtitle="#{t('.plan_subtitle')}"
-              = render 'dashboard_plan'
+              = render 'dashboard_plan'          
           - if @project.published?
             #dashboard_reports.content.w-hidden data-path=project_metrics_path(@project) data-page_title="#{t('.reports')}" data-page_subtitle=""
               .results

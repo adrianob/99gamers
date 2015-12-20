@@ -18,8 +18,8 @@ pt:
       user_about: "Fale mais sobre você!"
       reward: "Crie e edite aqui suas recompensas"
       plan: "Crie e edite aqui seus planos recorrentes"
-      plan_subtitle: "Planos recorrentes"
-      reward_subtitle: "Essa é sua demonstração de gratidão com os apoiadores. Lembre-se de incluir os custos das recompensas no seu orçamento. Prometeu, ENTREGUE! "
+      plan_subtitle: "Planos recorrentes / subscribe"
+      reward_subtitle: "Essa é sua demonstração de gratidão com os apoiadores. Caso sua campanha seja tudo ou nada ou flexível, lembre-se de incluir os custos das recompensas no seu orçamento. Prometeu, ENTREGUE! "
       user_about_subtitle: "Apoiadores querem conhecer melhor os realizadores de projetos. Links que ajudam a contar sua história são sempre bem vindos. "
       description: 'Conte a história do seu projeto!'
       description_subtitle: 'Pense bem na narrativa do projeto. É ela quem encantará as pessoas e trará apoiadores. Um bom video e descrição são diferenciais!'
@@ -146,9 +146,9 @@ pt:
       budget_tab: Orçamento
       card_tab: Card do projeto
       description_tab: Descrição
-      video_tab: Imagem capa/ Vídeo
-      rewards_tab: Recompensas
-      plans_tab: Planos
+      video_tab: Imagem capa / Vídeo
+      rewards_tab: Recompensas / Donation
+      plans_tab: Planos / Subscribe
       about_you_tab: Sobre você
     dashboard_user_about:
       submit: "Salvar"
