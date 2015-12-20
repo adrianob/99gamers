@@ -8,7 +8,7 @@ module Project::ErrorGroups
         description: [:about_html],
         budget: [:budget],
         card: [:uploaded_image, :headline],
-        video: [:video_url],
+        video: [:video_url, :cover_image],
         plan: [:'plans.amount', :'plans.name', :'plans.days'],
         reward: [:'rewards.minimum_value', :'rewards.deliver_at'],
         goal: [:'goals.value', :goal],

@@ -14,6 +14,8 @@ module Project::StateMachineHandler
         validates_presence_of :about_html, :headline
         validates_presence_of :uploaded_image, if: ->(project) { project.video_thumbnail.blank? }
         validates_presence_of :online_days, if: ->(project) { !project.recurrent? }
+        validates_presence_of :video_url, if: ->(project) { project.cover_image.blank? }
+        validates_presence_of :cover_image, if: ->(project) { project.video_url.blank? }
         validate do
           [:uploaded_image, :about_html, :name].each do |attr|
             self.user.errors.add_on_blank(attr)
@@ -23,12 +25,6 @@ module Project::StateMachineHandler
           self.errors['goals.size'] << "Deve haver pelo menos uma meta" if self.goals.size == 0 && self.recurrent?
           self.errors['account.agency_size'] << "Agência deve ter pelo menos 4 dígitos" if self.account && self.account.agency.size < 4
         end
-      end
-
-      #validations starting in approved
-      state :approved, :online, :successful, :waiting_funds, :failed do
-        validates_presence_of :video_url,
-          if: ->(project) { (project.goal || 0) >= CatarseSettings[:minimum_goal_for_video].to_i }
       end
 
       #validations starting in online
