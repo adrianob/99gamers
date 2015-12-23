@@ -62,7 +62,12 @@ class Api::UsersController < ApplicationController
       render json: { :error => "User not found" }.to_json, status: 404
       return
     end
-    subscriptions = user.projects.with_state(:online).last.subscriptions.active.order('subscriptions.created_at desc').limit(25)
+    project = user.projects.with_state(:online).last
+    if project
+      subscriptions = project.subscriptions.active.order('subscriptions.created_at desc').limit(25)
+    else
+      subscriptions = []
+    end
     api_response = {
       "_total": subscriptions.count,
       "subscriptions": subscriptions_json(subscriptions)
