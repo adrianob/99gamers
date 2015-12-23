@@ -222,6 +222,7 @@ Devise.setup do |config|
           config.omniauth p.name, p.key, p.secret, scope: p.scope, info_fields: 'email,name', provider_ignores_state: true
         end
       end
+      config.omniauth :twitchtv, CatarseSettings[:twitchtv_client_id], CatarseSettings[:twitchtv_client_secret], scope: 'user_read channel_read'
     rescue Exception => e
       puts "problem while using OauthProvider model:\n '#{e.message}'"
     end
