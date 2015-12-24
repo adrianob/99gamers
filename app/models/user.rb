@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     :twitter_link, :display_bank_account, :display_bank_account_owner, to: :decorator
 
   # FIXME: Please bitch...
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :permalink,
+  attr_accessible :twitch_link, :email, :password, :password_confirmation, :remember_me, :name, :permalink,
     :image_url, :uploaded_image, :newsletter, :address_street, :address_number,
     :address_complement, :address_neighbourhood, :address_city, :address_state, :address_zip_code, :phone_number,
     :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link, :moip_login, :deactivated_at, :reactivate_token,

@@ -51,7 +51,12 @@
                   label.field-label.fontsize-smallest.fontcolor-secondary   Cole o link do seu perfil
                 .w-col.w-col-7
                   = form.input_field :twitter, as: :string, class: 'positive'
-
+              .w-row.u-marginbottom-10
+                .w-col.w-col-5.w-sub-col
+                  label.field-label.fontweight-semibold   Nick no Twitch
+                  label.field-label.fontsize-smallest.fontcolor-secondary   Cole o seu nick do Twitch
+                .w-col.w-col-7
+                  = form.input_field :twitch_link, as: :string, class: 'positive'
           .w-form.card.card-terciary.u-marginbottom-30
               .w-row.u-marginbottom-10
                 .w-col.w-col-5.w-sub-col

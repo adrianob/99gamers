@@ -91,7 +91,7 @@ class Api::UsersController < ApplicationController
           "type": "user",
           "bio": subscription.user.about_html,
           "created_at": subscription.user.created_at,
-          "name": subscription.user.name,
+          "name": subscription.user.twitch_link || subscription.user.name,
           "updated_at": subscription.user.updated_at,
           "display_name": subscription.user.display_name,
         },
