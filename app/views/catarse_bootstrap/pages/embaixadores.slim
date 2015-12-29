@@ -1,0 +1,49 @@
+- content_for :title, t('.title')
+= render 'shared/header_big', overlayer: true
+
+.hero-assets.hero-medium
+  .w-container.u-text-center
+    = image_tag "icon-assets.png", class: "icon-hero"
+    .fontweight-semibold.fontsize-jumbo.u-marginbottom-20 Embaixadores Gamers
+
+.w-section.section-one-column.u-margintop-40
+  .w-container
+    .w-row
+      .w-col.w-col-2
+      .w-col.w-col-12
+        .fontsize-base.u-text-center Assim como vocês, a comunidade apaixonada que financia e apoia os nossos projetos, os embaixadores da 99Gamers são os grandes responsáveis por fazerem as coisas acontecerem. 
+        .fontsize-base.u-text-center 
+          span Quer aparecer aqui? 
+          a.alt-link href="https://www.99gamers.me/pt/apoie"  Apoie a plataforma!
+      .w-col.w-col-2
+.w-section.section
+  .w-container
+    .fontsize-large.fontweight-semibold.u-marginbottom-30.u-text-center-small-only Embaixadores
+    .w-row.u-text-center
+      .w-col.w-col-2.w-col-small-4.u-marginbottom-20
+        = image_tag "embaixadores/Tedson-Santos.jpg", class: "u-marginbottom-10" 
+        .fontsize-base.fontweight-semibold Tedson Santos       
+        .fontsize-smaller Fundador
+        .fontsize-smaller
+          a.alt-link href="https://facebook.com/TedsonSantos" target="_blank"  Facebook
+          | &nbsp;&nbsp;|&nbsp;&nbsp;
+          a.alt-link href="https://twitter.com/tedsonss" target="_blank"  Twitter
+      .w-col.w-col-2.w-col-small-4.u-marginbottom-20
+        = image_tag "embaixadores/Ronan-Santos.jpg", class: "u-marginbottom-10"        
+        .fontsize-base.fontweight-semibold Ronan Santos
+        .fontsize-smaller Co-Fundador
+        .fontsize-smaller.u-text-center
+          a.alt-link href="https://facebook.com/ronan.santos.395" target="_blank"  Facebook
+      .w-col.w-col-2.w-col-small-4.u-marginbottom-20
+        = image_tag "embaixadores/Raiseit.jpg", class: "u-marginbottom-10"        
+        .fontsize-base.fontweight-semibold Raiseit
+        .fontsize-smaller Parceiro
+        .fontsize-smaller
+          a.alt-link href="http://raiseit.tv" target="_blank"  Site
+          | &nbsp;&nbsp;|&nbsp;&nbsp;
+          a.alt-link href="https://facebook.com/EglNetwork" target="_blank"  Facebook
+
+= render 'shared/footer_big'
+
+
+

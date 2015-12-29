@@ -1,0 +1,58 @@
+- content_for :title, t('.title')
+= render 'shared/header_big', overlayer: true
+
+.hero-assets.hero-medium
+  .w-container.u-text-center
+    = image_tag "icon-assets.png", class: "icon-hero"
+    .fontweight-semibold.fontsize-jumbo.u-marginbottom-20 Dúvidas frequentes
+
+.w-section.section-one-column.u-margintop-40
+  .w-container
+    .w-row
+      .w-col.w-col-2
+      .w-col.w-col-12
+        .fontsize-base.fontweight-semibold O que é Campanha Tudo ou nada?
+        p Esse é o modo mais famoso de arrecadação, quem define a meta e o tempo de execução da campanha é você. Escolha entre 1 e 60 dias para realizar sua campanha em busca de Gamers Apoiadores. Se ela atingir sua meta de arrecadação financeira, você fica com o valor arrecadado. Caso contrário, todos que apoiaram recebem o dinheiro de volta.
+        p Essa campanha é ideal para projetos que estão começando e dependem da totalidade da arrecadação para torná-lo realidade.
+        p Ex. Desenvolvimento de um jogo. Criação de um gadget.
+
+        .fontsize-base.fontweight-semibold O que é Campanha Flexível?
+        p Similar ao tipo de campanha anterior, com a diferença de que mesmo que você não atinja a meta de arrecadação financeira, ficará com o valor arrecadado da campanha. Caso não atinja ao menos 51% da meta, haverá um acrescimento de 3,5% na taxa cobrada. Essa campanha é ideal para projetos que já estão em execução e pretendem utilizar o valor arrecadado para complementar no orçamento do projeto.
+
+        p Ex: Premiação de um campeonato de e-sports. Contribuição no desenvolvimento de um jogo.
+
+        .fontsize-base.fontweight-semibold O que é Campanha Recorrente (Subscribe)?
+        p Diferente das modalidades anteriores, nesse modelo de campanha a arrecadação é feita de maneira recorrente, ou seja, em determinados períodos definidos pelo realizador. Mensal, trimestral, anual, quinzenal ou qualquer outro período definido pelo número de dias. O realizador poderá criar tipos de planos, caso tenha essa necessidade. As metas de arrecadação poderão ser atualizadas a medida que o realizador desejar. Essa campanha é ideal para projetos que precisam de uma arrecadação constante.
+        p Ex: Organizações de e-sports, atletas, streamers, youtubers e criadores de conteúdo em geral.
+
+        .fontsize-base.fontweight-semibold Nossas tarifas
+        p Oferecemos e estaremos sempre implementando diversos recursos e ferramentas para uma melhor aproveitamento das campanhas.
+        p Geral: 14% + R$1
+        p Flexível: +3.5% caso não atinja 51% da meta
+        p Recorrente (Assinaturas): Cartão 14% + R$1.5 / Boleto 14% + R$4
+
+        .fontsize-base.fontweight-semibold Valores mínimos de pagamento
+        p Cartão R$3 / Boleto R$10
+
+        .fontsize-base.fontweight-semibold Valores mínimos para transferência
+        p O valor mínimo para transferência é de R$50 e possui uma taxa fixa de R$4.
+
+        .fontsize-base.fontweight-semibold Integração com Raiseit
+        p Em parceria com a Raiseit, as campanhas recorrentes poderão gerar notificações (mensagem em tempo real) nas streams, similar aos já conhecidos Subscribes. Além de contabilizar o total doado, número de assinantes e o último inscrito. Inicialmente só teremos integração com a Twitch e as notificações só poderão ser geradas pelas assinaturas no plano recorrente. Apoios avulsos ainda não terão notificações Donation nas streams. Futuramente pretendemos expandir para outras plataformas de streaming e oferecer notificações nos demais tipos de doações. Vale ressaltar que o nosso sistema funciona de forma independente do Subscribe das plataformas de Stream. Não havendo a necessidade de ser parceiro dos mesmos.
+
+        .fontsize-base.fontweight-semibold Compartilhamento e divulgação
+        p No intuito de ajudar as campanhas a atingirem as suas metas, estaremos em constante divulgação da nossa plataforma. Além de parcerias chaves já concretizadas, com o objetivo de espalhar o alcance das campanhas e dar visibilidade para nossa marca. Mas é claro que o ponto chave do sucesso da sua campanha é você. E para isso, é importante ter um bom planejamento de pré-campanha para guiar as ações de mobilização da sua rede durante todo período de arrecadação.
+        ul
+          li Estude sobre financiamento coletivo
+          li Entenda quem é o público alvo do projeto
+          li Mapeie sua rede de contatos (serão muito importantes)
+          li Planeje ações que possam movimentar sua campanha em cada período
+          li Promova seu projeto
+          li Utilize as mídias sociais
+          li Interaja com o publico
+
+
+= render 'shared/footer_big'
+
+
+
