@@ -72,6 +72,12 @@
               = project.display_expires_at
             td
               = link_to t('.contribution_report'), admin_reports_contribution_reports_path(project_id: project.id, format: :csv)
+              - if project.recurrent?
+                div
+                  | Apoiadores recorrentes &nbsp;
+                  = link_to 'CSV', reports_recurrent_reports_for_project_owners_path(project_id: project.id, format: :csv), class: 'alt-link'
+                  | &nbsp;\&nbsp;
+                  = link_to 'XLS', reports_recurrent_reports_for_project_owners_path(project_id: project.id, format: :xls), class: 'alt-link'
             td
               = project.has_blank_service_fee?
             td
