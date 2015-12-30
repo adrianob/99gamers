@@ -9,7 +9,10 @@
     .w-col.w-col-10
       .fontsize-base.fontweight-semibold
         = link_to user_path(subsbcription.user), class: 'link-hidden-dark' do
-          = subsbcription.user.short_name
+          - if subsbcription.user.twitch_link.present?
+            = "#{subsbcription.user.short_name} - #{subsbcription.user.twitch_link}"
+          - else
+            = subsbcription.user.short_name
       - if policy(@project).update?
         .fontsize-smaller 
           = number_to_currency subsbcription.value
