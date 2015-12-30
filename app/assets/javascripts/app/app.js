@@ -26,9 +26,7 @@ var App = window.App = Skull.View.extend({
   },
 
   confirmIntegration: function(event){
-    if(!confirm('Tem certeza que deseja integrar?')){
-      e.preventDefault();
-    }
+    return confirm('Tem certeza que deseja integrar?');
   },
 
   closeAlert: function(event){
