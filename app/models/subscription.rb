@@ -15,6 +15,15 @@ class Subscription < ActiveRecord::Base
    where("subscriptions.gateway_data->>'status' IN ('paid')")
   end
 
+  def twitch_link
+    self.user.twitch_link if self.user
+  end
+
+  def twitch_link=(val)
+    binding.pry
+    user.update_attribute :twitch_link, val
+  end
+
   def payment_method
     gateway_data ? gateway_data["current_transaction"]["payment_method"] : nil
   end

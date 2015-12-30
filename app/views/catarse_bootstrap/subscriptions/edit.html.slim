@@ -11,6 +11,7 @@
         = simple_form_for [parent, resource], html: { data: { update_info_path: plan_subscription_path(plan_id: parent.id, id: resource.id, format: :json) }, id: 'review_form', method: 'put' } do |form|
           = form.input :id, as: :hidden, label: false
           = form.input :plan_id, as: :hidden, label: false
+          = form.input :twitch_link, as: :string, label: 'Informe seu nick no Twitch (opcional)'
           #error-message.card.card-error.u-radius.zindex-10.u-marginbottom-30.w-hidden
             .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('projects.contributions.edit.review_errors_title')
             .fontsize-smaller = t('.review_errors')

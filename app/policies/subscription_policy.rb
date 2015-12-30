@@ -17,8 +17,7 @@ class SubscriptionPolicy < ApplicationPolicy
 
   def permitted_attributes
     attributes = record.attribute_names.map(&:to_sym)
-    #attributes.delete(:minimum_value) if record.any_sold?
-    #attributes.delete(:deliver_at) if project_finished?
+    attributes << :twitch_link
     attributes
   end
 

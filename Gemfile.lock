@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/adrianob/catarse_pagarme.git
-  revision: c66fa2b4617cb6f3c0b10f71fac2fdbc7bf6b32e
+  revision: 83db9799ed07a3bd4b250c87a1f271f7338328e7
   specs:
-    catarse_pagarme (2.7.21)
+    catarse_pagarme (2.7.22)
       pagarme (= 1.10.0)
       rails (~> 4.0)
       sidekiq
