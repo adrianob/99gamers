@@ -7,6 +7,8 @@
     = link_to (edit ? '#basics' : edit_project_path(@project, anchor: 'basics')), id: 'basics_link', class: link_class , data: {target: '#dashboard_basics', tab_group: 'edit'} do
       = @project.decorate.status_icon_for('basics', params[:action])
       = t('.basics_tab')
+
+  - if @project.recurrent? || (!@project.published? && !@project.approved?) || (current_user && current_user.admin?)
     = link_to (edit ? '#goal' : edit_project_path(@project, anchor: 'goal')), id: 'goal_link', class: link_class , data: {target: '#dashboard_goal', tab_group: 'edit'} do
       = @project.decorate.status_icon_for('goal', params[:action])
       = @project.recurrent? ? 'Metas' : t('.goal_tab')
