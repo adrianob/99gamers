@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   }
 
   scope :who_contributed_project, ->(project_id) {
-    where("id IN (SELECT user_id FROM contributions WHERE contributions.was_confirmed AND project_id = ?)", project_id)
+    where("id IN (SELECT user_id FROM contributions WHERE contributions.was_confirmed AND project_id = ?) OR id in (SELECT user_id FROM subscriptions s JOIN plans pl on pl.id = s.plan_id WHERE s.state IN ('paid', 'pending_payment') AND pl.project_id = ?)", project_id, project_id)
   }
 
   scope :subscribed_to_posts, -> {
