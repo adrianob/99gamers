@@ -46,9 +46,10 @@
             th= t('.repass_value')
             - if project.recurrent?
               th Repasse recorrente
+              th Repasse raiseit
             th= t('.expires_at')
             th= t('.reports')
-            th= t('.zero_fee')
+            /th= t('.zero_fee')
             th= t('.state')
         tbody
           tr id=project.id
@@ -68,6 +69,8 @@
             - if project.recurrent?
               td
                 = number_to_currency project.subscriptions_transfer_amount, precision: 2
+              td
+                = number_to_currency project.raiseit_fee_last_month, precision: 2
             td
               = project.display_expires_at
             td
@@ -78,8 +81,8 @@
                   = link_to 'CSV', reports_recurrent_reports_for_project_owners_path(project_id: project.id, format: :csv), class: 'alt-link'
                   | &nbsp;\&nbsp;
                   = link_to 'XLS', reports_recurrent_reports_for_project_owners_path(project_id: project.id, format: :xls), class: 'alt-link'
-            td
-              = project.has_blank_service_fee?
+            /td
+              /= project.has_blank_service_fee?
             td
               - if project.online?
                 span.label.label-online= project.state

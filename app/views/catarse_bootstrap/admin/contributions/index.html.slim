@@ -45,7 +45,6 @@
             th= t('.reward')
             th= t('.emails')
             th= t('.anonymous')
-            th= t('.credits')
             th= t('.last_state')
             th= t('.state')
             th
@@ -86,7 +85,6 @@
               br/
               = contribution.user.email
             td.checkbox= best_in_place [:admin, contribution.contribution], :anonymous, method: :put, type: :checkbox, collection: [t('no'), t('yes')]
-            td= (contribution.credits? ? t('yes') : t('no'))
             td= contribution.last_state_name
             td= contribution.state
             td.w-col-6.w-col

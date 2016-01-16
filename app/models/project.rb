@@ -228,12 +228,20 @@ class Project < ActiveRecord::Base
     1.00
   end
 
+  def subscription_fixed_fee_credit_card
+    1.50
+  end
+
+  def subscription_fixed_fee_slip
+    4.0
+  end
+
   def total_payment_service_fee_last_month
     subscriptions_in_last_month.sum('subscription_notifications.gateway_fee').to_f + contributions_in_last_month.sum('payments.gateway_fee').to_f
   end
 
   def subscriptions_transfer_amount
-    (subscriptions_in_last_month.sum(:amount) * (1 - CatarseSettings[:catarse_fee].to_f)) - subscriptions_in_last_month.sum(:gateway_fee) - subscriptions_in_last_month.count * fixed_fee
+    (pledged_in_last_month + subscriptions_in_last_month.sum(:amount)) - catarse_fee_last_month
   end
 
   def active_subscribed_users
@@ -265,8 +273,17 @@ class Project < ActiveRecord::Base
     CatarseSettings[:catarse_fee].to_f * pledged + ( total_contributions * fixed_fee )
   end
 
+  #total to be deducted from project repass value in last month
   def catarse_fee_last_month
-    CatarseSettings[:catarse_fee].to_f * (pledged_in_last_month + subscriptions_in_last_month.sum(:amount)) + ( contributions_in_last_month.count + subscriptions_in_last_month.count ) * fixed_fee
+    CatarseSettings[:catarse_fee].to_f * (pledged_in_last_month + subscriptions_in_last_month.sum(:amount)) +
+      (contributions_in_last_month.count  * fixed_fee) +
+      (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'boleto'").count * subscription_fixed_fee_slip) +
+      (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'credit_card'").count * subscription_fixed_fee_credit_card)
+  end
+
+  def raiseit_fee_last_month
+    ((CatarseSettings[:catarse_fee].to_f/2) * subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'boleto'").sum(:amount)) + (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'boleto'").count * 0.5) +
+      (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'credit_card'").sum(:amount) * ((CatarseSettings[:catarse_fee].to_f - 0.0439)/2)) + (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'credit_card'").count * 0.5)
   end
 
   def selected_rewards
