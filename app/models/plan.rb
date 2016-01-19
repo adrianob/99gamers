@@ -5,7 +5,7 @@ class Plan < ActiveRecord::Base
 
   belongs_to :project
   has_many :subscriptions
-  has_many :benefits, class_name: 'PlanBenefit'
+  has_many :benefits, class_name: 'PlanBenefit', dependent: :destroy
 
   validates_presence_of :amount, :name, :days
   validates_numericality_of :amount, greater_than_or_equal_to: 3.00, message: 'Valor deve ser maior ou igual a R$ 3'

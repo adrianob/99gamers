@@ -7,7 +7,7 @@ class Reward < ActiveRecord::Base
 
   belongs_to :project
   has_many :payments, through: :contributions
-  has_many :benefits, class_name: 'RewardBenefit'
+  has_many :benefits, class_name: 'RewardBenefit', dependent: :destroy
   has_many :contributions, dependent: :nullify
 
   ranks :row_order, with_same: :project_id
