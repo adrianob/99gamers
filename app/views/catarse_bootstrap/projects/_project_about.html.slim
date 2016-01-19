@@ -2,7 +2,8 @@
   .w-embed.w-video.project-video
     iframe itemprop="video" src="#{@project.display_video_embed_url}" class="embedly-embed" width="100%" height="379" frameborder="0" allowFullScreen
 - elsif resource.cover_image.present?
-  = image_tag @project.cover_image.project_cover
+  .u-marginbottom-20
+    = image_tag @project.cover_image.project_cover
 
 .u-marginbottom-20
   .fontsize-large[itemprop="name"] = @project.headline.try(:strip)
