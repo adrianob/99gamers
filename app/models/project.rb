@@ -32,6 +32,7 @@ class Project < ActiveRecord::Base
   has_many :plans
   has_many :goals, class_name: "Goal", inverse_of: :project
   has_many :rewards
+  has_many :project_transfers
   has_many :contributions
   has_many :contribution_details
   has_many :subscription_details
@@ -198,6 +199,36 @@ class Project < ActiveRecord::Base
     @pledged ||= project_total.try(:pledged).to_f
   end
 
+  def contributions_amount_between(starts_at, ends_at)
+    contributions_between(starts_at, ends_at).sum('contributions.value')
+  end
+
+  def subscriptions_amount_between(starts_at, ends_at)
+    subscriptions_between(starts_at, ends_at).sum(:amount)
+  end
+
+  def contributions_between(starts_at, ends_at)
+    contributions.joins(:payments).where("contributions.is_confirmed").where(:'payments.paid_at' =>  starts_at .. ends_at.end_of_day)
+  end
+
+  def subscriptions_between(starts_at, ends_at)
+    subscription_notifications.where("(extra_data->>'current_status') = 'paid'").where(:created_at =>  starts_at .. ends_at.end_of_day)
+  end
+
+  def confirmed_contributions
+    contributions.where("contributions.is_confirmed")
+  end
+
+  def confirmed_subscriptions
+    subscription_notifications.where("(extra_data->>'current_status') = 'paid'")
+  end
+
+  def current_funds
+    confirmed_subscriptions.sum(:amount) +
+      confirmed_contributions.sum('contributions.value') -
+      catarse_fee_all_time - project_transfers.sum(:amount)
+  end
+
   def contributions_in_last_month
     contributions.joins(:payments).where("contributions.is_confirmed AND
                         payments.paid_at BETWEEN
@@ -281,6 +312,24 @@ class Project < ActiveRecord::Base
       (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'credit_card'").count * subscription_fixed_fee_credit_card)
   end
 
+  def catarse_fee_between(starts_at, ends_at)
+    CatarseSettings[:catarse_fee].to_f * (contributions_amount_between(starts_at, ends_at) + subscriptions_amount_between(starts_at,ends_at)) +
+      (contributions_between(starts_at, ends_at).count  * fixed_fee) +
+      (subscriptions_between(starts_at, ends_at).joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'boleto'").count * subscription_fixed_fee_slip) +
+      (subscriptions_between(starts_at, ends_at).joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'credit_card'").count * subscription_fixed_fee_credit_card)
+  end
+
+  def catarse_fee_all_time
+    CatarseSettings[:catarse_fee].to_f * (confirmed_contributions.sum(:value) + confirmed_subscriptions.sum(:amount)) +
+      (confirmed_contributions.count  * fixed_fee) +
+      (confirmed_subscriptions.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'boleto'").count * subscription_fixed_fee_slip) +
+      (confirmed_subscriptions.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'credit_card'").count * subscription_fixed_fee_credit_card)
+  end
+
+  def transfer_value_between(starts_at, ends_at)
+    subscriptions_amount_between(starts_at, ends_at) + contributions_amount_between(starts_at, ends_at) - catarse_fee_between(starts_at, ends_at)
+  end
+
   def raiseit_fee_last_month
     ((CatarseSettings[:catarse_fee].to_f/2) * subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'boleto'").sum(:amount)) + (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'boleto'").count * 0.5) +
       (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'credit_card'").sum(:amount) * ((CatarseSettings[:catarse_fee].to_f - 0.0439)/2)) + (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'credit_card'").count * 0.5)
@@ -340,6 +389,14 @@ class Project < ActiveRecord::Base
 
   def delete_from_reminder_queue(user_id)
     self.notifications.where(template_name: 'reminder', user_id: user_id).destroy_all
+  end
+
+  def transfer=(amount)
+    project_transfers.create(amount: amount, state: 'pending')
+  end
+
+  def transfer
+    nil
   end
 
   def published?

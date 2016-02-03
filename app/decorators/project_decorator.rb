@@ -109,6 +109,9 @@ class ProjectDecorator < Draper::Decorator
     if source.errors.present?
       error_messages = ''
       source.errors.each do |error|
+        if group_name == :reports
+          raise 'fda'
+        end
         if source.error_included_on_group?(error, group_name)
           error_messages += content_tag(:div, source.errors[error][0], class: 'fontsize-smaller')
         end

@@ -7,6 +7,7 @@ module Project::ErrorGroups
         basics: [:name, :permalink, :category_id],
         description: [:about_html],
         budget: [:budget],
+        reports: [:'project_transfers'],
         card: [:uploaded_image, :headline],
         video: [:video_url, :cover_image],
         plan: [:'plans.amount', :'plans.name', :'plans.days'],

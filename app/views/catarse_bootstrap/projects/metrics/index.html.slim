@@ -1,6 +1,63 @@
 - selected_r = @project.selected_rewards
+- binding.pry
+= @project.display_errors(:reports)
 .section.project-metrics
   .w-container
+    - if @project.recurrent?
+      .w-row.u-marginbottom-30
+        table.table.fontsize-smallest
+          thead.card.card-secondary
+            tr
+              th.w-col-2.w-col Mês
+              th.w-col-2.w-col Apoios recorrentes
+              th.w-col-2.w-col Apoios avulsos
+              th.w-col-2.w-col Total - taxas
+          tbody
+            - month = @project.online_date.beginning_of_month
+            - while month <= Time.now
+              tr
+                td.w-col-2.w-col= month.strftime("%Y/%m")
+                td.w-col-2.w-col= number_to_currency @project.subscriptions_amount_between(month, month + 1.month), precision: 2
+                td.w-col-2.w-col= number_to_currency @project.contributions_amount_between(month, month + 1.month), precision: 2
+                td.w-col-2.w-col= number_to_currency @project.transfer_value_between(month, month + 1.month), precision: 2
+              - month += 1.month
+
+      .w-row
+        .w-col.w-col-8.u-marginbottom-30
+          .fontsize-base.u-marginbottom-40
+            p.fontweight-bold Total disponível para retirada: 
+            span= number_to_currency @project.current_funds, precision: 2
+
+      #project-transfers
+        = simple_form_for @project, html: { class: 'project-form w-form' } do |form|
+          = form.input :transfer, as: :numeric, 
+              wrapper: :two_columns,
+              wrapper_class: 'w-row u-marginbottom-30 card card-terciary medium',
+              label_wrapper_html: { class: 'w-col w-col-5 w-subcol' },
+              text_field_wrapper_html: { class: 'w-col w-col-7 w-sub-col' },
+              input_html: { class: 'positive medium', required: false },
+              validation_text: false
+          .section
+            .w-container
+              .w-row
+                .w-col.w-col-4.w-col-push-4
+                  = hidden_field_tag 'anchor', 'reports'
+                  = form.button :submit, 'Solicitar', class:'btn btn-large', id: 'basics-save'
+
+        .w-row.u-marginbottom-30
+          table.table.fontsize-smallest
+            thead.card.card-secondary
+              tr
+                th.w-col-2.w-col Data
+                th.w-col-2.w-col Valor
+                th.w-col-2.w-col Estado
+            tbody
+              - @project.project_transfers.each do |transfer|
+                tr
+                  td.w-col-2.w-col= transfer.created_at
+                  td.w-col-2.w-col= number_to_currency transfer.amount, precision: 2
+                  td.w-col-2.w-col= transfer.state
+
     .w-row
       .w-col.w-col-8.u-marginbottom-30
         .fontsize-base.u-marginbottom-40
