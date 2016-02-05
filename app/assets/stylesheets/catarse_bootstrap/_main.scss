@@ -4445,4 +4445,38 @@ html.w-mod-js *[data-ix="icon-funded-with"] {
     background-color:#08DA3D;
     border-color:#08DA3D;
 }
+.t-section .t-row{
+    text-align:center;
+}
 
+.t-disponivel, .t-bloqueado{
+    padding:10px;
+    border:1px solid #ccc;
+    display:inline-block;
+    float:none;
+}
+.t-disponivel span.t-valor, .t-bloqueado span.t-valor{
+    margin-top:5px;
+    display:block;
+    font-size:22px;
+    clear:both;
+}
+.t-disponivel{
+
+}
+.t-bloqueado{
+    background:#ccc;
+}
+.t-transfer{
+    text-align: center;
+    float: none;
+    display: block;
+    margin-bottom: 20px;
+}
+.t-saque {
+    float: none;
+    display: inline-block;
+}
+#project-transfers{
+  text-align:center;
+}

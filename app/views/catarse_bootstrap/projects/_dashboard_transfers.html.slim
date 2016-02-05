@@ -1,19 +1,24 @@
-.w-section.section
+.w-section.section.t-section
   .w-container
     = @project.display_errors(:transfers)
-    .w-row
-      .w-col.w-col-8.u-marginbottom-30
-        .fontsize-base.u-marginbottom-40
-          p.fontweight-bold Total disponível para retirada: 
-          span= number_to_currency @project.current_funds, precision: 2
+    .w-row.t-row
+      .w-col.w-col-4.u-marginbottom-30.t-disponivel
+        .fontsize-base
+          span.fontweight-bold Total Disponível para retirada: 
+          span.t-valor= number_to_currency @project.current_funds, precision: 2
+      .w-col.w-col-4.u-marginbottom-30.t-bloqueado
+        .fontsize-base
+          span.fontweight-bold Total Bloqueado para retirada: 
+          span.t-valor= number_to_currency @project.current_funds, precision: 2
+
 
     #project-transfers
       = simple_form_for @project, html: { class: 'project-form w-form' } do |form|
         = form.input :transfer, as: :numeric, 
             wrapper: :two_columns,
-            wrapper_class: 'w-row u-marginbottom-30 card card-terciary medium',
-            label_wrapper_html: { class: 'w-col w-col-5 w-subcol' },
-            text_field_wrapper_html: { class: 'w-col w-col-7 w-sub-col' },
+            wrapper_class: 'w-row card card-terciary medium',
+            label_wrapper_html: { class: 'w-col w-col-12 w-subcol t-transfer' },
+            text_field_wrapper_html: { class: 'w-col w-col-4 w-sub-col t-saque' },
             input_html: { class: 'positive medium', required: false },
             validation_text: false
         .section
