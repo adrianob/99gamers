@@ -1,5 +1,4 @@
 - selected_r = @project.selected_rewards
-= @project.display_errors(:reports)
 .section.project-metrics
   .w-container
     - if @project.recurrent?
@@ -20,28 +19,6 @@
                 td.w-col-2.w-col= number_to_currency @project.contributions_amount_between(month, month + 1.month), precision: 2
                 td.w-col-2.w-col= number_to_currency @project.transfer_value_between(month, month + 1.month), precision: 2
               - month += 1.month
-
-      .w-row
-        .w-col.w-col-8.u-marginbottom-30
-          .fontsize-base.u-marginbottom-40
-            p.fontweight-bold Total disponível para retirada: 
-            span= number_to_currency @project.current_funds, precision: 2
-
-      #project-transfers
-        = simple_form_for @project, html: { class: 'project-form w-form' } do |form|
-          = form.input :transfer, as: :numeric, 
-              wrapper: :two_columns,
-              wrapper_class: 'w-row u-marginbottom-30 card card-terciary medium',
-              label_wrapper_html: { class: 'w-col w-col-5 w-subcol' },
-              text_field_wrapper_html: { class: 'w-col w-col-7 w-sub-col' },
-              input_html: { class: 'positive medium', required: false },
-              validation_text: false
-          .section
-            .w-container
-              .w-row
-                .w-col.w-col-4.w-col-push-4
-                  = hidden_field_tag 'anchor', 'reports'
-                  = form.button :submit, 'Solicitar', class:'btn btn-large', id: 'basics-save'
 
         .w-row.u-marginbottom-30
           table.table.fontsize-smallest

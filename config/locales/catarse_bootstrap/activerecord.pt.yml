@@ -140,6 +140,13 @@ pt:
         payment:
           duplicate: "O seu pagamento já está sendo processado"
         contribution: "Erro ao salvar apoio"
+        project_transfers:
+          attributes:
+            amount:
+              blank: 'Valor não pode ficar em branco'
+              invalid: 'Valor deve ser de no mínimo R$50'
+            funds:
+              invalid: 'Valor inválido'
         bank_account:
           attributes:
             bank:

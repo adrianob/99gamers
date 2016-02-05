@@ -15,6 +15,10 @@
           span.fa.fa-fw.fa-info.fa-lg>
           = t('.start_tab')
         - if @project.published?
+          - if @project.recurrent?
+            = link_to (edit ? '#transfers' : edit_project_path(@project, anchor: 'transfers')), id: 'dashboard_transfers_link', class: 'dashboard-nav-link-left ' , data: {target: '#dashboard_transfers', tab_group: 'edit'} do
+              span.fa.fa-fw.fa-info.fa-lg>
+              |Saques
           = link_to (edit ? '#posts' : edit_project_path(@project, anchor: 'posts')), id: 'dashboard_posts_link', class: 'dashboard-nav-link-left ' , data: {target: '#dashboard_posts', tab_group: 'edit'} do
             span.fa.fa-bullhorn.fa-fw.fa-lg>
             = t('.posts_tab')
