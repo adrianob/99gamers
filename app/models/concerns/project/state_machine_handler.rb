@@ -14,7 +14,7 @@ module Project::StateMachineHandler
         validates_presence_of :about_html, :headline
         validates_presence_of :uploaded_image, if: ->(project) { project.video_thumbnail.blank? }
         validates_presence_of :online_days, if: ->(project) { !project.recurrent? }
-        validates_presence_of :video_url, if: ->(project) { (project.recurrent? ? (project.goals.order('value ASC').first.value || 0) : (project.goal || 0)) >= CatarseSettings[:minimum_goal_for_video].to_i }
+        validates_presence_of :video_url, if: ->(project) { (project.recurrent? ? (project.goals.order('value ASC').first.try(:value) || 0) : (project.goal || 0)) >= CatarseSettings[:minimum_goal_for_video].to_i }
         validates_presence_of :cover_image, if: ->(project) { project.video_url.blank? }
         validate do
           [:uploaded_image, :about_html, :name].each do |attr|
