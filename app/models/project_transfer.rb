@@ -6,6 +6,6 @@ class ProjectTransfer < ActiveRecord::Base
   validate :must_have_funds
 
   def must_have_funds
-    errors.add(:base, 'Saldo insuficiente') unless project.current_funds >= (self.amount || 0)
+    errors.add(:base, 'Saldo insuficiente') unless project.available_funds >= (self.amount || 0)
   end
 end

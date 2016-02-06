@@ -5,11 +5,11 @@
       .w-col.w-col-4.u-marginbottom-30.t-disponivel
         .fontsize-base
           span.fontweight-bold Total Disponível para retirada: 
-          span.t-valor= number_to_currency @project.current_funds, precision: 2
+          span.t-valor= number_to_currency @project.available_funds, precision: 2
       .w-col.w-col-4.u-marginbottom-30.t-bloqueado
         .fontsize-base
           span.fontweight-bold Total Bloqueado para retirada: 
-          span.t-valor= number_to_currency @project.current_funds, precision: 2
+          span.t-valor= number_to_currency @project.blocked_funds, precision: 2
 
 
     #project-transfers
@@ -20,10 +20,26 @@
             label_wrapper_html: { class: 'w-col w-col-12 w-subcol t-transfer' },
             text_field_wrapper_html: { class: 'w-col w-col-4 w-sub-col t-saque' },
             input_html: { class: 'positive medium', required: false },
-            validation_text: false
+            validation_text: false, label: 'Valor a transferir (mínimo R$50):'
         .section
           .w-container
             .w-row
               .w-col.w-col-4.w-col-push-4
                 = hidden_field_tag 'anchor', 'transfers'
                 = form.button :submit, 'Solicitar', class:'btn btn-large', id: 'basics-save'
+
+
+  .w-row.u-marginbottom-30
+    .fontsize-large.fontweight-bold.u-marginbottom-30 Histórico de retiradas
+    table.table.fontsize-smallest
+      thead.card.card-secondary
+        tr
+          th.w-col-2.w-col Data
+          th.w-col-2.w-col Valor
+          th.w-col-2.w-col Estado
+      tbody
+        - @project.project_transfers.each do |transfer|
+          tr
+            td.w-col-2.w-col= transfer.created_at
+            td.w-col-2.w-col= number_to_currency transfer.amount, precision: 2
+            td.w-col-2.w-col= transfer.state

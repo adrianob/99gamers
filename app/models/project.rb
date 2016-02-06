@@ -229,18 +229,24 @@ class Project < ActiveRecord::Base
       catarse_fee_all_time - project_transfers.sum(:amount)
   end
 
+  def available_funds
+    current_funds - blocked_funds
+  end
+
+  def blocked_funds
+    subscriptions_in_last_month.sum(:amount) +
+      contributions_in_last_month.sum('contributions.value') -
+      catarse_fee_last_month
+  end
+
   def contributions_in_last_month
     contributions.joins(:payments).where("contributions.is_confirmed AND
-                        payments.paid_at BETWEEN
-                                     (date_trunc('MONTH', now()) - interval '1 month' + interval '5 days')
-                                     AND date_trunc('MONTH', now()) + interval '5 days' ")
+                        payments.paid_at BETWEEN (date_trunc('MONTH', now()) - interval '1 month') and current_timestamp ")
   end
 
   def subscriptions_in_last_month
     subscription_notifications.where("(extra_data->>'current_status') = 'paid'
-                                     AND subscription_notifications.created_at BETWEEN
-                                     (date_trunc('MONTH', now()) - interval '1 month' + interval '5 days')
-                                     AND date_trunc('MONTH', now()) + interval '5 days'")
+                                     AND subscription_notifications.created_at BETWEEN (date_trunc('MONTH', now()) - interval '1 month') and current_timestamp")
   end
 
   def pledged_in_last_month

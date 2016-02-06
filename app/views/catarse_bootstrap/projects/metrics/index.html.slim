@@ -20,20 +20,6 @@
                 td.w-col-2.w-col= number_to_currency @project.transfer_value_between(month, month + 1.month), precision: 2
               - month += 1.month
 
-        .w-row.u-marginbottom-30
-          table.table.fontsize-smallest
-            thead.card.card-secondary
-              tr
-                th.w-col-2.w-col Data
-                th.w-col-2.w-col Valor
-                th.w-col-2.w-col Estado
-            tbody
-              - @project.project_transfers.each do |transfer|
-                tr
-                  td.w-col-2.w-col= transfer.created_at
-                  td.w-col-2.w-col= number_to_currency transfer.amount, precision: 2
-                  td.w-col-2.w-col= transfer.state
-
     .w-row
       .w-col.w-col-8.u-marginbottom-30
         .fontsize-base.u-marginbottom-40
