@@ -241,12 +241,12 @@ class Project < ActiveRecord::Base
 
   def contributions_in_last_month
     contributions.joins(:payments).where("contributions.is_confirmed AND
-                        payments.paid_at BETWEEN (date_trunc('MONTH', now()) - interval '1 month') and current_timestamp ")
+                        payments.paid_at between (current_timestamp - interval '1 month') and current_timestamp ")
   end
 
   def subscriptions_in_last_month
     subscription_notifications.where("(extra_data->>'current_status') = 'paid'
-                                     AND subscription_notifications.created_at BETWEEN (date_trunc('MONTH', now()) - interval '1 month') and current_timestamp")
+                                     AND subscription_notifications.created_at between (current_timestamp - interval '1 month') and current_timestamp")
   end
 
   def pledged_in_last_month
