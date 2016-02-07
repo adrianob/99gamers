@@ -208,11 +208,11 @@ class Project < ActiveRecord::Base
   end
 
   def contributions_between(starts_at, ends_at)
-    contributions.joins(:payments).where("contributions.is_confirmed").where(:'payments.paid_at' =>  starts_at .. ends_at.end_of_day)
+    contributions.joins(:payments).where("contributions.is_confirmed").where(:'payments.paid_at' =>  starts_at .. ends_at)
   end
 
   def subscriptions_between(starts_at, ends_at)
-    subscription_notifications.where("(extra_data->>'current_status') = 'paid'").where(:created_at =>  starts_at .. ends_at.end_of_day)
+    subscription_notifications.where("(extra_data->>'current_status') = 'paid'").where(:created_at =>  starts_at .. ends_at)
   end
 
   def confirmed_contributions
