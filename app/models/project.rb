@@ -236,7 +236,7 @@ class Project < ActiveRecord::Base
   def blocked_funds
     subscriptions_in_last_month.sum(:amount) +
       contributions_in_last_month.sum('contributions.value') -
-      catarse_fee_last_month
+      catarse_fee_between(Time.now - 1.month, Time.now)
   end
 
   def contributions_in_last_month
@@ -278,7 +278,7 @@ class Project < ActiveRecord::Base
   end
 
   def subscriptions_transfer_amount
-    (pledged_in_last_month + subscriptions_in_last_month.sum(:amount)) - catarse_fee_last_month
+    (pledged_in_last_month + subscriptions_in_last_month.sum(:amount)) - catarse_fee_between(Time.now - 1.month, Time.now)
   end
 
   def active_subscribed_users
@@ -308,14 +308,6 @@ class Project < ActiveRecord::Base
 
   def catarse_fee
     CatarseSettings[:catarse_fee].to_f * pledged + ( total_contributions * fixed_fee )
-  end
-
-  #total to be deducted from project repass value in last month
-  def catarse_fee_last_month
-    CatarseSettings[:catarse_fee].to_f * (pledged_in_last_month + subscriptions_in_last_month.sum(:amount)) +
-      (contributions_in_last_month.count  * fixed_fee) +
-      (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'boleto'").count * subscription_fixed_fee_slip) +
-      (subscriptions_in_last_month.joins(:subscription).where("subscriptions.gateway_data->>'payment_method' = 'credit_card'").count * subscription_fixed_fee_credit_card)
   end
 
   def catarse_fee_between(starts_at, ends_at)

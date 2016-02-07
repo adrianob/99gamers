@@ -59,7 +59,7 @@
             - if project.recurrent?
               td= project.display_pledged_in_last_month
             td= number_to_currency (project.recurrent? ? project.total_payment_service_fee_last_month : project.total_payment_service_fee), precision: 2
-            - catarse_fee = project.recurrent? ? project.catarse_fee_last_month : catarse_fee
+            - catarse_fee = project.recurrent? ? project.catarse_fee_between(Time.now - 1.month, Time.now) : catarse_fee
             td
               = number_to_currency catarse_fee, precision: 2
             /valor repasse contributions
