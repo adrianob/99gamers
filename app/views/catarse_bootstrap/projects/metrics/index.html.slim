@@ -9,7 +9,8 @@
               th.w-col-2.w-col Mês
               th.w-col-2.w-col Apoios recorrentes
               th.w-col-2.w-col Apoios avulsos
-              th.w-col-2.w-col Total - taxas
+              th.w-col-2.w-col Taxas
+              th.w-col-2.w-col Total
           tbody
             - month = @project.online_date.beginning_of_month
             - while month <= Time.now
@@ -17,6 +18,7 @@
                 td.w-col-2.w-col= month.strftime("%Y/%m")
                 td.w-col-2.w-col= number_to_currency @project.subscriptions_amount_between(month, month + 1.month), precision: 2
                 td.w-col-2.w-col= number_to_currency @project.contributions_amount_between(month, month + 1.month), precision: 2
+                td.w-col-2.w-col= number_to_currency @project.catarse_fee_between(month, month + 1.month), precision: 2
                 td.w-col-2.w-col= number_to_currency @project.transfer_value_between(month, month + 1.month), precision: 2
               - month += 1.month
 
