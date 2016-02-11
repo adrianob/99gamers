@@ -1,21 +1,24 @@
-- subsbcription = subscription_detail
+- subscription = subscription_detail
 .w-clearfix.u-marginbottom-20
 
   .w-row
     .w-col.w-col-2  
-      = link_to user_path(subsbcription.user) do
-        .thumb.u-left.u-round[style="background-image: url('#{subsbcription.user.display_image}'); background-size: contain;"]
+      = link_to user_path(subscription.user) do
+        .thumb.u-left.u-round[style="background-image: url('#{subscription.user.display_image}'); background-size: contain;"]
 
     .w-col.w-col-10
       .fontsize-base.fontweight-semibold
-        = link_to user_path(subsbcription.user), class: 'link-hidden-dark' do
-          - if subsbcription.user.twitch_link.present?
-            = "#{subsbcription.user.short_name} - #{subsbcription.user.twitch_link}"
+        = link_to user_path(subscription.user), class: 'link-hidden-dark' do
+          - if subscription.user.twitch_link.present?
+            = "#{subscription.user.short_name} - #{subscription.user.twitch_link}"
           - else
-            = subsbcription.user.short_name
+            = subscription.user.short_name
       - if policy(@project).update?
+        - if subscription.pending_payment?
+          .fontsize-smaller 
+            strong Pagamento pendente
         .fontsize-smaller 
-          = number_to_currency subsbcription.value
-      .fontsize-smaller = l(subsbcription.created_at, format: :simple)
-      .fontsize-smaller = subsbcription.user.contributions_text
+          = number_to_currency subscription.value
+      .fontsize-smaller = l(subscription.created_at, format: :simple)
+      .fontsize-smaller = subscription.user.contributions_text
 .divider.u-marginbottom-20
