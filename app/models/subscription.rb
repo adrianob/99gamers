@@ -8,7 +8,7 @@ class Subscription < ActiveRecord::Base
   has_many :subscription_notifications
 
   #do not show canceled
-  scope :public_active, ->(){ joins(:subscription).where("subscriptions.state IN ('paid', 'pending_payment')").order('subscriptions.state') }
+  scope :public_active, ->(){ where("subscriptions.state IN ('paid', 'pending_payment')").order('subscriptions.state') }
 
   scope :active, ->{ joins(:plan).where("(state in ('paid','pending_payment')) OR (state = 'canceled' AND ((SELECT created_at from subscription_notifications sn where sn.subscription_id = subscriptions.id order by created_at DESC LIMIT 1 ) + (interval '1 days' * plans.days)) > current_timestamp)").order('state') }
   scope :paid, -> do
