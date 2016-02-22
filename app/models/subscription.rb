@@ -10,10 +10,12 @@ class Subscription < ActiveRecord::Base
   #do not show canceled
   scope :public_active, ->(){ where("subscriptions.state IN ('paid', 'pending_payment')").order('subscriptions.state').order('subscriptions.created_at desc') }
 
-  scope :active, ->{ joins(:plan).where("(state in ('paid','pending_payment')) OR (state = 'canceled' AND ((SELECT created_at from subscription_notifications sn where sn.subscription_id = subscriptions.id order by created_at DESC LIMIT 1 ) + (interval '1 days' * plans.days)) > current_timestamp)").order('state').order('subscriptions.created_at desc') }
+  scope :unordered_active, ->{ joins(:plan).where("(subscriptions.state in ('paid','pending_payment')) OR (subscriptions.state = 'canceled' AND ((SELECT created_at from subscription_notifications sn where sn.subscription_id = subscriptions.id order by created_at DESC LIMIT 1 ) + (interval '1 days' * plans.days)) > current_timestamp)") }
+  scope :active, ->{ unordered_active.order(:state).order('subscriptions.created_at desc') }
   scope :paid, -> do
    where("subscriptions.gateway_data->>'status' IN ('paid')")
   end
+  scope :confirmed_last_day, -> { unordered_active.joins(:subscription_notifications).where("(current_timestamp - subscription_notifications.created_at) < '1 day'::interval") }
 
   def twitch_link
     self.user.twitch_link if self.user

@@ -119,6 +119,10 @@ class Project < ActiveRecord::Base
     joins(:contributions).merge(Contribution.confirmed_last_day).uniq
   }
 
+  scope :with_subs_confirmed_last_day, -> {
+    joins(:subscriptions).merge(Subscription.confirmed_last_day).uniq
+  }
+
   scope :of_current_week, -> { where(online_date: 7.days.ago.. Time.current) }
 
   attr_accessor :accepted_terms

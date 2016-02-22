@@ -5,6 +5,7 @@ namespace :cron do
 
   desc "Tasks that should run daily"
   task daily: [ :notify_project_owner_about_new_confirmed_contributions,
+                :notify_project_owner_about_new_confirmed_subs,
                :deliver_projects_of_week, :verify_pagarme_transactions,
                :verify_pagarme_transfers, :notify_pending_refunds]
 
@@ -28,6 +29,18 @@ namespace :cron do
     puts "Finishing projects..."
     Project.to_finish.each do |project|
       CampaignFinisherWorker.perform_async(project.id)
+    end
+  end
+
+  desc "Send a notification to all project owners with new subs"
+  task notify_project_owner_about_new_confirmed_subs: :environment do
+    puts "Notifying project owners about subs..."
+    Project.with_subs_confirmed_last_day.each do |project|
+      # We cannot use notify_owner for it's a notify_once and we need a notify
+      project.notify(
+        :project_owner_subscription_confirmed,
+        project.user
+      )
     end
   end
 
