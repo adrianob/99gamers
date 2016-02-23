@@ -45,7 +45,7 @@ class ProjectPolicy < ApplicationPolicy
 
       p_attr.flatten
     else
-      [:funding_type, :about_html, :video_url, :uploaded_image, :headline, :budget,
+      [:funding_type, :transfer, :about_html, :video_url, :uploaded_image, :headline, :budget,
                  user_attributes, posts_attributes, budget_attributes, reward_attributes, goal_attributes, plan_attributes, account_attributes]
     end
   end
