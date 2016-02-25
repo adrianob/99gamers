@@ -15,7 +15,7 @@ class Subscription < ActiveRecord::Base
   scope :paid, -> do
    where("subscriptions.gateway_data->>'status' IN ('paid')")
   end
-  scope :confirmed_last_day, -> { unordered_active.joins(:subscription_notifications).where("(current_timestamp - subscription_notifications.created_at) < '1 day'::interval") }
+  scope :confirmed_last_day, -> { unordered_active.where("subscriptions.state = 'paid'").joins(:subscription_notifications).where("(current_timestamp - subscription_notifications.created_at) < '1 day'::interval").select("DISTINCT ON (subscriptions.id) subscriptions.*") }
 
   def twitch_link
     self.user.twitch_link if self.user
