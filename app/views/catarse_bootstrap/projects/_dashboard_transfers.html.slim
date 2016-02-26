@@ -21,6 +21,8 @@
             text_field_wrapper_html: { class: 'w-col w-col-4 w-sub-col t-saque' },
             input_html: { class: 'positive medium', required: false },
             validation_text: false, label: 'Valor a transferir (mínimo R$50):'
+        .w-col.w-col-12.w-subcol.u-margintop-10
+          label.field-label.fontsize-smallest Taxa de transferêcia R$4,00
         .section
           .w-container
             .w-row
@@ -40,6 +42,6 @@
       tbody
         - @project.project_transfers.each do |transfer|
           tr
-            td.w-col-2.w-col= transfer.created_at
+            td.w-col-2.w-col= I18n.l(transfer.created_at.to_date)
             td.w-col-2.w-col= number_to_currency transfer.amount, precision: 2
             td.w-col-2.w-col= transfer.state

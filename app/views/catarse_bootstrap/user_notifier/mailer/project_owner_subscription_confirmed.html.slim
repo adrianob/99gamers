@@ -23,6 +23,7 @@ table width="500" border="1" cellpadding="10" cellspacing="0" style='font-size: 
       th width="100" Email do apoiador
       th width="100" Valor do plano
       th width="200" Plano selecionado
+      th width="200" Nick no Twitch
   tbody
     - confirmed_contributions_today.each do |sub|
       tr
@@ -30,6 +31,7 @@ table width="500" border="1" cellpadding="10" cellspacing="0" style='font-size: 
         td= sub.user.email
         td= number_to_currency sub.plan.amount
         td= sub.plan.name
+        td= sub.user.twitch_link
 br/
 br/
 | Lembrando que você pode tirar dúvidas conosco respondendo diretamente a esta mensagem ou através do e-mail #{mail_to CatarseSettings[:email_projects] }
