@@ -95,7 +95,7 @@ class Project < ActiveRecord::Base
   scope :not_expired, -> { where("expires_at IS NULL OR expires_at >= ?", Time.current) }
   scope :expiring, -> { not_expired.where(expires_at: Time.current.. 2.weeks.from_now) }
   scope :not_expiring, -> { not_expired.where.not(expires_at: Time.current.. 2.weeks.from_now) }
-  scope :recent, -> { where(online_date: 5.days.ago.. Time.current) }
+  scope :recent, -> { where(online_date: 2.months.ago.. Time.current) }
   scope :ordered, -> { order(created_at: :desc)}
   scope :order_status, ->{ order("
                                      CASE projects.state
