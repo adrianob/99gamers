@@ -20,6 +20,7 @@ module Concerns
       add_to_menu "admin.financials.index.menu",    :admin_financials_path
       add_to_menu "admin.users.index.menu",         :admin_users_path
       add_to_menu "admin.projects.index.menu",      :admin_projects_path
+      add_to_menu "admin.project_transfers.index.menu",      :admin_project_transfers_path
       menu "Dataclips" => :dbhero_path
 
       def menu

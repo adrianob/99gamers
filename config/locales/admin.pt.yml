@@ -3,6 +3,9 @@ pt:
     filter:
       title: 'Filtros'
     confirm_dialog: 'Você tem certeza?'
+    project_transfers:
+      index:
+        menu: 'Saques'
     financials:
       index:
         id: ID

@@ -146,6 +146,12 @@ Catarse::Application.routes.draw do
     end
 
     resources :financials, only: [ :index ]
+    resources :project_transfers, only: [ :index ] do
+      member do
+        put 'confirm'
+        put 'unconfirm'
+      end
+    end
 
     resources :contributions, only: [ :index, :update, :show ] do
       member do
