@@ -1,20 +1,20 @@
 pt:
   pages:
     hello:
-      page-title: "Saiba mais sobre a 99Gamers"
+      page-title: "Saiba mais sobre a GoAngels"
       hero:
         title: "De Gamers para Gamers"
-        people_html: "Pessoas já apoiaram pelo menos <br>1 projeto na 99Gamers"
-        projects_html: "Projetos já foram <br>financiados na 99Gamers"
+        people_html: "Pessoas já apoiaram pelo menos <br>1 projeto na GoAngels"
+        projects_html: "Projetos já foram <br>financiados na GoAngels"
         money_html: "Doados para projetos <br>publicados por aqui"
-        success: "Projetos já foram financiados na 99Gamers"
+        success: "Projetos já foram financiados na GoAngels"
         money: "Doados para projetos publicados por aqui"
       idea:
         title: "O projeto é só o início!"
         subtitle: "As pessoas precisam tomar conhecimento da sua existência, só assim ele poderá ter os recursos necessários para ser executado."
       fund:
         title: "Financiamento Coletivo"
-        subtitle: "Já imaginou Gamers Realizadores de projetos conectando-se a vários Gamers Apoiadores interessados em contribuir e tudo em um só lugar? Na 99Gamers, isso é possível."
+        subtitle: "Já imaginou Gamers Realizadores de projetos conectando-se a vários Gamers Apoiadores interessados em contribuir e tudo em um só lugar? Na GoAngels, isso é possível."
       campaign:
         title: "Campanhas de arrecadação"
         subtitle_html: "Caso a campanha seja &#8220;Tudo ou nada&#8221; ou &#8220;Flexível&#8221;, os realizadores têm até 60 dias para captar a meta financeira que determinaram para o projeto acontecer. Em troca dos apoios, oferecem recompensas criativas. Caso seja &#8220;Recorrente/Gamer Sócio&#8221;, ela não terá um tempo determinado, o realizador poderá receber apoios como nos outros tipos de campanha e criar planos de recebimentos."
@@ -31,7 +31,7 @@ pt:
         title: "O projeto sai do papel"
         subtitle: "Gamers Apoiadores querem ver o projeto acontecer de qualquer maneira. Com o sucesso da campanha, os Gamers Realizadores produzem o projeto e preparam a entrega das recompensas ou conteúdos para os apoiadores."
       cta:
-        title: "Conheça a 99Gamers na prática"
+        title: "Conheça a GoAngels na prática"
         backer-cta: "Torne-se um Gamer Apoiador, ajude pessoas a criarem os seus projetos e receba recompensas exclusivas."
         backer-link: "Apoie um projeto"
         maker-cta: "Seja um Gamer Realizador, mostre seu projeto ao mundo e arrecade dinheiro para torná-lo realidade."
@@ -40,7 +40,7 @@ pt:
         humberto:
           text_html: "&#8220; A possibilidade de contribuir para o desenvolvimento de um cenário pelo qual sou apaixonado é surpreendente. E se torna melhor ainda quando podemos ganhar algo em troca do nosso apoio. &#8221;"
           name: "Tedson Santos"
-          credentials: "Idealizador da 99Gamers"
+          credentials: "Idealizador da GoAngels"
       details:
         fund:
           title: "Financiamento Coletivo ou Crowdfunding?"
@@ -50,10 +50,10 @@ pt:
           text_html: "Um estudo nos levou a crer que apenas o formato &#8220;tudo ou nada&#8221; não seria o suficiente para atender a demanda da nossa comunidade. Pensando nisso, resolvemos criar mais 2 tipos de campanhas visando suprir a necessidade dos mais diversos tipos de projetos. A &#8220;flexível&#8221;, visando campanhas já em andamento e a &#8220;Gamer Sócio&#8221;, visando criadores de conteúdo e organizações de e-sports."
         services:
           title: "Nós iremos te ajudar"
-          text: "A 99Gamers fornece suporte aos usuários da plataforma e torna possível que projetos captem recursos de forma ágil e direta utilizando a internet. Qualquer pessoa acima de 18 anos (ou menor, mas com um representante legal) pode utilizar nossos serviços e fazer uma campanha de crowdfunding, desde que o projeto esteja de acordo com nossos critérios de seleção."
+          text: "A GoAngels fornece suporte aos usuários da plataforma e torna possível que projetos captem recursos de forma ágil e direta utilizando a internet. Qualquer pessoa acima de 18 anos (ou menor, mas com um representante legal) pode utilizar nossos serviços e fazer uma campanha de crowdfunding, desde que o projeto esteja de acordo com nossos critérios de seleção."
         fees:
           title: "Como sobrevimemos!"
-          text_html: "Cobramos 14% sobre o valor total de projetos que atingiram ou ultrapassaram a meta de arrecadação. Sendo que ficamos com cerca de 9% e os outros 5% é repassado ao Pagar.me, meio de pagamento utilizado na 99Gamers. Projetos &#8220;tudo ou nada&#8221; que não atingiram a meta não têm qualquer custo e todos os apoiadores recebem o dinheiro de volta. Projetos &#8220;flexíveis&#8221; que não atingirem a meta possuem um acréscimo de 3.5% no valor da porcentagem cobrada."
+          text_html: "Cobramos 14% sobre o valor total de projetos que atingiram ou ultrapassaram a meta de arrecadação. Sendo que ficamos com cerca de 9% e os outros 5% é repassado ao Pagar.me, meio de pagamento utilizado na GoAngels. Projetos &#8220;tudo ou nada&#8221; que não atingiram a meta não têm qualquer custo e todos os apoiadores recebem o dinheiro de volta. Projetos &#8220;flexíveis&#8221; que não atingirem a meta possuem um acréscimo de 3.5% no valor da porcentagem cobrada."
         work:
           title: "#EuApoioGamers"
           text: "A 99 Gamers é uma organização independente, sem investimentos de terceiros, que está muito empenhada em realizar grandes feitos para o cenário gamer nacional. Pensando nisso, pretendemos reinvestir parte do valor arrecadado por nós em projetos que acreditamos fazerem a diferença no desenvolvimento da nossa comunidade."

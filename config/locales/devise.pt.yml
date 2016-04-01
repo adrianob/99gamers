@@ -2,7 +2,7 @@ pt:
   devise:
     feedback_tab:
       title: 'Feedback e Ajuda'
-      header_html: 'Bem-vindo ao <br/> novo login da 99Gamers'
+      header_html: 'Bem-vindo ao <br/> novo login da GoAngels'
       blog_button: 'Leia mais no blog'
       form_feedback_link: 'Enviar feedback'
       contact_link: 'Entrar em contato'
@@ -51,7 +51,7 @@ pt:
         site_title: 'Defina uma nova senha'
         label_new_password: 'Nova senha'
         title: 'Defina uma nova senha'
-        subtitle: 'Defina uma nova senha para usar seu email e senha quando quiser entrar na 99Gamers.'
+        subtitle: 'Defina uma nova senha para usar seu email e senha quando quiser entrar na GoAngels.'
         submit: 'Definir nova senha'
     registrations:
       destroyed: Adeus! A sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.
