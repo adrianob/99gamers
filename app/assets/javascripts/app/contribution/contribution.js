@@ -107,7 +107,7 @@ App.addChild('Contribution', {
     var minimum = this.minimumValue();
     var reward_value = $el.find('.user-reward-value');
     if(reward_value.val() === ''){
-      reward_value.val(minimum);
+      reward_value.val('10,00');
     }
   }
 });
