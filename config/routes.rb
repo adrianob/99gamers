@@ -173,11 +173,11 @@ Catarse::Application.routes.draw do
     end
   end
 
-  namespace :api, defaults: {format: :json} do
-    match "/users/:authentication_token/subscriptions" => "users#subscriptions", via: :post
-    match "/connect" => "users#connect", via: :post
-    match "/create" => "users#create", via: :post
-  end
+  #namespace :api, defaults: {format: :json} do
+    #match "/users/:authentication_token/subscriptions" => "users#subscriptions", via: :post
+    #match "/connect" => "users#connect", via: :post
+    #match "/create" => "users#create", via: :post
+  #end
 
   get "/:permalink" => "projects#show", as: :project_by_slug
 
