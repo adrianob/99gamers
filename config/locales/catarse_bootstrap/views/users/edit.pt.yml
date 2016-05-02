@@ -11,7 +11,7 @@ pt:
       feeds: "Atividades"
       submit: "Salvar"
       contributions_fields:
-        no-project: "Você ainda não apoiou nenhum projeto na&nbsp;GoAngels..."
+        no-project: "Você ainda não apoiou nenhum projeto na&nbsp;99Gamers..."
         contribute: "Apoie agora!"
       about_fields:
         add_link: "+ Adicionar link"
@@ -40,4 +40,4 @@ pt:
         bank_account_message: "Caso algum projeto que você tenha apoiado <b>com Boleto Bancário</b> não seja bem-sucedido, nós efetuaremos o reembolso de seu pagamento <b>automaticamente</b> na conta indicada abaixo."
       notifications_fields:
         newsletters: "Newsletters"
-        newsletter_description: "Newsletter da GoAngels (semanal)"
+        newsletter_description: "Newsletter da 99Gamers (semanal)"

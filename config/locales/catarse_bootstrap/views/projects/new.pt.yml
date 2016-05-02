@@ -1,7 +1,7 @@
 pt:
   projects:
     new:
-      page-title: "Comece seu projeto na GoAngels"
+      page-title: "Comece seu projeto na 99Gamers"
 
       faq:
         titles:
@@ -12,7 +12,7 @@ pt:
           criteria: "Critérios de seleção"
           suport_central: "Central de suporte"
           support_contact: "Entre em contato com a gente"
-          how_it_works: "Como a GoAngels funciona?"
+          how_it_works: "Como a 99Gamers funciona?"
           money: "Como receberei o dinheiro?"
           selection: "Como os projetos são selecionados?"
           all_or_nothing: "Por que Tudo ou Nada?"
@@ -24,7 +24,7 @@ pt:
             description: "Preencha as informações abaixo para iniciar o rascunho do seu projeto."
 
         info:
-          permalink: https://goangels.me/
+          permalink: https://99gamers.me/
           goal: R$
           online_days: dias
 

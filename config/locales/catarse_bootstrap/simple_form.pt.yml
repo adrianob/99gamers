@@ -3,9 +3,9 @@ pt:
     collections:
       project:
         traffic_sources:
-          one: "Eu já tive outro projeto na GoAngels"
+          one: "Eu já tive outro projeto na 99Gamers"
           two: "Raiseit / EGL Network"
-          three: "Indicação de uma pessoa que já teve um projeto na GoAngels"
+          three: "Indicação de uma pessoa que já teve um projeto na 99Gamers"
           four: "Indicação de amigo/colega/contato profissional"
           five: "A partir de um projeto que estava captando na plataforma"
           six: "Artigo em um blog"
@@ -41,16 +41,16 @@ pt:
         category: "Selecione uma categoria"
         funding_type: "Selecione um modelo"
         select: "Selecione uma opção"
-        traffic_sources: "Como você conheceu a GoAngels?"
+        traffic_sources: "Como você conheceu a 99Gamers?"
     hints:
       project:
         select: "Selecione uma opção"
-        traffic_sources: "Como você conheceu a GoAngels?"
+        traffic_sources: "Como você conheceu a 99Gamers?"
         name: "Dê um nome que as pessoas se lembrem facilmente. Não ultrapasse 50 caracteres."
         permalink: "Prefira algo simples, direto e que identifique bem seu projeto. Tente não usar hífen, underline etc."
         category: "Escolha a mais adequada ao seu projeto."
         city: "Onde o seu projeto será realizado? Caso ele aconteça em mais de um lugar, uma dica é colocar a cidade onde sua rede de potenciais apoiadores é maior."
-        goal: "Planeje uma meta coerente com o que seu projeto propõe. Revise seu orçamento e não esqueça de incluir a taxa de 14% cobrada pela GoAngels caso seu projeto seja bem-sucedido."
+        goal: "Planeje uma meta coerente com o que seu projeto propõe. Revise seu orçamento e não esqueça de incluir a taxa de 14% cobrada pela 99Gamers caso seu projeto seja bem-sucedido."
         online_days: "Você pode escolher entre 1 e 60 dias para a sua campanha."
         video_url: "Link do seu vídeo no Vimeo ou <br/> Youtube."
         about_html: "Fale com paixão e clareza sobre o que será realizado. Esclareça possíveis dúvidas sobre como o dinheiro será utilizado, quem está por trás do projeto, como e quando o projeto será entregue. Transparência atrai mais apoiadores. Lembre-se: seu projeto será acessado por pessoas comuns que decidirão se querem ou não apoiar seu projeto. Capriche! "

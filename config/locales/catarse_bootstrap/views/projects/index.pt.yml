@@ -2,10 +2,10 @@ pt:
   projects:
     index_header:
       subtitle: Financie projetos de maneira colaborativa e torne-se parte de algo
-        maior. Promova a GoAngels coletiva! Você é a peça que falta nesta história. De Gamers para Gamers.
+        maior. Promova a 99Gamers coletiva! Você é a peça que falta nesta história. De Gamers para Gamers.
       title: Faça acontecer os projetos em que você acredita
     index:
-      title: 'GoAngels'
+      title: '99Gamers'
       back_a_project: 'Apoie um projeto'
       banner_before: 'Tire '
       banner_words:
@@ -31,7 +31,7 @@ pt:
       see_all: 'Ver todos'
       near_you: 'Próximos a você'
       recents: Recentes
-      blog: Blog da GoAngels
+      blog: Blog da 99Gamers
       expiring: Na reta final
       recommended: Recomendados
       banner_subtitle: 'Música, quadrinhos, cinema, impacto social, tecnologia e muito mais. Conheça, inspire-se e apoie projetos.'

@@ -3,7 +3,7 @@ pt:
   days: dias
   facebook_locale: pt_BR
   failure_title: 'Por favor, corrija os seguintes erros:'
-  i_just_contributed: Eu acabei de apoiar o projeto %{name} no @GoAngels
+  i_just_contributed: Eu acabei de apoiar o projeto %{name} no @99gamers
   'no': Não
   'yes': Sim
   not_informed: não informado
@@ -11,9 +11,9 @@ pt:
   sending: Enviando...
   share_my_contributions: 'Confira o projeto '
   site:
-    description:  GoAngels é a única plataforma de crowdfunding, ou financiamento coletivo do Brasil que é focada em jogos, e-sports, criação de conteúdo e tecnologia. Venha tirar projetos do papel!
-    keywords: crowdfunding, financiamento coletivo, projeto gamer, GoAngels, comunidade gamer, gamer realizador, gamer apoiador, euapoiogamers, criação de conteúdo, de gamers para gamers, financiamento coletivo pra jogos, financiamento coletivo para games, crowdfunding para jogos, crowdfunding para games, campanha para jogos, crowdfunding e-sports, crowdfunding criação de conteúdo, crowdfunding stream
+    description:  99Gamers é a única plataforma de crowdfunding, ou financiamento coletivo do Brasil que é focada em jogos, e-sports, criação de conteúdo e tecnologia. Venha tirar projetos do papel!
+    keywords: crowdfunding, financiamento coletivo, projeto gamer, 99gamers, comunidade gamer, gamer realizador, gamer apoiador, euapoiogamers, criação de conteúdo, de gamers para gamers, financiamento coletivo pra jogos, financiamento coletivo para games, crowdfunding para jogos, crowdfunding para games, campanha para jogos, crowdfunding e-sports, crowdfunding criação de conteúdo, crowdfunding stream
     meta_title: "%{title} · %{company_name}"
-    title: Crowdfunding e Financiamento Coletivo para Jogos é na GoAngels
+    title: Crowdfunding e Financiamento Coletivo para Jogos é na 99Gamers
 
   assinar: Assinar este projeto

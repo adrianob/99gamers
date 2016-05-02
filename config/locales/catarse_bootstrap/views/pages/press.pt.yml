@@ -1,20 +1,20 @@
 pt:
   pages:
     press:
-      page-title: "Sala para imprensa na GoAngels"
+      page-title: "Sala para imprensa na 99Gamers"
       hero:
         title: "Sala de imprensa"
       stats:
         title: "Nossos números"
         subtitle: "Muitos artistas, designers, pesquisadores, gamers, cientistas, empreendedores e ativistas encontraram na plataforma uma poderosa ferramenta para viabilizar financeiramente suas ações e projetos. Essa história pode ser contada em números."
-        people_html: "Pessoas já apoiaram pelo menos <br>1 projeto na GoAngels"
-        projects_html: "Projetos já foram <br>financiados na GoAngels"
+        people_html: "Pessoas já apoiaram pelo menos <br>1 projeto na 99Gamers"
+        projects_html: "Projetos já foram <br>financiados na 99Gamers"
         money_html: "Doados para projetos <br>publicados por aqui"
         cta_html: "Veja dados completos separados por categoria &gt;"
       abstract:
-        title: "A GoAngels é o primeiro site de crowdfunding/financiamento coletivo com foco especifico em jogos e tecnologia do Brasil. Nossa idéia é ter um ponto de encontro entre apoiadores e realizadores gamers, cujo objetivo comum é ajudar na criação de potencias tecnológicas nacionais, atuando de forma decisiva no desenvolvimento do cenário. Dessa forma colaborativa, “De Gamers para Gamers”, contribuímos financeiramente transformando sonhos e idéias em projetos realizados."
+        title: "A 99gamers é o primeiro site de crowdfunding/financiamento coletivo com foco especifico em jogos e tecnologia do Brasil. Nossa idéia é ter um ponto de encontro entre apoiadores e realizadores gamers, cujo objetivo comum é ajudar na criação de potencias tecnológicas nacionais, atuando de forma decisiva no desenvolvimento do cenário. Dessa forma colaborativa, “De Gamers para Gamers”, contribuímos financeiramente transformando sonhos e idéias em projetos realizados."
       history:
-        title: "História da GoAngels"
+        title: "História da 99Gamers"
         subtitle: "A primeira plataforma de financiamento coletivo para jogos e tecnologia do Brasil, entrou no ar em dezembro de 2015. Sua premissa marca que juntos podemos ajudar a desenvolver ainda mais o cenário nacional de games e levar o nome do Brasil aos quatro cantos do mundo..."
         cta_html: "Leia a história completa &gt;"      
       social:
@@ -25,4 +25,4 @@ pt:
         cta_html: "Baixe nossas marcas &gt;" 
       email:
         title: "Quer falar com a gente?"
-        cta: "contato@goangels.me"
+        cta: "contato@99gamers.me"
