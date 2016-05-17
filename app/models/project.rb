@@ -30,6 +30,8 @@ class Project < ActiveRecord::Base
   has_one :project_total
   has_one :account, class_name: "ProjectAccount", inverse_of: :project
   has_many :plans
+  has_many :taggings
+  has_many :tags, through: :taggings
   has_many :goals, class_name: "Goal", inverse_of: :project
   has_many :rewards
   has_many :project_transfers
@@ -205,6 +207,18 @@ class Project < ActiveRecord::Base
 
   def contributions_amount_between(starts_at, ends_at)
     contributions_between(starts_at, ends_at).sum('contributions.value')
+  end
+
+  def all_tags=(names)
+    self.tags = names.split(',').map do |name|
+      Tag.find_or_create_by(name: name.strip) do |tag|
+        tag.slug = name.parameterize
+      end
+    end
+  end
+
+  def all_tags
+    tags.map(&:name).join(", ")
   end
 
   def subscriptions_amount_between(starts_at, ends_at)

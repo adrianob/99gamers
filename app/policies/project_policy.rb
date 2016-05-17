@@ -37,6 +37,7 @@ class ProjectPolicy < ApplicationPolicy
       p_attr << user_attributes
       p_attr << :transfer
       p_attr << budget_attributes
+      p_attr << :all_tags
       p_attr << posts_attributes
       p_attr << reward_attributes
       p_attr << goal_attributes
