@@ -23,6 +23,12 @@
                   label.field-label.fontsize-smallest.fontcolor-secondary Essa imagem será usada caso não seja fornecido o vídeo
                 .w-col.w-col-6
                   = form.input :cover_image, label: '', as: :file, required: false, hint: (@project.cover_image.present? ? image_tag(@project.cover_image.base.url, size: '220x172#') : '' )
+              .w-row.u-marginbottom-30.card.card-terciary.medium
+                .w-col.w-col-6
+                  label.field-label.fontweight-semibold Imagem de fundo
+                  label.field-label.fontsize-smallest.fontcolor-secondary Defina a imagem de fundo do projeto
+                .w-col.w-col-6
+                  = form.input :background_image, label: '', as: :file, required: false, hint: (@project.background_image.present? ? image_tag(@project.background_image.base.url, size: '220x172#') : '' )
   .w-section.section
     .w-container
       .w-row
