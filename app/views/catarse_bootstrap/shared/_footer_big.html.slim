@@ -1,19 +1,17 @@
 footer.main-footer.main-footer-neg
   section.w-container
     .w-row
-      .w-col.w-col-9
+      .w-col.w-col-6
         .w-row
-          .w-col.w-col-4.w-col-small-4.w-col-tiny-4.w-hidden-tiny
-            = render 'shared/footer_welcome'
-          .w-col.w-col-4.w-col-small-4.w-col-tiny-4.footer-full-firstcolumn
+          .w-col.w-col-6.w-col-small-6.w-col-tiny-6.footer-full-firstcolumn
             = render 'shared/footer_about'
-          .w-col.w-col-4.w-col-small-4.w-col-tiny-4.footer-full-lastcolumn
+          .w-col.w-col-6.w-col-small-6.w-col-tiny-6.footer-full-lastcolumn
             = render 'shared/footer_navigate'
-      .w-col.w-col-3.column-social-media-footer
-        .footer-full-signature-text.fontsize-small Assine nossa news
+      .w-col.w-col-6.column-social-media-footer
+        .footer-full-signature-text.fontsize-large Receba dicas e projetos
         .w-form
           = render 'shared/newsletter'
-        .footer-full-signature-text.fontsize-small Redes sociais
+        .footer-full-signature-text.fontsize-large Conecte-se
         .w-widget.w-widget-facebook.u-marginbottom-20
           = render_facebook_like colorscheme: "dark"
         .w-widget.w-widget-twitter

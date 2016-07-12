@@ -1,4 +1,5 @@
-// Resetting headers as webflow does not provide this in its normalize
+/* Resetting headers as webflow does not provide this in its normalize
+
 h1, h2, h3, h4, h5, h6, label
   font-weight: normal
   margin: 0
@@ -13,13 +14,13 @@ img, iframe
 .list-answer
   display: none
 
-.project-about, div.redactor-editor
-  a
-    color: #409ade
-    text-decoration: none
-  a:hover
-    color: #409ade
-    text-decoration: underline
+.project-about a, div.redactor-editor a
+  color: #409ade
+  text-decoration: none
+
+.project-about a:hover, div.redactor-editor a:hover
+  color: #409ade
+  text-decoration: underline
 
 .edit-project-div
   height: 520px
@@ -32,19 +33,12 @@ img, iframe
 .plan-contribution
   padding: 10px
 
-.required
-  .field-label
-    padding-top: 1px
-    padding-bottom: 1px
-    font-weight: 600
+.required .field-label
+  padding-top: 1px
+  padding-bottom: 1px
+  font-weight: 600
 
-.project-reward-box-hover
-  cursor: pointer
-
-.table-outer.search-pre-result
-  cursor: pointer
-
-.nav-tab
+.project-reward-box-hover, .table-outer.search-pre-result, .nav-tab
   cursor: pointer
 
 .date
@@ -53,37 +47,47 @@ img, iframe
 .deliver-at-date
   width: 230px
 
-.loader
-  img
-    display: none
+.loader img
+  display: none
+
 .card-author-name
-  max-height: 3.5em //two lines of height -> 1.5em each line + padding
+  max-height: 3.5em
   overflow: hidden
+
 .card-gone
   color: inherit
   display: block
   text-decoration: none
+
 .card-reward
   color: inherit
   display: block
   text-decoration: none
   .project-reward-box-hover
     opacity: 0
-    +transition(opacity 650ms)
+    -moz-transition: opacity 650ms
+    -o-transition: opacity 650ms
+    -webkit-transition: opacity 650ms
+    transition: opacity 650ms
   &:hover .project-reward-box-hover
     z-index: 10
     opacity: 1
-    +transition(opacity 650ms)
+    -moz-transition: opacity 650ms
+    -o-transition: opacity 650ms
+    -webkit-transition: opacity 650ms
+    transition: opacity 650ms
     .project-reward-box-hover-text
-      +transform(translateY(-50%) scale(1))
+      -moz-transform: translateY(-50%) scale(1)
+      -ms-transform: translateY(-50%) scale(1)
+      -webkit-transform: translateY(-50%) scale(1)
+      transform: translateY(-50%) scale(1)
 
 .fb_comments_count_zero
   display: inline
 
-// New contribution page
-// fix text-field height conflict
 .text-field.back-reward-input-reward
   height: 60px
+
 .w-radio-input.back-reward-radio-button
   height: 20px
   margin-bottom: 0px
@@ -92,9 +96,8 @@ img, iframe
 .back-reward-radio-reward
   .badge-success
     display: none
-  &.selected
-    .badge-success
-      display: inline
+  &.selected .badge-success
+    display: inline
 
 .list-question
   cursor: pointer
@@ -103,24 +106,45 @@ img, iframe
     &:before
       font-family: "FontAwesome"
       display: inline-block
-      content: "\f105 "
-      +transition(all 1s ease)
-      +rotate(90deg)
-
+      content: ""
+      -moz-transition: all 1s ease
+      -o-transition: all 1s ease
+      -webkit-transition: all 1s ease
+      transition: all 1s ease
+      -moz-transform: rotate(90deg)
+      -ms-transform: rotate(90deg)
+      -webkit-transform: rotate(90deg)
+      transform: rotate(90deg)
   &:before
     font-family: "FontAwesome"
     display: inline-block
-    content: "\f105 "
-    +transition(all 1s ease)
+    content: ""
+    -moz-transition: all 1s ease
+    -o-transition: all 1s ease
+    -webkit-transition: all 1s ease
+    transition: all 1s ease
+
 .reward-floating
-  +transform(translateX(0px) translateY(-100px))
-  +transition(transform 500ms)
+  -moz-transform: translateX(0px) translateY(-100px)
+  -ms-transform: translateX(0px) translateY(-100px)
+  -webkit-transform: translateX(0px) translateY(-100px)
+  transform: translateX(0px) translateY(-100px)
+  -moz-transition: -moz-transform 500ms
+  -o-transition: -o-transform 500ms
+  -webkit-transition: -webkit-transform 500ms
+  transition: transform 500ms
+
 .reward-floating-display
   display: block
-  +transform(translateX(0px) translateY(0px))
-  +transition(transform 500ms)
+  -moz-transform: translateX(0px) translateY(0px)
+  -ms-transform: translateX(0px) translateY(0px)
+  -webkit-transform: translateX(0px) translateY(0px)
+  transform: translateX(0px) translateY(0px)
+  -moz-transition: -moz-transform 500ms
+  -o-transition: -o-transform 500ms
+  -webkit-transition: -webkit-transform 500ms
+  transition: transform 500ms
 
-//Fallback for browser that still do not support object-fit
 @supports (object-fit: cover)
   #player, .w-lightbox-figure
     position: absolute
@@ -133,24 +157,20 @@ img, iframe
     object-fit: cover
 
 .w-lightbox-close
-  background-color: rgba(0, 0, 0, .9)
+  background-color: rgba(0, 0, 0, 0.9)
 
 .w-lightbox-frame
   width: 99%
   height: 99%
+
 .w-lightbox-figure
   position: absolute
   width: 100%
   height: 100%
 
-
-// Adjusting the grid
-.w-col
-  .w-col
-    &.w-sub-col
-      padding-right: 20px
-    &.w-sub-col-middle
-      padding-right: 20px
+.w-col .w-col
+  &.w-sub-col, &.w-sub-col-middle
+    padding-right: 20px
 
 @media screen and (min-width: 1200px)
   .w-container
@@ -158,22 +178,13 @@ img, iframe
   .w-col
     padding-right: 20px
     padding-left: 20px
-  .w-col
     .w-col
-      &.w-sub-col
+      &.w-sub-col, &.w-sub-col-middle
         padding-right: 40px
-      &.w-sub-col-middle
-        padding-right: 40px
-
-
 
 @media (max-width: 767px)
-  .w-col
-    .w-col.w-sub-col
-      padding-right: 0px
-
-
-// Edit contribution page
+  .w-col .w-col.w-sub-col
+    padding-right: 0px
 
 .text-field.checkbox-fix
   display: inline-block
@@ -181,10 +192,7 @@ img, iframe
   height: 24px
   margin: 0
 
-.text-error.w-hidden
-  display: none
-
-.hidden
+.text-error.w-hidden, .hidden
   display: none
 
 .text-color-for-status
@@ -194,67 +202,64 @@ img, iframe
     color: #00B22D
   &.waiting_funds
     color: #b8b651
+
 .force-text-dark
   color: #3F4752 !important
 
-.field_with_errors
-  .text-field
-    margin-bottom: 5px
-    border-color: #E86666
-    background-color: rgba(232, 102, 102, 0.09)
+.field_with_errors .text-field
+  margin-bottom: 5px
+  border-color: #E86666
+  background-color: rgba(232, 102, 102, 0.09)
 
-.back-reward-input-reward._2:focus::-webkit-input-placeholder
-  padding-top: 0
-.back-reward-input-reward._2::-webkit-input-placeholder
-  padding-top: 6px
+.back-reward-input-reward._2
+  &:focus::-webkit-input-placeholder
+    padding-top: 0
+  &::-webkit-input-placeholder
+    padding-top: 6px
 
-// Links rendered by workable embed
 .whr-title a
   color: #409bff
   text-decoration: none
   &:hover
     text-decoration: underline
 
-#project-header h2,
-#hero h2,
-#learn .headline
+#project-header h2, #hero h2, #learn .headline
   margin-top: 0
 
-// Hero images
 .hero-jobs
-  background-image: url('/assets/hero-jobs.jpg') !important
-  background-image: url('/assets/bg-hello-idea.jpg') !important
+  background-image: url("/assets/hero-jobs.jpg") !important
+  background-image: url("/assets/bg-hello-idea.jpg") !important
   background-position: 50% 50%
   background-size: cover
   color: white
 
 .hero-assets
-  background-image: url('/assets/hero-assets.jpg') !important
-  background-image: url('/assets/bg-hello-idea.jpg') !important
+  background-image: url("/assets/hero-assets.jpg") !important
+  background-image: url("/assets/bg-hello-idea.jpg") !important
   background-position: 50% 50%
   background-size: cover
   color: white
 
 .hero-back
-  background-image: url('/assets/hero-home.jpg') !important
+  background-image: url("/assets/hero-home.jpg") !important
   background-position: 50% 50%
   background-size: cover
   color: white
 
 .hero-guide
-  background-image: url('/assets/hero-guide.jpg') !important
+  background-image: url("/assets/hero-guide.jpg") !important
   background-position: 50% 50%
   background-size: cover
   color: white
 
 .hero-search
-  background-image: url('/assets/bg-hello-idea.jpg') !important
+  background-image: url("/assets/bg-hello-idea.jpg") !important
   background-position: 50% 50%
   background-size: cover
   color: white
 
 .hero-who
-  background-image: url('/assets/hero-quemsomos.jpg') !important
+  background-image: url("/assets/hero-quemsomos.jpg") !important
   color: white
 
 .hero-profile
@@ -265,14 +270,13 @@ img, iframe
 .hero-half
   width: 100%
 
-//backgrounds hello saiba mais
-.hero-hello,
-  background-image: url('/assets/hero-hello.jpg') !important
+.hero-hello
+  background-image: url("/assets/hero-hello.jpg") !important
   background-size: cover
   overflow: hidden
 
 .hero-knowmore
-  background-image: url('/assets/bg-header.jpg') !important
+  background-image: url("/assets/bg-header.jpg") !important
   background-size: cover
   color: white
 
@@ -284,47 +288,39 @@ img, iframe
   top: 0
   left: 0
   z-index: 0
-
-.hero-hello .w-embed video
-  min-height: 100%
-  min-width: 100%
-  object-fit: cover
+  video
+    min-height: 100%
+    min-width: 100%
+    object-fit: cover
 
 .section-large.hello-idea
-  background-image: url('/assets/bg-hello-idea.jpg') !important
+  background-image: url("/assets/bg-hello-idea.jpg") !important
 
 .bg-humberto
-  background-image: url('/assets/bg-hello-user.jpg') !important
+  background-image: url("/assets/bg-hello-user.jpg") !important
 
 .bg-people
-  background-image: url('/assets/bg-hello-people.jpg') !important
+  background-image: url("/assets/bg-hello-people.jpg") !important
 
 .section-large.hello-catarse
-  background-image: url('/assets/bg-hello-catarse.jpg') !important
+  background-image: url("/assets/bg-hello-catarse.jpg") !important
 
-//background imprensa
 .bg-projectgrid
-  background-image: url('/assets/bg-hello-people.jpg') !important
+  background-image: url("/assets/bg-hello-people.jpg") !important
 
-//search form style
-.discover-form
-  input[type="text"]
-    +input-placeholder
-      color: rgba(255,255,255,0.61)
-  input[type="text"]:hover
-    +input-placeholder
+.discover-form input[type="text"]
+  &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &::-webkit-input-placeholder
+    color: rgba(255, 255, 255, 0.61)
+  &:hover
+    &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &::-webkit-input-placeholder
       color: #3F4752
 
-//redactor menu style
 .redactor-dropdown .quote
   margin-top: 0
   margin-bottom: 0
 
 .link-footer-inline
-  @extend .link-footer
   display: inline
-
-
 
 .cd-title
   position: relative
@@ -332,97 +328,131 @@ img, iframe
   line-height: 230px
   text-align: center
 
-
 .cd-words-wrapper
   display: inline-block
   position: relative
   text-align: left
-
-.cd-words-wrapper b
-  display: inline-block
-  position: absolute
-  white-space: nowrap
-  left: 0
-  top: 0
-
-.cd-words-wrapper b.is-visible
-  position: relative
+  b
+    display: inline-block
+    position: absolute
+    white-space: nowrap
+    left: 0
+    top: 0
+    &.is-visible
+      position: relative
 
 .no-js .cd-words-wrapper b
   opacity: 0
+  &.is-visible
+    opacity: 1
 
-.no-js .cd-words-wrapper b.is-visible
-  opacity: 1
-
-
-
-.cd-headline.type .cd-words-wrapper
-  vertical-align: top
-  overflow: hidden
-
-.cd-headline.type .cd-words-wrapper::after
-  /* vertical pulsating cursor bar */
-  content: ''
-  position: absolute
-  right: 0
-  top: 50%
-  bottom: auto
-  height: 90%
-  width: 1px
-  background-color: #7cc142
-  +transform(translateY(-50%))
-
-.cd-headline.type .cd-words-wrapper.waiting::after
-  +animation(cd-pulse 1s infinite)
-
-.cd-headline.type .cd-words-wrapper.selected
-  background-color: #aebcb9
-
-.cd-headline.type .cd-words-wrapper.selected::after
-  visibility: hidden
-
-.cd-headline.type .cd-words-wrapper.selected b
-  color: #0d0d0d
-
-.cd-headline.type b
-  visibility: hidden
-  font-weight: 600
-
-.cd-headline.type b.is-visible
-  visibility: visible
-
-.cd-headline.type i
-  position: absolute
-  visibility: hidden
-  font-style: normal
-
-.cd-headline.type i.in
-  position: relative
-  visibility: visible
+.cd-headline.type
+  .cd-words-wrapper
+    vertical-align: top
+    overflow: hidden
+    &::after
+      content: ""
+      position: absolute
+      right: 0
+      top: 50%
+      bottom: auto
+      height: 90%
+      width: 1px
+      background-color: #7cc142
+      -moz-transform: translateY(-50%)
+      -ms-transform: translateY(-50%)
+      -webkit-transform: translateY(-50%)
+      transform: translateY(-50%)
+    &.waiting::after
+      -moz-animation: cd-pulse 1s infinite
+      -webkit-animation: cd-pulse 1s infinite
+      animation: cd-pulse 1s infinite
+    &.selected
+      background-color: #aebcb9
+      &::after
+        visibility: hidden
+      b
+        color: #0d0d0d
+  b
+    visibility: hidden
+    font-weight: 600
+    &.is-visible
+      visibility: visible
+  i
+    position: absolute
+    visibility: hidden
+    font-style: normal
+    &.in
+      position: relative
+      visibility: visible
 
 @media screen and (max-width: 479px)
-  .cd-headline span
-    display: block
-  .cd-headline .cd-words-wrapper
-    display: inline-block
+  .cd-headline
+    span
+      display: block
+    .cd-words-wrapper
+      display: inline-block
 
-+keyframes(cd-pulse)
+@-moz-keyframes cd-pulse
   0%
-    +transform(translateY(-50%) scale(1))
+    -moz-transform: translateY(-50%) scale(1)
+    transform: translateY(-50%) scale(1)
     opacity: 1
 
   40%
-    +transform(translateY(-50%) scale(0.9))
+    -moz-transform: translateY(-50%) scale(0.9)
+    transform: translateY(-50%) scale(0.9)
     opacity: 0
 
   100%
-    +transform(translateY(-50%) scale(0))
+    -moz-transform: translateY(-50%) scale(0)
+    transform: translateY(-50%) scale(0)
     opacity: 0
+
+
+@-webkit-keyframes cd-pulse
+  0%
+    -webkit-transform: translateY(-50%) scale(1)
+    transform: translateY(-50%) scale(1)
+    opacity: 1
+
+  40%
+    -webkit-transform: translateY(-50%) scale(0.9)
+    transform: translateY(-50%) scale(0.9)
+    opacity: 0
+
+  100%
+    -webkit-transform: translateY(-50%) scale(0)
+    transform: translateY(-50%) scale(0)
+    opacity: 0
+
+
+@keyframes cd-pulse
+  0%
+    -moz-transform: translateY(-50%) scale(1)
+    -ms-transform: translateY(-50%) scale(1)
+    -webkit-transform: translateY(-50%) scale(1)
+    transform: translateY(-50%) scale(1)
+    opacity: 1
+
+  40%
+    -moz-transform: translateY(-50%) scale(0.9)
+    -ms-transform: translateY(-50%) scale(0.9)
+    -webkit-transform: translateY(-50%) scale(0.9)
+    transform: translateY(-50%) scale(0.9)
+    opacity: 0
+
+  100%
+    -moz-transform: translateY(-50%) scale(0)
+    -ms-transform: translateY(-50%) scale(0)
+    -webkit-transform: translateY(-50%) scale(0)
+    transform: translateY(-50%) scale(0)
+    opacity: 0
+
 
 .u-margintop-25
   margin-top: 25px
 
-//project sidebar
 #project-nav
   display: block
   height: 100%
@@ -445,31 +475,39 @@ img, iframe
   position: relative
   transition: all 500ms ease
   width: 225px
-
-.dashboard-nav.side::after
-  content: " "
-  position: fixed
-  left: 0px
-  right: 0px
-  bottom: 0px
-  height: 94px
-  width: 205px
-  background-color: #1d2024
-  z-index: 999
+  &::after
+    content: " "
+    position: fixed
+    left: 0px
+    right: 0px
+    bottom: 0px
+    height: 94px
+    width: 205px
+    background-color: #1d2024
+    z-index: 999
 
 #dashboard-links.dashboard-nav-link-left:last-of-type
   margin-bottom: 124px
+
 .dashboard-nav-link-left
   text-align: left
   background: inherit
   border-top: 0
   border-bottom: 0
   outline: none
+
 #project-nav
-  +transition(all 500ms ease)
-.body-project.closed
-  #project-nav
-    +transform(translate3d(-205px, 0, 0))
+  -moz-transition: all 500ms ease
+  -o-transition: all 500ms ease
+  -webkit-transition: all 500ms ease
+  transition: all 500ms ease
+
+.body-project.closed #project-nav
+  -moz-transform: translate3d(-205px, 0, 0)
+  -ms-transform: translate3d(-205px, 0, 0)
+  -webkit-transform: translate3d(-205px, 0, 0)
+  transform: translate3d(-205px, 0, 0)
+
 .btn-dashboard
   position: absolute
   margin-left: 205px
@@ -480,22 +518,22 @@ img, iframe
   width: 100%
 
 @media screen and (max-width: 991px)
-  .body-project::after
-    content: " "
-    position: fixed
-    left: 0px
-    top: 0px
-    right: 0px
-    bottom: 0px
-    display: block
-    height: 100%
-    background-color: rgba(241, 244, 244, 0.87)
-    opacity: 0
-    pointer-events: none
-    transition: all 500ms ease
-
-  .body-project:not(.closed)::after
-    opacity: 1
+  .body-project
+    &::after
+      content: " "
+      position: fixed
+      left: 0px
+      top: 0px
+      right: 0px
+      bottom: 0px
+      display: block
+      height: 100%
+      background-color: rgba(241, 244, 244, 0.87)
+      opacity: 0
+      pointer-events: none
+      transition: all 500ms ease
+    &:not(.closed)::after
+      opacity: 1
 
 .results-admin-contributions
   overflow-x: none !important
@@ -516,41 +554,38 @@ img, iframe
   position: relative
   top: auto
 
-.w-new-tit h1
-  font-size: 44px
-  font-weight: bold
-  line-height: 40px
-  margin-bottom: 15px
-  color: #E8CC12
-
-.w-new-tit h1 span
-  color: #fff
-
-.w-new-tit p
-  font-size: 26px
-  line-height: 32px
-
-.w-new-tit p span
-  display: block
+.w-new-tit
+  h1
+    font-size: 44px
+    font-weight: bold
+    line-height: 40px
+    margin-bottom: 15px
+    color: #E8CC12
+    span
+      color: #fff
+  p
+    font-size: 26px
+    line-height: 32px
+    span
+      display: block
 
 .hero-home-words-content
   height: auto
-
-.hero-home-words-content .fontsize-megajumbo
-  margin-bottom: 23px
+  .fontsize-megajumbo
+    margin-bottom: 23px
 
 .btn-home
-  border: 3px solid #E8CC12
-  font-size: 25px
-  width: 180px
+  border: 3px solid #ed2727
+  font-size: 15px
   background: transparent
-
-.btn-home:hover
-  background: #E8CC12
-  border: 3px solid #E8CC12
+  color: #ed2727
+  &:hover
+    background: #e01414
+    border: 3px solid #e01414
+    color: #fff
 
 .raiseit-on, .raiseit-off, .raiseit-on:hover, .raiseit-off:hover
-  background-image: url('/assets/raiseit.png')
+  background-image: url("/assets/raiseit.png")
   background-position: 85% center
   background-size: 135px
   background-repeat: no-repeat

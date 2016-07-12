@@ -1,36 +1,124 @@
 - content_for :title, t('site.title')
 = render 'shared/header_big', overlayer: true
 
-section#hero-home.hero-full.hero-knowmore
-  .w-container.u-text-center
-    .hero-home-words-content
-      .fontsize-megajumbo.u-marginbottom-60.fontweight-semibold
-        .w-new-tit
-          h1
-            | #Eu
-            span Apoio
-            | Gamers!
-          p 
-            | De Gamers para Gamers! Financiamento coletivo para 
-            span Jogos, E-sports, Criação de Conteúdo e Tecnologia!		
+/section#hero-home.hero-full.hero-knowmore
+  /.w-container.u-text-center
+    /.hero-home-words-content
+      /.fontsize-megajumbo.u-marginbottom-60.fontweight-semibold
+        /.w-new-tit
+          /h1
+            /| #Eu
+            /span Apoio
+            /| Gamers!
+          /p 
+            /| De Gamers para Gamers! Financiamento coletivo para 
+            /span Jogos, E-sports, Criação de Conteúdo e Tecnologia!		
 
-    .w-row
-      .w-col.w-col-4.w-col-push-4
-        a.btn.btn-large.u-marginbottom-10.btn-home href="#{hello_path(ref: 'home_banner')}" Saiba mais
+    /.w-row
+      /.w-col.w-col-4.w-col-push-4
+        /a.btn.btn-large.u-marginbottom-10.btn-home href="#{hello_path(ref: 'home_banner')}" Saiba mais
+
+/section#projects
+  /- if current_user && @projects_near.present?
+    /article.section.u-marginbottom-40
+      /.w-container
+        /.w-row.u-marginbottom-30
+          /.w-col.w-col-10.w-col-small-6.w-col-tiny-6
+            /.fontsize-large.lineheight-looser
+              /= t('.near_you')
+          /.w-col.w-col-2.w-col-small-6.w-col-tiny-6
+            /= link_to t('.see_all'), explore_path(ref: 'home_near', anchor: "near_of/" ) + current_user.address_state, class: 'btn btn-small btn-terciary'
+        /.w-row
+          /== render_projects @projects_near, 'home_near', { wrapper_class: 'w-col w-col-4' }
+
+  /article.section.w-container
+    /.w-row.u-marginbottom-30
+      /.w-col.w-col-10.w-col-small-6.w-col-tiny-6
+        /.fontsize-large.lineheight-looser
+          /= t('.recommended')
+      /.w-col.w-col-2.w-col-small-6.w-col-tiny-6
+        /= link_to t('.see_all'), explore_path(ref: :home_recommended, anchor: :recommended), class: 'btn btn-small btn-terciary'
+    /.w-row
+      /== render_projects @recommends, 'home_recommended', { wrapper_class: 'w-col w-col-4' }
+
+  /article.section.w-container
+    /.w-row.u-marginbottom-30
+      /.w-col.w-col-10.w-col-small-6.w-col-tiny-6
+        /.fontsize-large.lineheight-looser
+          /= t('.expiring')
+      /.w-col.w-col-2.w-col-small-6.w-col-tiny-6
+        /= link_to t('.see_all'), explore_path(ref: :home_expiring, anchor: :expiring), class: 'btn btn-small btn-terciary'
+    /.w-row
+      /== render_projects @expiring, 'home_expiring', { wrapper_class: 'w-col w-col-4' }
+
+  /article.section.recent-projects.w-container
+    /.w-row.u-marginbottom-30
+      /.w-col.w-col-10.w-col-small-6.w-col-tiny-6
+        /.fontsize-large.lineheight-looser
+          /= t('.recents')
+      /.w-col.w-col-2.w-col-small-6.w-col-tiny-6
+        /= link_to t('.see_all'), explore_path(ref: :home_recent, anchor: :recent), class: 'btn btn-small btn-terciary'
+    /.w-row
+      /== render_projects @recent, 'home_recent', { wrapper_class: 'w-col w-col-4' }
+
+/= render 'shared/footer_big'
+
+
+section#hero-home.hero-full.hero-knowmore style=("background-image: url(assets/GoAngels/rise-of-ages-banner.jpg) !important;display:block;") 
+  article.section.transparent
+    .card-banner
+      .card-banner-description
+        h1.fontweight-semibold.fontsize-base
+          a.link-hidden href="/pt/EvilTwinsBR?ref=home_recommended" itemprop="name" target="" title=("Subscribe Canal EvilTwinsBR")  Rise of Ages
+        h2.fontweight-semibold.fontsize-base.u-marginbottom-10
+          a.link-hidden href="/pt/EvilTwinsBR?ref=home_recommended" itemprop="name" target="" title=("Subscribe Canal EvilTwinsBR")  Sandbox 2D, RPG, Estratégia
+        p
+          a.link-hidden href="/pt/EvilTwinsBR?ref=home_recommended" itemprop="name" target="" title=("Subscribe Canal EvilTwinsBR") 
+            | Inicie sua civilização, trave batalhas épicas e
+            br>/
+            | faça alianças para sobreviver nesse Sandbox 2D.
+        a.btn.btn-large.btn-inline href="/pt/start"  Quero apoiar
+      .card-banner-info
+        .card-p-stats
+          .w-row
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-angels
+              .fontsize-small.fontweight-bold.a-num 194
+              .fontsize-small.a-angel anjos
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-value
+              .fontsize-small.fontweight-bold R$ 10.455
+              .fontsize-small levantados
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-days
+              .fontsize-small.fontweight-bold 39 dias
+              .fontsize-small restantes
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-meter
+              .fontsize-small.fontweight-bold 30%
+              .card-banner-meter.online
+                .meter
+                  #progress.meter-fill style=("width: 30%;") 
+
+section#offers.dark
+  article.section.w-container.u-text-center.divider-2
+    .w-row.u-marginbottom-30
+      .w-col.w-col-4.w-col-small-4.w-col-tiny-4.right-divider
+        = link_to (image_tag "GoAngels/realizadores-icon.png", class: 'u-marginbottom-10'), root_url(subdomain: 'www')
+        .fontweight-semibold.fontsize-base.u-marginbottom-10.u-text-center-small-only.lineheight-tight
+          | Para realizadores
+        .fontsize-small.u-marginbottom-10.u-text-center-small-only.lineheight-tight
+          | Comece sua campanha de Jogos, Geek, Tech ou Criação de conteúdo.
+      .w-col.w-col-4.w-col-small-4.w-col-tiny-4.right-divider
+        = link_to (image_tag "GoAngels/apoiadores-icon.png", class: 'u-marginbottom-10'), root_url(subdomain: 'www')
+        .fontweight-semibold.fontsize-base.u-marginbottom-10.u-text-center-small-only.lineheight-tight
+          | Para apoiadores
+        .fontsize-small.u-marginbottom-10.u-text-center-small-only.lineheight-tight
+          | Apoie campanhas e ganhe recompensas exclusivas, cupons de descontos e até jogos.
+      .w-col.w-col-4.w-col-small-4.w-col-tiny-4
+        = link_to (image_tag "GoAngels/empresas-icon.png", class: 'u-marginbottom-10'), root_url(subdomain: 'www')
+        .fontweight-semibold.fontsize-base.u-marginbottom-10.u-text-center-small-only.lineheight-tight
+          | Para empresas
+        .fontsize-small.u-marginbottom-10.u-text-center-small-only.lineheight-tight
+          | Tem um projeto inovador? Entre em contato conosco e vamos mostrar para galera.
 
 section#projects
-  - if current_user && @projects_near.present?
-    article.section.u-marginbottom-40
-      .w-container
-        .w-row.u-marginbottom-30
-          .w-col.w-col-10.w-col-small-6.w-col-tiny-6
-            .fontsize-large.lineheight-looser
-              = t('.near_you')
-          .w-col.w-col-2.w-col-small-6.w-col-tiny-6
-            = link_to t('.see_all'), explore_path(ref: 'home_near', anchor: "near_of/" ) + current_user.address_state, class: 'btn btn-small btn-terciary'
-        .w-row
-          == render_projects @projects_near, 'home_near', { wrapper_class: 'w-col w-col-4' }
-
   article.section.w-container
     .w-row.u-marginbottom-30
       .w-col.w-col-10.w-col-small-6.w-col-tiny-6
@@ -39,26 +127,66 @@ section#projects
       .w-col.w-col-2.w-col-small-6.w-col-tiny-6
         = link_to t('.see_all'), explore_path(ref: :home_recommended, anchor: :recommended), class: 'btn btn-small btn-terciary'
     .w-row
-      == render_projects @recommends, 'home_recommended', { wrapper_class: 'w-col w-col-4' }
+      == render_projects @recommends, 'home_recommended', { wrapper_class: 'w-col w-col-6' }
 
-  article.section.w-container
+  .section-large.dark
+    .w-container
+      .w-row.u-marginbottom-30.u-text-center
+        .fontweight-semibold.fontsize-jumbo.u-marginbottom-20
+          | Comece hoje!
+        .fontsize-small.lineheight-tight
+          | Descubra novas campanhas de crowdfunding ou comece a sua própria campanha para receber o apoio da galera.
+      .w-col.w-col-12.u-text-center
+        a.btn.btn-medium.btn-inline.btn-home href="/pt/explore?ref=hello#recommended"  Explore campanhas
+        a.btn.btn-medium.btn-inline href="/pt/start?ref=hello"  Comece seu projeto
+
+
+  article.section.content-projects.w-container
     .w-row.u-marginbottom-30
       .w-col.w-col-10.w-col-small-6.w-col-tiny-6
-        .fontsize-large.lineheight-looser
-          = t('.expiring')
+        .fontsize-large.lineheight-looser Criadores de conteúdo
       .w-col.w-col-2.w-col-small-6.w-col-tiny-6
-        = link_to t('.see_all'), explore_path(ref: :home_expiring, anchor: :expiring), class: 'btn btn-small btn-terciary'
+        a.btn.btn-small.btn-terciary href="/pt/explore?ref=home_recent#recent"  Ver todos
     .w-row
-      == render_projects @expiring, 'home_expiring', { wrapper_class: 'w-col w-col-4' }
+      .w-col.w-col-6 itemtype="http://schema.org/CreativeWork" 
+        .card-project.card.u-radius
+          meta content="2016-04-22" itemprop="dateCreated" /
+          a.card-project-thumb href="/pt/bigode?ref=home_recent" style=("background-image: url(https://cdn99gamers.s3.amazonaws.com/uploads/project/uploaded_image/187/project_thumb_large_Subscriber4-01.png);display:block;") target="" 
+          .card-project-description
+            .fontweight-semibold.fontsize-base.u-marginbottom-10.u-text-center-small-only.lineheight-tight
+              a.link-hidden href="/pt/bigode?ref=home_recent" itemprop="name" target="" title=("Subscriber Canal Hardexter - [Bigode] ")  Subscriber Canal Hardexter - [Bigode]
+            .w-hidden-small.w-hidden-tiny.fontcolor-secondary.fontsize-smaller.cardtxt
+              a.link-hidden href="/pt/bigode?ref=home_recent" target="" title=("Venha participar e mantenha também seu bigode lindo e bem feito! ")  Venha participar e mantenha também seu bigode lindo e bem feito!
+          .card-project-author.w-hidden-small.w-hidden-tiny.cardimg
+            .w-hidden-small.w-hidden-tiny.thumb.small.u-round.u-left
+              .u-left
+                img.u-round.thumb.small alt=("Thumb avatar 1904242 620423074738532 514797204745060201 n") itemprop="image" src="https://cdn99gamers.s3.amazonaws.com/uploads/user/uploaded_image/1052/thumb_avatar_1904242_620423074738532_514797204745060201_n.jpg" width="50" /
+            p.card-author-name.fontsize-small.fontweight-semibold.cardat content=("Marlon Oliveira") itemprop="name"  Marlon Oliveira
+          .card-project-stats
+            .w-row
+              .w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only.a-angels
+                .fontsize-small.a-num
+                  span.fontweight-bold 194
+                  | anjos
+              .w-col.w-col-5.w-col-small-5.w-col-tiny-5.u-text-center-small-only.a-value
+                .fontsize-small
+                  span.fontweight-bold R$ 10.045
+                  | levantados
+              .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-meter
+                .fontsize-small.fontweight-bold 30%
+                .card-banner-meter.online
+                  .meter
+                    #progress.meter-fill style=("width: 30%;") 
 
-  article.section.recent-projects.w-container
-    .w-row.u-marginbottom-30
-      .w-col.w-col-10.w-col-small-6.w-col-tiny-6
-        .fontsize-large.lineheight-looser
-          = t('.recents')
-      .w-col.w-col-2.w-col-small-6.w-col-tiny-6
-        = link_to t('.see_all'), explore_path(ref: :home_recent, anchor: :recent), class: 'btn btn-small btn-terciary'
-    .w-row
-      == render_projects @recent, 'home_recent', { wrapper_class: 'w-col w-col-4' }
+.section-large.darkp.partners
+  .w-container
+    .w-row.u-marginbottom-30.u-text-center
+      .fontweight-semibold.fontsize-jumbo.u-marginbottom-20
+        | Nossos parceiros
+      .fontsize-small.lineheight-tight
+        | Empresas que confiam no nosso trabalho e oferecem benefícios para vocês.
+    .w-col.w-col-12
+      img alt=("Para realizadores") src="assets/GoAngels/nuuvem-logo.png" /
+      img alt=("Para realizadores") src="assets/GoAngels/99gamers-logo.png" /
 
 = render 'shared/footer_big'

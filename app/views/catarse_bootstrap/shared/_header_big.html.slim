@@ -3,7 +3,6 @@
 
   = link_to t('layouts.header.discover'), explore_path, class: 'w-hidden-small w-hidden-tiny header-link w-nav-link'
 
-  = link_to t('layouts.header.submit'), start_path, class: 'w-hidden-small w-hidden-tiny header-link w-nav-link'
 
   #discover-form-wrapper.w-form.w-hidden-small.w-hidden-tiny.header-search
     = form_tag explore_path, method: 'GET', class: 'discover-form', id: 'search-form' do
@@ -21,6 +20,5 @@
   .w-hidden-main.w-hidden-medium.header-controls-mobile
     = link_to t('layouts.header.hello'), hello_path, class: 'header-link w-nav-link'
     = link_to t('layouts.header.discover'), explore_path, class: 'header-link w-nav-link'
-    = link_to t('layouts.header.submit'), start_path, class: 'header-link w-nav-link'
 
 = render 'shared/header', overlayer: (defined?(overlayer) && overlayer ? true : false)
