@@ -168,6 +168,7 @@ class ProjectsController < ApplicationController
 
   def projects_for_home
     @recommends = ProjectsForHome.recommends.includes(:project_total, :user)
+    @recurrents = ProjectsForHome.recurrents.includes(:project_total, :user)
     @projects_near = Project.with_state('online').near_of(current_user.address_state).order("random()").limit(3).includes(:project_total, :user) if current_user
     @expiring = ProjectsForHome.expiring.includes(:project_total, :user)
     @recent   = ProjectsForHome.recents.includes(:project_total, :user)

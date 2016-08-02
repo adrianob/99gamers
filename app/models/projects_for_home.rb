@@ -3,6 +3,7 @@ class ProjectsForHome < Project
   has_one :project_total, foreign_key: :project_id
 
   scope :recommends, -> { where(origin: 'recommended') }
+  scope :recurrents, -> { where(origin: 'recurrent') }
   scope :recents, -> { where(origin: 'recents') }
   scope :expiring, -> { where(origin: 'expiring') }
 

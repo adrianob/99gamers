@@ -147,36 +147,10 @@ section#projects
         .fontsize-large.lineheight-looser Criadores de conteúdo
       .w-col.w-col-2.w-col-small-6.w-col-tiny-6
         a.btn.btn-small.btn-terciary href="/pt/explore?ref=home_recent#recent"  Ver todos
+
+
     .w-row
-      .w-col.w-col-6 itemtype="http://schema.org/CreativeWork" 
-        .card-project.card.u-radius
-          meta content="2016-04-22" itemprop="dateCreated" /
-          a.card-project-thumb href="/pt/bigode?ref=home_recent" style=("background-image: url(https://cdn99gamers.s3.amazonaws.com/uploads/project/uploaded_image/187/project_thumb_large_Subscriber4-01.png);display:block;") target="" 
-          .card-project-description
-            .fontweight-semibold.fontsize-base.u-marginbottom-10.u-text-center-small-only.lineheight-tight
-              a.link-hidden href="/pt/bigode?ref=home_recent" itemprop="name" target="" title=("Subscriber Canal Hardexter - [Bigode] ")  Subscriber Canal Hardexter - [Bigode]
-            .w-hidden-small.w-hidden-tiny.fontcolor-secondary.fontsize-smaller.cardtxt
-              a.link-hidden href="/pt/bigode?ref=home_recent" target="" title=("Venha participar e mantenha também seu bigode lindo e bem feito! ")  Venha participar e mantenha também seu bigode lindo e bem feito!
-          .card-project-author.w-hidden-small.w-hidden-tiny.cardimg
-            .w-hidden-small.w-hidden-tiny.thumb.small.u-round.u-left
-              .u-left
-                img.u-round.thumb.small alt=("Thumb avatar 1904242 620423074738532 514797204745060201 n") itemprop="image" src="https://cdn99gamers.s3.amazonaws.com/uploads/user/uploaded_image/1052/thumb_avatar_1904242_620423074738532_514797204745060201_n.jpg" width="50" /
-            p.card-author-name.fontsize-small.fontweight-semibold.cardat content=("Marlon Oliveira") itemprop="name"  Marlon Oliveira
-          .card-project-stats
-            .w-row
-              .w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only.a-angels
-                .fontsize-small.a-num
-                  span.fontweight-bold 194
-                  | anjos
-              .w-col.w-col-5.w-col-small-5.w-col-tiny-5.u-text-center-small-only.a-value
-                .fontsize-small
-                  span.fontweight-bold R$ 10.045
-                  | levantados
-              .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-meter
-                .fontsize-small.fontweight-bold 30%
-                .card-banner-meter.online
-                  .meter
-                    #progress.meter-fill style=("width: 30%;") 
+      == render_projects @recurrents, 'home_recurrent', { wrapper_class: 'w-col w-col-6' }
 
 .section-large.darkp.partners
   .w-container
