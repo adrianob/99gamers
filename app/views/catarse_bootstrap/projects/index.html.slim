@@ -64,37 +64,40 @@
 /= render 'shared/footer_big'
 
 
-section#hero-home.hero-full.hero-knowmore style=("background-image: url(assets/GoAngels/rise-of-ages-banner.jpg) !important;display:block;") 
+-hero_project = @recommends.first
+section#hero-home.hero-full.hero-knowmore style=("background-image: url(#{hero_project.display_image}) !important;display:block;") 
   article.section.transparent
     .card-banner
       .card-banner-description
         h1.fontweight-semibold.fontsize-base
-          a.link-hidden href="/pt/EvilTwinsBR?ref=home_recommended" itemprop="name" target="" title=("Subscribe Canal EvilTwinsBR")  Rise of Ages
+          = link_to hero_project.name, project_path(hero_project), class: 'link-hidden'
         h2.fontweight-semibold.fontsize-base.u-marginbottom-10
-          a.link-hidden href="/pt/EvilTwinsBR?ref=home_recommended" itemprop="name" target="" title=("Subscribe Canal EvilTwinsBR")  Sandbox 2D, RPG, Estratégia
+          = hero_project.tags.map{|tag| tag.name}.join(', ')
         p
-          a.link-hidden href="/pt/EvilTwinsBR?ref=home_recommended" itemprop="name" target="" title=("Subscribe Canal EvilTwinsBR") 
-            | Inicie sua civilização, trave batalhas épicas e
-            br>/
-            | faça alianças para sobreviver nesse Sandbox 2D.
-        a.btn.btn-large.btn-inline href="/pt/start"  Quero apoiar
+          = link_to hero_project.headline, project_path(hero_project), class: 'link-hidden'
+        = link_to 'Quero apoiar', project_path(hero_project), class: 'btn btn-large btn-inline'
       .card-banner-info
         .card-p-stats
           .w-row
             .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-angels
-              .fontsize-small.fontweight-bold.a-num 194
+              .fontsize-small.fontweight-bold.a-num= hero_project.total_contributions
               .fontsize-small.a-angel anjos
             .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-value
-              .fontsize-small.fontweight-bold R$ 10.455
+              .fontsize-small.fontweight-bold=hero_project.display_pledged
               .fontsize-small levantados
             .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-days
-              .fontsize-small.fontweight-bold 39 dias
-              .fontsize-small restantes
+
+              - unless hero_project.expired?
+                .fontsize-small.fontweight-bold
+                  = "#{hero_project.time_to_go[:time]}  #{hero_project.time_to_go[:unit]}"
+              .fontsize-small
+              = t('projects.card.remaining', count: hero_project.time_to_go[:time])
             .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-meter
-              .fontsize-small.fontweight-bold 30%
+
+              .fontsize-small.fontweight-bold="#{hero_project.progress}%"
               .card-banner-meter.online
                 .meter
-                  #progress.meter-fill style=("width: 30%;") 
+                  = hero_project.progress_bar
 
 section#offers.dark
   article.section.w-container.u-text-center.divider-2

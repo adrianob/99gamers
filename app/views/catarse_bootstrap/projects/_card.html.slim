@@ -19,11 +19,11 @@ div[itemtype="http://schema.org/CreativeWork" class="#{defined?(wrapper_class) ?
     .card-project-stats
       .w-row
       - if @project.recurrent?
-        .w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only.a-angels
+        .w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only.a-angels.w-col-push-2
           .fontsize-small.a-num
             span.fontweight-bold=>@project.total_contributions
             | anjos
-        .w-col.w-col-5.w-col-small-5.w-col-tiny-5.u-text-center-small-only.a-value
+        .w-col.w-col-5.w-col-small-5.w-col-tiny-5.u-text-center-small-only.a-value.w-col-push-1
           .fontsize-small
             span.fontweight-bold=>@project.display_pledged
             | levantados
