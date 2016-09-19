@@ -1,7 +1,12 @@
-#project-header.page-header.u-text-center[data-stats=@project.to_analytics_json]
-  .w-container
-    h1.fontsize-larger.fontweight-semibold.project-name[itemprop="name"] = @project.name
-    h2.fontsize-base.lineheight-looser[itemprop="author"]
-      = t('projects.index.box.by')
-      |&nbsp;
-      = @project.user.display_name
+#project-header[data-stats=@project.to_analytics_json]
+  .w-section.section-product.aon
+  .w-section.page-header
+    .w-container
+      .w-row
+        .w-col.w-col-8
+          h1.fontsize-largest.fontweight-semibold.project-name itemprop="name"= @project.name
+          h2.fontsize-base.lineheight-looser itemprop="author"
+            = t('projects.index.box.by')
+            |&nbsp;
+            = @project.user.display_name
+
