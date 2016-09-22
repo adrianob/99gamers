@@ -54,82 +54,82 @@ section.section[itemtype="http://schema.org/CreativeWork"]
 
         #project_comments.content.w-col.w-col-8.w-hidden data-path=project_comments_canonical_url
 
-      #project-sidebar.aside.w-col.w-col-4
-        .project-stats
-          - if @project.recurrent?
-            .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
-              .w-hidden-small.w-hidden-tiny.u-marginbottom-10.proinfo
-                .fontsize-largest = @project.display_pledged
-                .fontsize-small.u-marginbottom-10 = t('.sidebar.goal', total: @project.display_goal).html_safe
-                .w-hidden-small.w-hidden-tiny
-                  .fontsize-largest = @project.total_contributions
-                  .fontsize-small = t('.sidebar.contributions')
-              .w-hidden-small.w-hidden-tiny
-                .fontsize-large.fontweight-semibold.u-marginbottom-10.meta-atual META ATUAL
-                - if @project.goals.present?
-                  .card.card-goal.card-goal-metas
-                    .fontsize-large= @project.current_goal.try(:title)
-                    .test = @project.current_goal.try(:decorate).try(:display_value)
-                    .meter
-                      = @project.current_goal.try(:decorate).try(:progress_bar)
-                    .fontsize-normal.fontweight-light.goal-txt= @project.current_goal.try(:decorate).try(:display_description)
-                  - if @goals_to_show.present?
-                    .card.card-goal.card-toggle
-                      #toggle-goals.fontsize-normal.fontweight-light.u-text-center Mostrar todas metas
-                  #other-goals.w-hidden
-                    - @goals_to_show.each do |goal|
-                      .card.card-goal.other-goals.card-goal-metas class="#{goal.reached? ? 'reached-goal' : ''}"
-                        .fontsize-large= goal.title
-                        = goal.decorate.display_value
-                        .meter
-                          = goal.decorate.progress_bar
-                        .fontsize-normal.fontweight-light.goal-txt= goal.decorate.display_description
+      /#project-sidebar.aside.w-col.w-col-4
+        /.project-stats
+          /- if @project.recurrent?
+            /.project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
+              /.w-hidden-small.w-hidden-tiny.u-marginbottom-10.proinfo
+                /.fontsize-largest = @project.display_pledged
+                /.fontsize-small.u-marginbottom-10 = t('.sidebar.goal', total: @project.display_goal).html_safe
+                /.w-hidden-small.w-hidden-tiny
+                  /.fontsize-largest = @project.total_contributions
+                  /.fontsize-small = t('.sidebar.contributions')
+              /.w-hidden-small.w-hidden-tiny
+                /.fontsize-large.fontweight-semibold.u-marginbottom-10.meta-atual META ATUAL
+                /- if @project.goals.present?
+                  /.card.card-goal.card-goal-metas
+                    /.fontsize-large= @project.current_goal.try(:title)
+                    /.test = @project.current_goal.try(:decorate).try(:display_value)
+                    /.meter
+                      /= @project.current_goal.try(:decorate).try(:progress_bar)
+                    /.fontsize-normal.fontweight-light.goal-txt= @project.current_goal.try(:decorate).try(:display_description)
+                  /- if @goals_to_show.present?
+                    /.card.card-goal.card-toggle
+                      /#toggle-goals.fontsize-normal.fontweight-light.u-text-center Mostrar todas metas
+                  /#other-goals.w-hidden
+                    /- @goals_to_show.each do |goal|
+                      /.card.card-goal.other-goals.card-goal-metas class="#{goal.reached? ? 'reached-goal' : ''}"
+                        /.fontsize-large= goal.title
+                        /= goal.decorate.display_value
+                        /.meter
+                          /= goal.decorate.progress_bar
+                        /.fontsize-normal.fontweight-light.goal-txt= goal.decorate.display_description
 
-          - else
-            .project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
-              .w-hidden-small.w-hidden-tiny.proinfo
-                .fontsize-largest = @project.display_pledged
-                .fontsize-small.u-marginbottom-10 = t('.sidebar.goal', total: @project.display_goal).html_safe
-                .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-                  .fontsize-largest = @project.total_contributions
-                  .fontsize-small = t('.sidebar.contributions')
-                .w-hidden-small.w-hidden-tiny.u-marginbottom-10
-                  - if @project.draft? || @project.rejected?
-                    .fontsize-largest = @project.online_days
-                    .fontsize-small #{@project.online_days} #{pluralize_without_number(@project.online_days, I18n.t('datetime.prompts.day').downcase)} #{pluralize_without_number(@project.online_days, t('remaining_singular'), t('remaining_plural'))}
-                  - else
-                    .fontsize-largest = @project.remaining_days
-                    .fontsize-small #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
+          /- else
+            /.project-stats-numbers.u-marginbottom-20.w-hidden-small.w-hidden-tiny
+              /.w-hidden-small.w-hidden-tiny.proinfo
+                /.fontsize-largest = @project.display_pledged
+                /.fontsize-small.u-marginbottom-10 = t('.sidebar.goal', total: @project.display_goal).html_safe
+                /.w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                  /.fontsize-largest = @project.total_contributions
+                  /.fontsize-small = t('.sidebar.contributions')
+                /.w-hidden-small.w-hidden-tiny.u-marginbottom-10
+                  /- if @project.draft? || @project.rejected?
+                    /.fontsize-largest = @project.online_days
+                    /.fontsize-small #{@project.online_days} #{pluralize_without_number(@project.online_days, I18n.t('datetime.prompts.day').downcase)} #{pluralize_without_number(@project.online_days, t('remaining_singular'), t('remaining_plural'))}
+                  /- else
+                    /.fontsize-largest = @project.remaining_days
+                    /.fontsize-small #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
 
-          - if @project.flexible?
-            .u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.flexible')
-          - if @project.recurrent?
-            .u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.recurrent')
-          - if @project.all_or_nothing?
-            .u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.all_or_nothing')
-          - if @project.online? && !@project.expired?
-            = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn btn-large u-marginbottom-20 btn-apoio"
+          /- if @project.flexible?
+            /.u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.flexible')
+          /- if @project.recurrent?
+            /.u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.recurrent')
+          /- if @project.all_or_nothing?
+            /.u-text-center.fontsize-large.u-marginbottom-20.tcampanha=t('.all_or_nothing')
+          /- if @project.online? && !@project.expired?
+            /= link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn btn-large u-marginbottom-20 btn-apoio"
 
-          - if !@project.recurrent?
-            .fontsize-smaller.u-marginbottom-30[class=@project.display_card_class]
-              = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
+          /- if !@project.recurrent?
+            /.fontsize-smaller.u-marginbottom-30[class=@project.display_card_class]
+              /= t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
 
 
-        .w-hidden-main.w-hidden-medium.project-share
-          .div-share-mobile-fb
-            = render_facebook_share_mobile(url: project_by_slug_url(permalink: @project.permalink, ref: 'facebook'), title: @project.name)
-          .div-share-mobile-fb
-            .btn.btn-medium.btn-fb.btn-tweet
-              = render_twitter_mobile(url: project_by_slug_url(permalink: @project.permalink, ref: 'twitter'), title: @project.name)
-              = t('.tweet')
-        - if @project.recurrent? && @project.plans.present?
-          h3#hplans.htit Planos de assinatura (Subscribe)
-          #plans.u-marginbottom-30[data-index_path=project_plans_path(@project)]
-            .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
-        -if @project.rewards.count > 0
-          h3.htit Recompensas (Donation)
-          #rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
-            .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
-        - if @project.published? && !@project.recurrent?
-          .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
-          .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"
+        /.w-hidden-main.w-hidden-medium.project-share
+          /.div-share-mobile-fb
+            /= render_facebook_share_mobile(url: project_by_slug_url(permalink: @project.permalink, ref: 'facebook'), title: @project.name)
+          /.div-share-mobile-fb
+            /.btn.btn-medium.btn-fb.btn-tweet
+              /= render_twitter_mobile(url: project_by_slug_url(permalink: @project.permalink, ref: 'twitter'), title: @project.name)
+              /= t('.tweet')
+        /- if @project.recurrent? && @project.plans.present?
+          /h3#hplans.htit Planos de assinatura (Subscribe)
+          /#plans.u-marginbottom-30[data-index_path=project_plans_path(@project)]
+            /.u-text-center = image_tag 'catarse_bootstrap/loader.gif'
+        /-if @project.rewards.count > 0
+          /h3.htit Recompensas (Donation)
+          /#rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
+            /.u-text-center = image_tag 'catarse_bootstrap/loader.gif'
+        /- if @project.published? && !@project.recurrent?
+          /.fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
+          /.fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"

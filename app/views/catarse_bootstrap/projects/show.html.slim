@@ -163,8 +163,7 @@
                       fb:comments-count href="#{project_comments_canonical_url}" class="badge project-fb-comment w-hidden-small w-hidden-tiny" style="display: inline"
                         |&nbsp;
 
-            #project_about
-              = render 'project_about'
+            = render 'project_main'
 
         .w-col.w-col-4.w-hidden-small.w-hidden-tiny
           #rewards.u-marginbottom-20 data-index_path="/pt/projects/179/rewards" 
@@ -209,7 +208,6 @@
   /= link_to @project.category, explore_path(anchor: "by_category_id/#{@project.category_id}"), class: 'link-hidden-light u-right', itemprop: 'genre'
   /= image_tag 'catarse_bootstrap/tag-icon.png', class: 'project-nav-category-icon', width: "22" 
 
-/= render 'project_main'
 - if policy(@project).update?
   = render 'dashboard_nav'
 = render 'shared/footer_big'
