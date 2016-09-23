@@ -3,33 +3,59 @@
   - sold_out = reward.sold_out?
 
   = link_to "#{(parent.online? && !sold_out ? new_project_contribution_path(parent, reward_id: reward.id) : '#reward-offline')}", id: "reward_#{reward.id}", data: { new_contribution_url: new_project_contribution_path(parent, reward_id: reward.id), update_url: sort_project_reward_path(parent, reward)}, class: "#{(policy(reward).update? ? 'clickable_owner sortable' : '')} #{(parent.online? && !policy(reward).update?  ? 'clickable'  : '' )} #{sold_out ? 'card-gone' : 'card-reward'} card card-secondary u-marginbottom-10" do
+    .card-rewards-thumb style=("background-image: url(/assets/Interna/rewards-img1.jpg);display:block;") 
     .card-rew.u-marginbottom-20
-      .fontsize-base.fontweight-semibold = t('.reward_title', minimum: reward.display_minimum).html_safe
-      .fontsize-smaller.fontweight-semibold = pluralize(reward.contributions.where('contributions.is_confirmed').count(:all), t('contribution_singular'), t('contribution_plural'))
+      .fontsize-base.fontweight-semibold.u-marginbottom-5 = t('.reward_title', minimum: reward.display_minimum).html_safe
+      .fontsize-smaller.fontweight-semibold.u-marginbottom-10 Founder's Pack
+      .fontsize-smaller.u-marginbottom-15.a-angels-v = pluralize(reward.contributions.where('contributions.is_confirmed').count(:all), t('contribution_singular'), t('contribution_plural'))
       - if reward.maximum_contributions
-        - if reward.in_time_to_confirm > 0
-          .maximum_contributions.in_time_to_confirm.clearfix
-            .pending.fontsize-smallest.fontcolor-secondary= t('.contributions_to_confirm', count: reward.in_time_to_confirm)
         - if sold_out
           .u-margintop-10
             span.badge.badge-gone.fontsize-smaller
               = t('.sold_out')
         - else
-          .u-margintop-10
+          .u-marginbottom-15
             span.badge.badge-attention.fontsize-smaller
               span.fontweight-bold
                 => t('.limited')
               = " (" + reward.display_remaining + ")"
-    .fontsize-smaller = reward.display_description
-    ul.beneficios.u-marginbottom-20
-      - reward.benefits.each_with_index do |benefit, index|
-        li class="#{( index % 2 == 0 ) ? 'odd' : ''}"= benefit.description
-    .u-marginbottom-20.b-select
-      span.btn.btn-select Selecionar
-    - if reward.deliver_at.present?
-      .fontsize-smallest.est-rew = "#{t('.reward_deliver_time', estimate: reward.display_deliver_estimate)}".html_safe
-    - if current_user && current_user.admin
-      .fontsize-smallest.est-rew-b = "Modificado em: #{I18n.l(reward.updated_at.to_date)} #{parent.online_date.nil? ? '' : ((parent.online_date > reward.updated_at)? '(draft)' : '(online)')}"
+      .fontsize-smaller
+        p = reward.display_description
+
+      - if reward.deliver_at.present?
+      .fontsize-smaller.est-rew.u-marginbottom-10
+        b = "#{t('.reward_deliver_time', estimate: reward.display_deliver_estimate)}".html_safe
     - unless sold_out || !parent.online?
       .project-reward-box-hover
-        .project-reward-box-select-text.u-text-center = t('.select_reward')
+        .project-reward-box-select-text.u-text-center Selecione essa recompensa
+
+    /.card-rew.u-marginbottom-20
+      /.fontsize-base.fontweight-semibold = t('.reward_title', minimum: reward.display_minimum).html_safe
+      /.fontsize-smaller.fontweight-semibold = pluralize(reward.contributions.where('contributions.is_confirmed').count(:all), t('contribution_singular'), t('contribution_plural'))
+      /- if reward.maximum_contributions
+        /- if reward.in_time_to_confirm > 0
+          /.maximum_contributions.in_time_to_confirm.clearfix
+            /.pending.fontsize-smallest.fontcolor-secondary= t('.contributions_to_confirm', count: reward.in_time_to_confirm)
+        /- if sold_out
+          /.u-margintop-10
+            /span.badge.badge-gone.fontsize-smaller
+              /= t('.sold_out')
+        /- else
+          /.u-margintop-10
+            /span.badge.badge-attention.fontsize-smaller
+              /span.fontweight-bold
+                /=> t('.limited')
+              /= " (" + reward.display_remaining + ")"
+    /.fontsize-smaller = reward.display_description
+    /ul.beneficios.u-marginbottom-20
+      /- reward.benefits.each_with_index do |benefit, index|
+        /li class="#{( index % 2 == 0 ) ? 'odd' : ''}"= benefit.description
+    /.u-marginbottom-20.b-select
+      /span.btn.btn-select Selecionar
+    /- if reward.deliver_at.present?
+      /.fontsize-smallest.est-rew = "#{t('.reward_deliver_time', estimate: reward.display_deliver_estimate)}".html_safe
+    /- if current_user && current_user.admin
+      /.fontsize-smallest.est-rew-b = "Modificado em: #{I18n.l(reward.updated_at.to_date)} #{parent.online_date.nil? ? '' : ((parent.online_date > reward.updated_at)? '(draft)' : '(online)')}"
+    /- unless sold_out || !parent.online?
+      /.project-reward-box-hover
+        /.project-reward-box-select-text.u-text-center = t('.select_reward')

@@ -129,6 +129,24 @@
                               = link_to t('.twitter_profile'), @project.user.twitter_link, target: '_blank', class: 'link-hidden', itemprop: "url"
                         a.w-button.btn.btn-terciary.btn-small.btn-inline href="javascript:void(0);"  Enviar mensagem
 
+              - if @project.recurrent? && @project.plans.present?
+                h3#hplans.htit Planos de assinatura (Subscribe)
+                #plans.u-marginbottom-30[data-index_path=project_plans_path(@project)]
+                  .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
+              -if @project.rewards.count > 0
+                h3.htit Recompensas (Donation)
+                #rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
+                  .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
+              - if @project.published? && !@project.recurrent?
+                .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
+                .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"
+
+            - if @project.expires_at.present?
+              .funding-period
+                .fontsize-small.fontweight-semibold.u-text-center-small-only Período de campanha
+                .fontsize-small.u-text-center-small-only 25/05/2016 - 24/07/2016 (60 dias)
+
+
   section.section.section-content itemtype="http://schema.org/CreativeWork" 
     .w-container
       .w-row
@@ -164,45 +182,6 @@
                         |&nbsp;
 
             = render 'project_main'
-
-        .w-col.w-col-4.w-hidden-small.w-hidden-tiny
-          #rewards.u-marginbottom-20 data-index_path="/pt/projects/179/rewards" 
-            a#reward_85.card-reward.card.card-secondary.u-marginbottom-10 data-new-contribution-url="/pt/projects/179/contributions/new?reward_id=85" data-update-url="/pt/projects/179/rewards/85/sort" href="#reward-offline" 
-              .card-rewards-thumb style=("background-image: url(/assets/Interna/rewards-img1.jpg);display:block;") 
-              .card-rew.u-marginbottom-20
-                .fontsize-base.fontweight-semibold.u-marginbottom-5 Para R$ 15 ou mais
-                .fontsize-smaller.fontweight-semibold.u-marginbottom-10 Founder's Pack
-                .fontsize-smaller.u-marginbottom-15.a-angels-v 89 anjos
-                .u-marginbottom-15
-                  span.badge.badge-attention.fontsize-smaller
-                    span.fontweight-bold Limitada
-                    | (20 de 20 disponíveis)
-                .fontsize-smaller
-                  p Acesso antecipado + 3 Heróis para testar + 1 Boost XP de 30 dias.
-                .fontsize-smaller.est-rew.u-marginbottom-10
-                  b Estimativa de Entrega:
-                  | Abril/2016
-              .project-reward-box-hover
-                .project-reward-box-select-text.u-text-center Selecione essa recompensa
-            a#reward_85.card-reward.card.card-secondary.u-marginbottom-10 data-new-contribution-url="/pt/projects/179/contributions/new?reward_id=85" data-update-url="/pt/projects/179/rewards/85/sort" href="#reward-offline" 
-              .card-rewards-thumb style=("background-image: url(/assets/Interna/rewards-img2.jpg);display:block;") 
-              .card-rew.u-marginbottom-20
-                .fontsize-base.fontweight-semibold.u-marginbottom-5 Para R$ 35 ou mais
-                .fontsize-smaller.fontweight-semibold.u-marginbottom-10 Founder's Pack Sparrow
-                .fontsize-smaller.u-marginbottom-15.a-angels-v 37 anjos
-                .u-margintop-10.u-marginbottom-15
-                  span.badge.badge-gone.fontsize-smaller Esgotada
-                .fontsize-smaller
-                  p Acesso antecipado + 13 Heróis para testar + 1 Boost XP de 60 dias
-                .fontsize-smaller.est-rew.u-marginbottom-10
-                  b Estimativa de Entrega:
-                  | Abril/2016
-              .project-reward-box-hover
-                .project-reward-box-select-text.u-text-center Selecione essa recompensa
-          - if @project.expires_at.present?
-            .funding-period
-              .fontsize-small.fontweight-semibold.u-text-center-small-only Período de campanha
-              .fontsize-small.u-text-center-small-only 25/05/2016 - 24/07/2016 (60 dias)
 
 /.w-col.w-col-3.w-hidden-small.w-hidden-tiny.w-clearfix.project-nav-category
   /= link_to @project.category, explore_path(anchor: "by_category_id/#{@project.category_id}"), class: 'link-hidden-light u-right', itemprop: 'genre'
