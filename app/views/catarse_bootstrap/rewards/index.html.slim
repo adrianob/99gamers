@@ -6,7 +6,7 @@
     .card-rewards-thumb style=("background-image: url(/assets/Interna/rewards-img1.jpg);display:block;") 
     .card-rew.u-marginbottom-20
       .fontsize-base.fontweight-semibold.u-marginbottom-5 = t('.reward_title', minimum: reward.display_minimum).html_safe
-      .fontsize-smaller.fontweight-semibold.u-marginbottom-10 Founder's Pack
+      .fontsize-smaller.fontweight-semibold.u-marginbottom-10= reward.title
       .fontsize-smaller.u-marginbottom-15.a-angels-v = pluralize(reward.contributions.where('contributions.is_confirmed').count(:all), t('contribution_singular'), t('contribution_plural'))
       - if reward.maximum_contributions
         - if sold_out

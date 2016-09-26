@@ -71,7 +71,7 @@ class ProjectPolicy < ApplicationPolicy
 
   def reward_attributes
     { rewards_attributes: [:_destroy, :id, :maximum_contributions,
-                          :description, :deliver_at, :minimum_value, benefits_attributes: [:description, :_destroy, :id]] }
+                          :description, :title, :deliver_at, :minimum_value, benefits_attributes: [:description, :_destroy, :id]] }
   end
 
   def goal_attributes

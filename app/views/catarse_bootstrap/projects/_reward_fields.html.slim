@@ -16,6 +16,8 @@
                 = link_to "javascript:void(0);", data: {target: ".edit_reward_content_#{reward.id}", parent: "#reward_#{reward.id}"}, class: 'show_reward_form' do
                   .btn.btn-small.btn-terciary.fa.fa-lg.fa-edit.btn-no-border
             .fontsize-smaller.u-marginbottom-20.fontweight-semibold= pluralize(reward.payments.with_state('paid').count(:all), t('contribution_singular'), t('contribution_plural'))
+            strong.fontsize-small
+              br= reward.title
             p.fontsize-small
               br= reward.display_description
             - if reward.maximum_contributions
@@ -67,6 +69,12 @@
                   .w-col.w-col-12
                     .w-row
                       = f.input_field :deliver_at, required: true, as: :date, discard_day: true, start_year: Time.current.year, use_short_month: true, discard_day: true, required: true, class: 'w-col-6 positive'
+            .w-row
+              .w-col.w-col-5
+                label.fontsize-smaller Título
+              .w-col.w-col-7
+                = f.input_field :title, as: :text,  class: 'positive', placeholder: "De um título", required: true
+                .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="reward_title"] = t('simple_form.validation_texts.reward.title')
             .w-row
               .w-col.w-col-5
                 label.fontsize-smaller= t('.description') 
