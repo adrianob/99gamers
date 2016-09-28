@@ -21,7 +21,41 @@ App.addChild('Project', _.extend({
     this.route('metrics');
     
     this.setupResponsiveIframes(this.$container);
-  
+
+  $('#gallery-1').royalSlider({
+    fullscreen: {
+      enabled: false,
+      nativeFS: false
+    },
+    controlNavigation: 'thumbnails',
+    autoScaleSlider: true, 
+    autoScaleSliderWidth: 960,     
+    autoScaleSliderHeight: 640,
+    loop: false,
+	transitionType: 'fade',
+    imageScaleMode: 'fill',
+    navigateByClick: false,
+    numImagesToPreload:2,
+    arrowsNav:false,
+    arrowsNavAutoHide: true,
+    arrowsNavHideOnTouch: true,
+    keyboardNavEnabled: true,
+    fadeinLoadedSlide: true,
+    globalCaption: false,
+    globalCaptionInside: false,
+    thumbs: {
+      appendSpan: true,
+      firstMargin: false,
+	  spacing: 5,
+	  autoCenter: true,
+	  drag: false,
+    },
+	video: {
+      autoHideArrows:true,
+      autoHideControlNav:false,
+      autoHideBlocks: true
+    }, 	 
+  });
   },
 
   toggleWarning: function(){

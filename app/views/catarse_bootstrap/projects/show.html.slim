@@ -36,27 +36,29 @@
       .w-container
         .w-row.project-main
           .w-col.w-col-8.project-highlight
+            //TODO temp
             #project-slide
               .w-embed.w-video.project-video style=("min-height: 480px;") 
-                .html5gallery data-height="340" data-skin="gallery" data-width="650" style="display:none;" 
-                  /! Add images to Gallery
-                  /! Add Youtube video to Gallery
-                  a href="http://www.youtube.com/embed/vOt1tXyOH3M" 
-                    img alt=("Youtube Video") src="http://img.youtube.com/vi/vOt1tXyOH3M/2.jpg" /
-                  a href="/assets/Interna/Tulip_large.jpg" 
-                    img alt="Tulips" src="/assets/Interna/Tulip_small.jpg" /
-                  a href="/assets/Interna/Swan_large.jpg" 
-                    img alt=("Swan on Lake") src="/assets/Interna/Swan_small.jpg" /
-                  /! Add videos to Gallery
-                  a href="/assets/Interna/Big_Buck_Bunny.mp4" 
-                    img alt="Big Buck Bunny), Copyright Blender Foundation" src="/assets/Interna/Big_Buck_Bunny.jpg" /
-                  /! Add Youtube video to Gallery
-                  a href="http://www.youtube.com/embed/YE7VzlLtp-4" 
-                    img alt=("Youtube Video") src="http://img.youtube.com/vi/YE7VzlLtp-4/2.jpg" /
-                  /! Add Vimeo video to Gallery
-                  a href="http://player.vimeo.com/video/1084537?title=0&amp;byline=0&amp;portrait=0" 
-                    img alt=("Vimeo Video") src="/assets/Interna/Big_Buck_Bunny.jpg" /
-                /! <iframe itemprop="video" src="//www.youtube.com/embed/eKuIjXyM9X0" frameborder="0" allowfullscreen="" class="embedly-embed"></iframe
+                #gallery-1.royalSlider.rsDefault
+                  a.rsImg data-rsvideo="https://www.youtube.com/watch?v=vOt1tXyOH3M" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg" 
+                  .rsTmb
+                    = image_tag "/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg"
+                    .vbg
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" /
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-3.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-3.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-3.jpg" /
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-4.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-4.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-4.jpg" /
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-5.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-5.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-5.jpg" /
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-8.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-8.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-8.jpg" /
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-9.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-9.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-9.jpg" /
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-10.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-10.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-10.jpg" /
+
             #project-highlight
               .project-blurb= @project.headline
               .u-text-center-small-only.u-marginbottom-10
@@ -181,7 +183,6 @@
               .funding-period
                 .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
                 .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"
-
 
 
 /.w-col.w-col-3.w-hidden-small.w-hidden-tiny.w-clearfix.project-nav-category
