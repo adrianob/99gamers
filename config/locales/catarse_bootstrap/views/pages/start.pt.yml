@@ -1,13 +1,13 @@
 pt:
   pages:
     start:
-      page-title: "Como funciona a 99Gamers?"
+      page-title: "Como funciona a GoAngels?"
       title: "Financie seu projeto coletivamente"
       submit: "Comece seu projeto"
       learn-more: "Saiba mais"
       header:
-        people: "Pessoas já apoiaram pelo menos 01 projeto na 99Gamers"
-        success: "Projetos já foram financiados na 99Gamers"
+        people: "Pessoas já apoiaram pelo menos 01 projeto na GoAngels"
+        success: "Projetos já foram financiados na GoAngels"
         money: "Doados para projetos publicados por aqui"
       start:
         title: "Comece seu projeto"
@@ -20,17 +20,17 @@ pt:
       work:
         title: "Tudo ou Nada"
         content: "Quem define a meta de arrecadação e o tempo de execução da campanha é você. Escolha entre 1 e 60 dias para realizar sua campanha em busca de Gamers Apoiadores. Se ela atingir sua meta de arrecadação financeira, você fica com o valor arrecadado. Caso contrário, todos que apoiaram recebem o dinheiro de volta. Nessa modalidade cobramos uma taxa de 14% do total arrecadado apenas de projetos que atingiram ou ultrapassaram a meta. Essa campanha é ideal para projetos que estão começando e dependem da totalidade da arrecadação para torná-lo realidade. Ex. Desenvolvimento de um jogo."
-        link: 'Receba dicas de campanhas de sucesso na 99Gamers'
+        link: 'Receba dicas de campanhas de sucesso na GoAngels'
       flexi:
         title: "Flexível"
         content: "Similar ao tipo de campanha anterior, com a diferença de que mesmo que você não atinja a meta de arrecadação financeira, ficará com o valor arrecadado da campanha. Cobramos um taxa de 14% do total arrecado caso consiga atingir ou ultrapasse a meta. Caso não atinja, haverá um acrescimento de 3,5% na taxa cobrada. Essa campanha é ideal para projetos que já estão em execução e pretendem utilizar o valor arrecadado para complementar no orçamento do projeto.
 Ex: Premiação de um campeonato de e-sports, Criação de novas funcionalidades para um jogo."
-        link: 'Receba dicas de campanhas de sucesso na 99Gamers'
+        link: 'Receba dicas de campanhas de sucesso na GoAngels'
       recgs:
         title: "Recorrente / Gamer Sócio"
         content: "Diferente das modalidades anteriores, nesse modelo de campanha a arrecadação é feita de maneira recorrente, ou seja, em determinados períodos definidos pelo realizador. Mensal, trimestral, anual, quinzenal ou qualquer outro período definido pelo número de dias. O realizador poderá criar tipos de planos, caso tenha essa necessidade. As metas de arrecadação poderão ser atualizadas a metida que são alcançadas. Cobramos uma taxa mensal de 14% do total arrecadado. Essa campanha é ideal para projetos que precisam de uma arrecadação constante. 
 Ex: Organizações de e-sports, atletas, streamers, youtubers e criadores de conteúdo em geral."
-        link: 'Receba dicas de campanhas de sucesso na 99Gamers'
+        link: 'Receba dicas de campanhas de sucesso na GoAngels'
       time:
         title: "Divulgue, Espalhe, Mobilize Apoiadores"
         content: "É importante manter o contato constante com seus apoiadores durante e após a realização da sua campanha. Trate bem seus Gamers Apoiadores, deixe-os sempre atualizados sobre as novidades do seu projeto. Eles são a grande força determinante do sucesso ou não da sua campanha! 
@@ -38,5 +38,5 @@ Ex: Organizações de e-sports, atletas, streamers, youtubers e criadores de con
 O objetivo da 99 Gamers é aproximar Gamers Apoiadores (pessoas que apreciam um bom projeto e estão dispostas a contribuir) de Gamers Realizadores (pessoas com mentes empreendedoras, criadores de projetos), ajudando assim para o desenvolvimento do cenário gamer no Brasil.
 
 “De Gamers para Gamers”, esse é o nosso lema. "
-        link: 'Saiba como nossa taxa ajuda a manter a 99Gamers'
+        link: 'Saiba como nossa taxa ajuda a manter a GoAngels'
         
