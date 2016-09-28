@@ -71,7 +71,7 @@
                 button#share-box.btn.btn-small.btn-terciary.btn-inline Compartilhar
 
           .w-col.w-col-4
-            .aside
+            #project-sidebar.aside
               .project-stats
                 .project-stats-inner.u-marginbottom-15
                   .project-stats-info
@@ -166,7 +166,7 @@
                       fb:comments-count href="#{project_comments_canonical_url}" class="badge project-fb-comment w-hidden-small w-hidden-tiny" style="display: inline"
                         |&nbsp; 
             = render 'project_main'
-        #project-sidebar
+        #project-reward-sidebar
           .w-col.w-col-4
             .u-marginbottom-20#rewardsb
               - if @project.recurrent? && @project.plans.present?

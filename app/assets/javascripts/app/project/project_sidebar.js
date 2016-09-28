@@ -1,6 +1,6 @@
 App.addChild('ProjectSidebar', {
   
-  el: '#project-sidebar',
+  el: '#project-reward-sidebar',
 
   events: {
     'click #toggle-goals' : 'toggleGoals',
