@@ -71,7 +71,7 @@
                 button#share-box.btn.btn-small.btn-terciary.btn-inline Compartilhar
 
           .w-col.w-col-4
-            #project-sidebar.aside
+            .aside
               .project-stats
                 .project-stats-inner.u-marginbottom-15
                   .project-stats-info
@@ -165,22 +165,22 @@
                       => t('.menu.comments')
                       fb:comments-count href="#{project_comments_canonical_url}" class="badge project-fb-comment w-hidden-small w-hidden-tiny" style="display: inline"
                         |&nbsp; 
-                            
             = render 'project_main'
-        .w-col.w-col-4
-          .u-marginbottom-20#rewardsb
-            - if @project.recurrent? && @project.plans.present?
-              h3#hplans.htit Planos de assinatura (Subscribe)
-              #plans.u-marginbottom-30[data-index_path=project_plans_path(@project)]
-                .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
-            - if @project.rewards.count > 0
-              h3.htit Recompensas (Donation)
-              #rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
-                .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
-          - if @project.published? && !@project.recurrent?
-            .funding-period
-              .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
-              .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"
+        #project-sidebar
+          .w-col.w-col-4
+            .u-marginbottom-20#rewardsb
+              - if @project.recurrent? && @project.plans.present?
+                h3#hplans.htit Planos de assinatura (Subscribe)
+                #plans.u-marginbottom-30[data-index_path=project_plans_path(@project)]
+                  .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
+              - if @project.rewards.count > 0
+                h3.htit Recompensas (Donation)
+                #rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
+                  .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
+            - if @project.published? && !@project.recurrent?
+              .funding-period
+                .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
+                .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"
 
 
 
