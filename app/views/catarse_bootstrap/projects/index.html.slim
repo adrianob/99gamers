@@ -121,39 +121,39 @@ section#offers.dark
         .fontsize-small.u-marginbottom-10.u-text-center-small-only.lineheight-tight
           | Tem um projeto inovador? Entre em contato conosco e vamos mostrar para galera.
 
-section#projects
-  article.section.w-container
-    .w-row.u-marginbottom-30
-      .w-col.w-col-10.w-col-small-6.w-col-tiny-6
-        .fontsize-large.lineheight-looser
-          = t('.recommended')
-      .w-col.w-col-2.w-col-small-6.w-col-tiny-6
-        = link_to t('.see_all'), explore_path(ref: :home_recommended, anchor: :recommended), class: 'btn btn-small btn-terciary'
-    .w-row
-      == render_projects @recommends, 'home_recommended', { wrapper_class: 'w-col w-col-6' }
+/section#projects
+  /article.section.w-container
+    /.w-row.u-marginbottom-30
+      /.w-col.w-col-10.w-col-small-6.w-col-tiny-6
+        /.fontsize-large.lineheight-looser
+          /= t('.recommended')
+      /.w-col.w-col-2.w-col-small-6.w-col-tiny-6
+        /= link_to t('.see_all'), explore_path(ref: :home_recommended, anchor: :recommended), class: 'btn btn-small btn-terciary'
+    /.w-row
+      /== render_projects @recommends, 'home_recommended', { wrapper_class: 'w-col w-col-6' }
 
-  .section-large.dark
-    .w-container
-      .w-row.u-marginbottom-30.u-text-center
-        .fontweight-semibold.fontsize-jumbo.u-marginbottom-20
-          | Comece hoje!
-        .fontsize-small.lineheight-tight
-          | Descubra novas campanhas de crowdfunding ou comece a sua própria campanha para receber o apoio da galera.
-      .w-col.w-col-12.u-text-center
-        a.btn.btn-medium.btn-inline.btn-home href="/pt/explore?ref=hello#recommended"  Explore campanhas
-        a.btn.btn-medium.btn-inline href="/pt/start?ref=hello"  Comece seu projeto
-
-
-  article.section.content-projects.w-container
-    .w-row.u-marginbottom-30
-      .w-col.w-col-10.w-col-small-6.w-col-tiny-6
-        .fontsize-large.lineheight-looser Criadores de conteúdo
-      .w-col.w-col-2.w-col-small-6.w-col-tiny-6
-        a.btn.btn-small.btn-terciary href="/pt/explore?ref=home_recent#recent"  Ver todos
+  /.section-large.dark
+    /.w-container
+      /.w-row.u-marginbottom-30.u-text-center
+        /.fontweight-semibold.fontsize-jumbo.u-marginbottom-20
+          /| Comece hoje!
+        /.fontsize-small.lineheight-tight
+          /| Descubra novas campanhas de crowdfunding ou comece a sua própria campanha para receber o apoio da galera.
+      /.w-col.w-col-12.u-text-center
+        /a.btn.btn-medium.btn-inline.btn-home href="/pt/explore?ref=hello#recommended"  Explore campanhas
+        /a.btn.btn-medium.btn-inline href="/pt/start?ref=hello"  Comece seu projeto
 
 
-    .w-row
-      == render_projects @recurrents, 'home_recurrent', { wrapper_class: 'w-col w-col-6' }
+  /article.section.content-projects.w-container
+    /.w-row.u-marginbottom-30
+      /.w-col.w-col-10.w-col-small-6.w-col-tiny-6
+        /.fontsize-large.lineheight-looser Criadores de conteúdo
+      /.w-col.w-col-2.w-col-small-6.w-col-tiny-6
+        /a.btn.btn-small.btn-terciary href="/pt/explore?ref=home_recent#recent"  Ver todos
+
+
+    /.w-row
+      /== render_projects @recurrents, 'home_recurrent', { wrapper_class: 'w-col w-col-6' }
 
 .section-large.darkp.partners
   .w-container
