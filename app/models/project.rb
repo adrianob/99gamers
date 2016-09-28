@@ -273,7 +273,7 @@ class Project < ActiveRecord::Base
   end
 
   def transfer_amount
-    pledged*(1 - CatarseSettings[:catarse_fee].to_f) - total_payment_service_fee - ( contributions.where('contributions.is_confirmed').count * 1.00 )
+    pledged*(1 - CatarseSettings[:catarse_fee].to_f)
   end
 
   def recurrent_transfer_amount
