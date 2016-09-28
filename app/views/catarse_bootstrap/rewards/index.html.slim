@@ -3,7 +3,8 @@
   - sold_out = reward.sold_out?
 
   = link_to "#{(parent.online? && !sold_out ? new_project_contribution_path(parent, reward_id: reward.id) : '#reward-offline')}", id: "reward_#{reward.id}", data: { new_contribution_url: new_project_contribution_path(parent, reward_id: reward.id), update_url: sort_project_reward_path(parent, reward)}, class: "#{(policy(reward).update? ? 'clickable_owner sortable' : '')} #{(parent.online? && !policy(reward).update?  ? 'clickable'  : '' )} #{sold_out ? 'card-gone' : 'card-reward'} card card-secondary u-marginbottom-10" do
-    .card-rewards-thumb style=("background-image: url(/assets/Interna/rewards-img1.jpg);display:block;") 
+    - if reward.uploaded_image?
+      .card-rewards-thumb style=("background-image: url(#{reward.uploaded_image.thumb.url});display:block;") 
     .card-rew.u-marginbottom-20
       .fontsize-base.fontweight-semibold.u-marginbottom-5 = t('.reward_title', minimum: reward.display_minimum).html_safe
       .fontsize-smaller.fontweight-semibold.u-marginbottom-10= reward.title

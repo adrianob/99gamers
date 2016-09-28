@@ -17,6 +17,9 @@ class Reward < ActiveRecord::Base
   validates_numericality_of :minimum_value, greater_than_or_equal_to: 3.00, message: 'Valor deve ser maior ou igual a R$ 3'
   validates_numericality_of :maximum_contributions, only_integer: true, greater_than: 0, allow_nil: true
   validate :deliver_at_cannot_be_in_the_past
+
+  mount_uploader :uploaded_image, RewardUploader
+
   scope :remaining, -> { where("
                                rewards.maximum_contributions IS NULL
                                OR (

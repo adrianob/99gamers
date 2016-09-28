@@ -18,6 +18,8 @@
             .fontsize-smaller.u-marginbottom-20.fontweight-semibold= pluralize(reward.payments.with_state('paid').count(:all), t('contribution_singular'), t('contribution_plural'))
             strong.fontsize-small
               br= reward.title
+            p
+              = image_tag reward.uploaded_image
             p.fontsize-small
               br= reward.display_description
             - if reward.maximum_contributions
@@ -75,6 +77,13 @@
               .w-col.w-col-7
                 = f.input_field :title, as: :text,  class: 'positive', placeholder: "De um título", required: true
                 .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="reward_title"] = t('simple_form.validation_texts.reward.title')
+
+            .w-row
+              .w-col.w-col-5
+                label.fontsize-smaller Imagem
+              .w-col.w-col-7
+                = f.input :uploaded_image, label: '', as: :file, required: false, hint: (reward.uploaded_image.present? ? image_tag(reward.uploaded_image.thumb.url, size: '313x200#') : '' ) 
+                .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="reward_uploaded_image"] = t('simple_form.validation_texts.reward.uploaded_image')
             .w-row
               .w-col.w-col-5
                 label.fontsize-smaller= t('.description') 
