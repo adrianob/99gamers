@@ -2,9 +2,9 @@ section.section[itemtype="http://schema.org/CreativeWork"]
   .w-container
     .w-row
       article.w-hidden-small.w-hidden-tiny
-        #project_about.content.w-col.w-col-8 = render 'project_about'
+        #project_about.content.w-col.w-col-12 = render 'project_about'
 
-        #project_posts.content.w-col.w-col-8.w-hidden[data-path=project_posts_path(project_id: @project.id)]
+        #project_posts.content.w-col.w-col-12.w-hidden[data-path=project_posts_path(project_id: @project.id)]
           - if policy(@project).update? && @posts_count == 0
             .w-hidden-small.w-hidden-tiny
               .fontsize-base.u-marginbottom-30.u-margintop-20= t('.post_call')
@@ -19,7 +19,7 @@ section.section[itemtype="http://schema.org/CreativeWork"]
                 button id="load-more" class="btn btn-medium btn-terciary hidden"
                   = t('shared.load_more')
 
-        #project_contributions.content.w-col.w-col-8.w-hidden[data-path=details_project_contributions_path(project_id: @project.id)]
+        #project_contributions.content.w-col.w-col-12.w-hidden[data-path=details_project_contributions_path(project_id: @project.id)]
           - if policy(@project).update?
             .w-row
               .w-col.w-col-1
@@ -41,7 +41,7 @@ section.section[itemtype="http://schema.org/CreativeWork"]
                 button id="load-more" class="btn btn-medium btn-terciary hidden"
                   = t('shared.load_more')
 
-        #project_subscriptions.content.w-col.w-col-8.w-hidden[data-path=details_project_subscriptions_path(project_id: @project.id)]
+        #project_subscriptions.content.w-col.w-col-12.w-hidden[data-path=details_project_subscriptions_path(project_id: @project.id)]
           .results[data-skiptab="true"]
             | &nbsp;
           #subscriptions-loading.loader.u-text-center.w-col.w-col-12 = image_tag "catarse_bootstrap/loader.gif"
@@ -52,7 +52,7 @@ section.section[itemtype="http://schema.org/CreativeWork"]
                 button id="load-more" class="btn btn-medium btn-terciary hidden"
                   = t('shared.load_more')
 
-        #project_comments.content.w-col.w-col-8.w-hidden data-path=project_comments_canonical_url
+        #project_comments.content.w-col.w-col-12.w-hidden data-path=project_comments_canonical_url
 
       /#project-sidebar.aside.w-col.w-col-4
         /.project-stats

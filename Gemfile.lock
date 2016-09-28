@@ -467,7 +467,7 @@ GEM
       activesupport (= 4.1.14)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.4.2)
+    rake (11.2.2)
     ranked-model (0.4.0)
       activerecord (>= 3.1.12)
     rb-fsevent (0.9.6)
@@ -705,5 +705,8 @@ DEPENDENCIES
   weekdays
   zonebie
 
+RUBY VERSION
+   ruby 2.2.3p173
+
 BUNDLED WITH
-   1.10.6
+   1.12.5
