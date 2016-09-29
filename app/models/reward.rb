@@ -14,7 +14,7 @@ class Reward < ActiveRecord::Base
 
   accepts_nested_attributes_for :benefits, reject_if: :all_blank, allow_destroy: true
   validates_presence_of :minimum_value, :description, :deliver_at
-  validates_numericality_of :minimum_value, greater_than_or_equal_to: 3.00, message: 'Valor deve ser maior ou igual a R$ 3'
+  validates_numericality_of :minimum_value, greater_than_or_equal_to: 10.00, message: 'Valor deve ser maior ou igual a R$ 10'
   validates_numericality_of :maximum_contributions, only_integer: true, greater_than: 0, allow_nil: true
   validate :deliver_at_cannot_be_in_the_past
 

@@ -182,7 +182,7 @@
                   .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
             - if @project.published? && !@project.recurrent?
               .funding-period
-                .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
+                .fontsize-small.fontweight-semibold.u-text-center-small-only Período de arrecadação
                 .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"
 
 
