@@ -79,20 +79,20 @@ section#hero-home.hero-full.hero-knowmore style=("background-image: url(/assets/
       .card-banner-info
         .card-p-stats
           .w-row
-            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-angels
+            .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-angels
               .fontsize-small.fontweight-bold.a-num= hero_project.total_contributions
               .fontsize-small.a-angel anjos
-            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-value
+            .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-value
               .fontsize-small.fontweight-bold=hero_project.display_pledged
               .fontsize-small levantados
-            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-days
+            .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-days
 
               - unless hero_project.expired?
                 .fontsize-small.fontweight-bold
                   = "#{hero_project.time_to_go[:time]}  #{hero_project.time_to_go[:unit]}"
               .fontsize-small
               = t('projects.card.remaining', count: hero_project.time_to_go[:time])
-            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-meter
+            .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-meter
 
               .fontsize-small.fontweight-bold="#{hero_project.progress}%"
               .card-banner-meter.online
@@ -102,24 +102,24 @@ section#hero-home.hero-full.hero-knowmore style=("background-image: url(/assets/
 section#offers.dark
   article.section.w-container.u-text-center.divider-2
     .w-row.u-marginbottom-30
-      .w-col.w-col-4.w-col-small-4.w-col-tiny-4.right-divider
+      .w-col.w-col-4.w-col-small-12.w-col-tiny-12.right-divider
         = link_to (image_tag "GoAngels/realizadores-icon.png", class: 'u-marginbottom-10'), root_url(subdomain: 'www')
         .fontweight-semibold.fontsize-base.u-marginbottom-10.u-text-center-small-only.lineheight-tight
           | Para realizadores
         .fontsize-small.u-marginbottom-10.u-text-center-small-only.lineheight-tight
           | Comece sua campanha de Jogos, Geek, Tech ou Criação de conteúdo.
-      .w-col.w-col-4.w-col-small-4.w-col-tiny-4.right-divider
+      .w-col.w-col-4.w-col-small-12.w-col-tiny-12.right-divider
         = link_to (image_tag "GoAngels/apoiadores-icon.png", class: 'u-marginbottom-10'), root_url(subdomain: 'www')
         .fontweight-semibold.fontsize-base.u-marginbottom-10.u-text-center-small-only.lineheight-tight
           | Para apoiadores
         .fontsize-small.u-marginbottom-10.u-text-center-small-only.lineheight-tight
-          | Apoie campanhas e ganhe recompensas exclusivas, cupons de descontos e até jogos.
-      .w-col.w-col-4.w-col-small-4.w-col-tiny-4
+          | Apoie campanhas, ganhe recompensas exclusivas, cupons de descontos e até jogos.
+      .w-col.w-col-4.w-col-small-12.w-col-tiny-12
         = link_to (image_tag "GoAngels/empresas-icon.png", class: 'u-marginbottom-10'), root_url(subdomain: 'www')
         .fontweight-semibold.fontsize-base.u-marginbottom-10.u-text-center-small-only.lineheight-tight
           | Para empresas
         .fontsize-small.u-marginbottom-10.u-text-center-small-only.lineheight-tight
-          | Tem um projeto inovador? Entre em contato conosco e vamos mostrar para galera.
+          | Tem um projeto inovador? Entre em contato conosco: contato@goangels.me
 
 /section#projects
   /article.section.w-container

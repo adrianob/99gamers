@@ -18,39 +18,41 @@ div[itemtype="http://schema.org/CreativeWork" class="#{defined?(wrapper_class) ?
       p.card-author-name.fontsize-small.fontweight-semibold.cardat[itemprop="name" content="#{@project.user.display_name}"]= @project.user.display_name
     .card-project-stats
       .w-row
-      - if @project.recurrent?
-        .w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only.a-angels.w-col-push-2
-          .fontsize-small.a-num
-            span.fontweight-bold=>@project.total_contributions
-            | anjos
-        .w-col.w-col-5.w-col-small-5.w-col-tiny-5.u-text-center-small-only.a-value.w-col-push-1
-          .fontsize-small
-            span.fontweight-bold=>@project.display_pledged
-            | levantados
-        .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-meter
-          .fontsize-small.fontweight-bold="#{@project.progress}%"
-          .card-banner-meter.online
-            .meter
-              = @project.progress_bar
-      -else
-        .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-angels
-          .fontsize-small.fontweight-bold.a-num=@project.total_contributions
-          .fontsize-small.a-angel anjos
-        .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-value
-          .fontsize-small.fontweight-bold=@project.display_pledged
-          .fontsize-small levantados
-        .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-days
-          - unless @project.expired?
-            .fontsize-small.fontweight-bold
-              = "#{@project.time_to_go[:time]}  #{@project.time_to_go[:unit]}"
-          .fontsize-small.lineheight-tightest 
-            = t('.remaining', count: @project.time_to_go[:time])
-        .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-meter
-          .fontsize-small.fontweight-bold 
-            = "#{@project.progress}%"
-          .card-banner-meter class=@project.state
-            -if ['successful', 'failed', 'waiting_funds'].include? @project.state
-              div= t("projects.card.display_status.#{@project.display_status}")
-            -else
-              .meter
-                = @project.progress_bar
+        - if @project.recurrent?
+          .card-rec
+            .w-col.w-col-4.w-col-small-4.w-col-tiny-4.u-text-center-small-only.a-angels
+              .fontsize-small.a-num
+                span.fontweight-bold=>@project.total_contributions
+                | anjos
+            .w-col.w-col-5.w-col-small-5.w-col-tiny-5.u-text-center-small-only.a-value
+              .fontsize-small
+                span.fontweight-bold=>@project.display_pledged
+                | levantados
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-meter
+              .fontsize-small.fontweight-bold="#{@project.progress}%"
+              .card-banner-meter.online
+                .meter
+                  = @project.progress_bar
+        -else
+          .card-all
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-angels
+              .fontsize-small.fontweight-bold.a-num=@project.total_contributions
+              .fontsize-small.a-angel anjos
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-value
+              .fontsize-small.fontweight-bold=@project.display_pledged
+              .fontsize-small levantados
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-days
+              - unless @project.expired?
+                .fontsize-small.fontweight-bold
+                  = "#{@project.time_to_go[:time]}  #{@project.time_to_go[:unit]}"
+              .fontsize-small.lineheight-tightest 
+                = t('.remaining', count: @project.time_to_go[:time])
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.u-text-center-small-only.a-meter
+              .fontsize-small.fontweight-bold 
+                = "#{@project.progress}%"
+              .card-banner-meter class=@project.state
+                -if ['successful', 'failed', 'waiting_funds'].include? @project.state
+                  div= t("projects.card.display_status.#{@project.display_status}")
+                -else
+                  .meter
+                    = @project.progress_bar

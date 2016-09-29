@@ -18,7 +18,7 @@
 /* Parceiros */
 /* Rodapé */
 body {
-	font-family: proxima-nova, sans-serif;
+	font-family: /*proxima-nova,*/ sans-serif;
 	color: #1b1b1b;
 	font-size: 14px;
 	line-height: 20px;
@@ -290,7 +290,7 @@ p {
 }
 .logo-login {
 	display: block;
-	height: 61px;
+	height: 51px;
 	margin-top: 22px;
 	margin-right: auto;
 	margin-left: auto;
@@ -388,7 +388,7 @@ p {
 	color: #488bd9;
 }
 .main-header {
-	padding: 15px 10px 8px 10px;
+	padding: 15px 10px 15px 10px;
 	border-bottom: 1px solid #1E1F20;
 	background-color: #1E1F20;
 }
@@ -627,7 +627,7 @@ p {
 	margin-bottom: 40px;
 }
 .project-video {
-	height: 418px;
+/*	height: 418px;*/
 	margin-bottom: 15px;
 }
 .project-video.mf {
@@ -1597,7 +1597,7 @@ p {
 	position: relative;
 	padding: 0;
 	background: #fff;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
 	border: 0px none;
 	font-size: 15px;
@@ -1919,6 +1919,7 @@ p {
 	margin-bottom: 40px;
 	padding: 0px;
 	box-shadow: rgba(121, 128, 139, 0.2) 0px 0px 6px 0px;
+	background-color: #020303;
 }
 .card-project.big {
 	margin-bottom: 0px;
@@ -2020,6 +2021,7 @@ p {
 	article {
 		padding: 0 40px;
 		.card-banner-description {
+			margin-bottom:40px;
 			a {
 				color: #fff;
 				&:hover {
@@ -2034,14 +2036,17 @@ p {
 				font-size: 20px;
 				text-transform: uppercase;
 				font-weight: 100;
+				color: #e9e9e9;
 				a {
 					color: #e9e9e9;
+					text-decoration:none;
 				}
 			}
 			p {
 				font-size: 30px;
 				color: #fff;
 				line-height: 36px;
+				width: 60%;
 			}
 			.btn {
 				text-transform: uppercase;
@@ -2483,6 +2488,10 @@ p {
 		background-color: transparent;
 		box-shadow: transparent 1px 1px 3px 0px;
 	}
+}
+#project-highlight .btn-transparent{
+	padding:0;
+	margin-right:15px;
 }
 .hero-content {
 	position: relative;
@@ -3247,6 +3256,33 @@ html.w-mod-js {
 		}
 	}
 }
+.card-project-stats{
+	.w-row {
+    padding-left: 70px;
+	}
+	.card-all{
+		.a-meter {
+			padding-left: 20px;
+		}
+		.a-value {
+			padding-left: 5px;
+		}
+		.a-days {
+			padding-left: 15px;
+		}
+	}
+	.card-rec{
+		.a-angels, .a-value{
+			margin-top:10px;
+		}
+		.a-value {
+			padding-left:0;
+		}
+		.a-meter {
+			padding-left: 20px;
+		}
+	}
+}
 .transparent {
 	background: transparent;
 }
@@ -3304,7 +3340,7 @@ html.w-mod-js {
 	}
 	#project-highlight {
 		background: #ececec;
-		padding: 10px;
+		padding: 10px 15px;
 		border-radius: 3px;
 	}
 	.user-c {
@@ -3424,8 +3460,8 @@ html.w-mod-js {
 		padding-left: 0px;
 	}
 	.project-stats {
-		padding-top: 8px;
-		padding-left: 5px;
+		/*padding-top: 8px;
+		padding-left: 5px;*/
 	}
 	.project-nav {
 		height: 39px;
@@ -3516,6 +3552,11 @@ html.w-mod-js {
 		padding-top: 34px;
 		padding-bottom: 34px;
 	}
+	.tudo-flex {
+		.page-header {
+    	padding-top: 95px;
+		}
+	}
 	.back-reward-input-reward {
 		height: 54px;
 		font-size: 36px;
@@ -3592,7 +3633,7 @@ html.w-mod-js {
 		font-size: 12px;
 	}
 	.header-logo {
-		width: 88px;
+		/*width: 88px;*/
 		margin-top: -3px;
 		margin-right: 20px;
 		margin-left: 0px;
@@ -3711,7 +3752,7 @@ html.w-mod-js {
 	}
 	.hero-full {
 		height: 570px;
-		padding-top: 200px;
+		padding-top: 100px;
 		padding-bottom: 170px;
 	}
 	.card-project-meter.successful {
@@ -3848,12 +3889,11 @@ html.w-mod-js {
 		margin-top: 12px;
 	}
 	.project-stats {
-		margin-right: -10px;
-		margin-left: -10px;
 		padding: 20px 30px;
 		border-top: 1px solid #494949;
 		background-color: white;
 		text-align: center;
+		margin: 15px 0;
 	}
 	.project-stats.mf {
 		margin-right: 0px;
@@ -3885,7 +3925,7 @@ html.w-mod-js {
 	.main-header {
 		position: relative;
 		padding-top: 7px;
-		padding-bottom: 4px;
+		padding-bottom: 7px;
 		padding-left: 15px;
 	}
 	.main-header.overlayer.alert {
@@ -4111,7 +4151,7 @@ html.w-mod-js {
 		width: 100%;
 	}
 	.header-logo {
-		width: 85px;
+		/*width: 85px;*/
 		margin-top: 0px;
 		margin-right: 0px;
 	}
@@ -4216,12 +4256,13 @@ html.w-mod-js {
 		text-align: left;
 	}
 	.hero-full {
-		height: 600px;
+		height: 700px;
 		padding-top: 100px;
 		padding-bottom: 0px;
 	}
 	.hero-full.hero-knowmore {
-		padding-top: 140px;
+		padding-top: 80px;
+		text-align: center;
 	}
 	.card-project-meter.successful {
 		text-align: center;
@@ -4334,8 +4375,8 @@ html.w-mod-js {
 		text-align: center;
 	}
 	.project-highlight {
-		padding-right: 0px;
-		padding-left: 0px;
+		/*padding-right: 0px;
+		padding-left: 0px;*/
 	}
 	.hero-content {
 		top: 36%;
@@ -4391,6 +4432,38 @@ html.w-mod-js {
 	.hero-who {
 		padding-top: 190px;
 	}
+	.card-banner-info{
+		float:none !important;
+		width:100% !important;
+		position:relative !important;
+		bottom:0 !important;
+	}
+	.card-p-stats{
+		.w-col {
+	    background: transparent;
+			margin-bottom: 30px;
+			text-align: center;
+		}
+		.fontsize-small{
+			padding-left: 0;
+		}
+		.a-meter {
+    	padding-right: 0 !important;
+		}
+	}
+	.card-banner-description {
+		p {
+     width: auto !important;
+		}
+	}
+	.column-social-media-footer{
+		form{
+			text-align: left;
+		}
+		.btn-attached {
+    	width: 21%;
+		}
+	}
 }
 @media (max-width: 479px) {
 	h2 {
@@ -4421,8 +4494,13 @@ html.w-mod-js {
 	.logo-login {
 		height: 44px;
 	}
+	.tudo-flex {
+		.page-header {
+			padding-top: 80px;
+		}
+	}
 	.project-stats {
-		margin-bottom: 0px;
+		/*margin-bottom: 0px;*/
 		padding-right: 15px;
 		padding-left: 15px;
 	}
@@ -4613,7 +4691,9 @@ html.w-mod-js {
 	}
 	.footer-full-lastcolumn {
 		left: auto;
-		margin-left: 21%;
+		margin-left: 5%;
+		margin-top:20px;
+		margin-bottom:10px;
 	}
 	.footer-full-firstcolumn {
 		margin-left: 5%;
@@ -4642,7 +4722,8 @@ html.w-mod-js {
 		margin-left: 0px;
 	}
 	.header-logo {
-		width: 85px;
+		width: 150px;
+    margin-top: 5px;
 	}
 	.btn-dark.btn-attached {
 		width: 100%;
@@ -4702,13 +4783,27 @@ html.w-mod-js {
 		padding-top: 10px;
 	}
 	.hero-full {
-		height: 510px;
+		/*height: 510px;*/
 		padding-top: 135px;
 		padding-right: 16px;
 		padding-left: 16px;
+
+		article {
+			padding:0 !important;
+
+		 .card-banner-description {
+				h1 {
+					font-size: 42px;
+					line-height: 44px;
+			 	}
+				p {
+		    	width: auto;
+    		}
+			}
+		}
 	}
 	.hero-full.hero-knowmore {
-		padding-top: 175px;
+		padding-top: 80px;
 	}
 	.hero-half {
 		height: 320px;
@@ -4825,6 +4920,17 @@ html.w-mod-js {
 		padding-top: 215px;
 		background-position: 61% 100%;
 	}
+	.column-social-media-footer{
+		.footer-newsletter, .btn-attached{
+			display:block;
+			width:100%;
+			position:static !important;
+			margin:0;
+		}
+		.spam {
+	    display:none;
+		}
+	}
 }
 @media screen and (max-height: 850px) {
 	.project-nav-wrapper {
@@ -4839,4 +4945,11 @@ html.w-mod-js {
 		}
 	}
 }
-
+#aon{
+	.fa.fa-question-circle {
+    margin-left:5px;
+	}
+}
+.project-name {
+	padding:0;
+}

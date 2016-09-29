@@ -10,7 +10,7 @@ App.addChild('Project', _.extend({
     this.$warning = this.$('#project_warning_text');
     this.$embed= this.$('#project_embed');
     this.$container = $(".project-about");
-    
+
     this.route('about');
     this.route('posts');
     this.route('contributions');
@@ -19,7 +19,7 @@ App.addChild('Project', _.extend({
     this.route('edit');
     this.route('reports');
     this.route('metrics');
-    
+
     this.setupResponsiveIframes(this.$container);
 
   $('#gallery-1').royalSlider({
@@ -28,9 +28,9 @@ App.addChild('Project', _.extend({
       nativeFS: false
     },
     controlNavigation: 'thumbnails',
-    autoScaleSlider: true, 
-    autoScaleSliderWidth: 960,     
-    autoScaleSliderHeight: 640,
+    autoScaleSlider: true,
+    autoScaleSliderWidth: 960,
+    autoScaleSliderHeight: 644,
     loop: false,
 	transitionType: 'fade',
     imageScaleMode: 'fill',
@@ -46,7 +46,7 @@ App.addChild('Project', _.extend({
     thumbs: {
       appendSpan: true,
       firstMargin: false,
-	  spacing: 5,
+	  spacing: 10,
 	  autoCenter: true,
 	  drag: false,
     },
@@ -54,7 +54,7 @@ App.addChild('Project', _.extend({
       autoHideArrows:true,
       autoHideControlNav:false,
       autoHideBlocks: true
-    }, 	 
+    },
   });
   },
 
