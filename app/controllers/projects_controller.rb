@@ -155,7 +155,7 @@ class ProjectsController < ApplicationController
     render partial: 'projects/card',
       collection: projects,
       layout: false,
-      locals: {ref: "explore", wrapper_class: 'w-col w-col-4 u-marginbottom-20'}
+      locals: {ref: "explore", wrapper_class: 'w-col w-col-6 u-marginbottom-20'}
   end
 
   def projects
