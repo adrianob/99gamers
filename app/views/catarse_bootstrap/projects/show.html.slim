@@ -24,7 +24,7 @@
 
 = render 'shared/header_big', overlayer: true
 
-= render 'mobile_video'
+/= render 'mobile_video'
 
 .project-hero style=("background: url(#{@project.background_image.url}) no-repeat !important;display:block;") 
 
@@ -38,12 +38,13 @@
           .w-col.w-col-8.project-highlight
             //TODO temp
             #project-slide
-              .w-embed.w-video.project-video style=("min-height: 480px;") 
+              /.w-embed.w-video.project-video style=("min-height: 480px;")
+              .w-embed.w-video.project-video
                 #gallery-1.royalSlider.rsDefault
                   a.rsImg data-rsvideo="//www.youtube.com/watch?v=vOt1tXyOH3M" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg" 
-                  .rsTmb
-                    = image_tag "/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg"
-                    .vbg
+                    .rsTmb
+                      = image_tag "/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg"
+                      .vbg
                   a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" 
                     img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" /
                   a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-3.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-3.jpg" 
@@ -91,7 +92,7 @@
                       .w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-clearfix
                         .u-right.fontsize-small.lineheight-tighter
                           span.fontweight-semibold= @project.online_days
-                          span  #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
+                          span  #{@project.time_to_go[:unit]} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
                   .w-row.u-margintop-30.u-marginbottom-10
                     #aon.w-row
                       .w-col.w-col-2.w-col-small-2.w-col-tiny-2
@@ -109,7 +110,7 @@
                 #project-reminder.u-text-center.u-marginbottom-10
                   button.btn-link.btn-lmb.link-hidden.fontsize-small.fontcolor-secondary.fontweight-semibold
                     span.fa.fa-clock-o
-                      span Lembrar-me
+                      span  Lembrar-me
                 -if @project.expires_at.present?
                   .fontsize-smaller.u-marginbottom-15="Você pode apoiar este projeto até o dia #{@project.display_expires_at} às 23h59m59s"
                 #user-card
@@ -170,14 +171,14 @@
             = render 'project_main'
         #project-reward-sidebar
           .w-col.w-col-4
-            .u-marginbottom-20#rewardsb
+            .u-marginbottom-15#rewardsb
               - if @project.recurrent? && @project.plans.present?
-                h3#hplans.htit Planos de assinatura (Subscribe)
+                /h3#hplans.htit Planos de assinatura (Subscribe)
                 #plans.u-marginbottom-30[data-index_path=project_plans_path(@project)]
                   .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
               - if @project.rewards.count > 0
-                h3.htit Recompensas (Donation)
-                #rewards.u-marginbottom-30[data-index_path=project_rewards_path(@project)]
+                /h3.htit Recompensas (Donation)
+                #rewards[data-index_path=project_rewards_path(@project)]
                   .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
             - if @project.published? && !@project.recurrent?
               .funding-period
