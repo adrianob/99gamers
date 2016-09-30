@@ -23,7 +23,7 @@
   link rel="canonical" href=request.original_url.split('?').first
 
 = render 'shared/header_big', overlayer: true
-
+= content_for :body_class, 'page-project '
 /= render 'mobile_video'
 
 .project-hero style=("background: url(#{@project.background_image.url}) no-repeat center center !important;display:block;") 
@@ -41,12 +41,20 @@
               /.w-embed.w-video.project-video style=("min-height: 480px;")
               .w-embed.w-video.project-video
                 #gallery-1.royalSlider.rsDefault
-                  a.rsImg data-rsvideo="//www.youtube.com/watch?v=vOt1tXyOH3M" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg" 
+                  a.rsImg data-rsvideo="//www.youtube.com/watch?v=SEjS5KxMls4" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg" 
                     .rsTmb
                       = image_tag "/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg"
+                      .vbg                
+                  a.rsImg data-rsvideo="//www.youtube.com/watch?v=vOt1tXyOH3M" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" 
+                    .rsTmb
+                      = image_tag "/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg"
                       .vbg
-                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" 
-                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" /
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-11.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-11.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-11.jpg" /
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-12.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-12.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-12.jpg" /
+                  a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-13.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-13.jpg" 
+                    img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-13.jpg" /                    
                   a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-3.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-3.jpg" 
                     img.rsTmb src="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-3.jpg" /
                   a.rsImg data-rsbigimg="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-4.jpg" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-4.jpg" 
