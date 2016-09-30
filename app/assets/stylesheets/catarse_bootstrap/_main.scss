@@ -3221,6 +3221,7 @@ html.w-mod-js {
 #offers {
 	.section {
 		background: transparent;
+		border:o;
 	}
 	.fontsize-small {
 		color: #f0f0f0;
@@ -3311,7 +3312,7 @@ html.w-mod-js {
 		background: transparent;
 	}
 	.page-header {
-		padding-top: 415px;
+		padding-top: 400px;
 		background: transparent;
 		padding-bottom: 20px;
 	}
@@ -3380,7 +3381,7 @@ html.w-mod-js {
 		display: block;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(to bottom, rgba(0,0,0,0.96) 12%, rgba(0,0,0,0.33) 41%, rgba(17,17,17,0.24) 61%, #151515 80%);
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.93) 10%, rgba(0, 0, 0, 0) 27%, rgba(17, 17, 17, 0) 55%, #151515 84%);
 		content: "";
 	}
 }
@@ -3554,7 +3555,7 @@ html.w-mod-js {
 	}
 	.tudo-flex {
 		.page-header {
-    	padding-top: 95px;
+    	padding-top: 400px;
 		}
 	}
 	.back-reward-input-reward {
@@ -3845,6 +3846,11 @@ html.w-mod-js {
 		padding-top: 8px;
 		padding-bottom: 8px;
 	}
+	.card-project-stats {
+			.w-row {
+				padding-left: 0;
+			}
+	}
 }
 @media (max-width: 767px) {
 	h2 {
@@ -4084,6 +4090,9 @@ html.w-mod-js {
 		padding-top: 8px;
 		padding-bottom: 0px;
 		text-align: left;
+			.w-row {
+    		padding-left: 0;
+			}
 	}
 	.back-reward-error-form {
 		width: 80%;
@@ -4931,6 +4940,9 @@ html.w-mod-js {
 	    display:none;
 		}
 	}
+	.project-hero:before {
+	    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.93) 100%, rgba(0, 0, 0, 0) 27%, rgba(17, 17, 17, 0) 55%, #151515 84%);
+	}
 }
 @media screen and (max-height: 850px) {
 	.project-nav-wrapper {
@@ -4953,8 +4965,8 @@ html.w-mod-js {
 .project-name {
 	padding:0;
 }
-.body-project .header-link{
-	display:none;
+.page-project .w-nav-saiba{
+	display:none !important;
 }
 .main-reward{
 	background: #e01414;

@@ -13,7 +13,7 @@ pt:
     index:
       select_reward: "Selecionar essa Recompensa"
       display_remaining: "%{remaining} de %{maximum} disponíveis"
-      dont_want: "Não quero recompensa"
+      dont_want: "Quero apenas ajudar, sem recompensa"
       or_more: "ou mais"
       limited: Limitada
       sold_out: Esgotada
