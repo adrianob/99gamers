@@ -41,11 +41,11 @@
               /.w-embed.w-video.project-video style=("min-height: 480px;")
               .w-embed.w-video.project-video
                 #gallery-1.royalSlider.rsDefault
-                  a.rsImg data-rsvideo="//www.youtube.com/watch?v=SEjS5KxMls4&rel=0" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg" 
+                  a.rsImg data-rsvideo="//www.youtube.com/watch?v=SEjS5KxMls4" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg" 
                     .rsTmb
                       = image_tag "/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-1.jpg"
                       .vbg                
-                  a.rsImg data-rsvideo="//www.youtube.com/watch?v=vOt1tXyOH3M&rel=0" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" 
+                  a.rsImg data-rsvideo="//www.youtube.com/watch?v=vOt1tXyOH3M" href="/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg" 
                     .rsTmb
                       = image_tag "/assets/catarse_bootstrap/rise-of-ages/rise-of-ages-2.jpg"
                       .vbg
@@ -71,7 +71,7 @@
             #project-highlight
               .project-blurb= @project.headline
               .u-text-center-small-only.u-marginbottom-10
-                a.btn.btn-inline.btn-small.btn-transparent.link-hidden-light.u-marginbottom-10 href="#{explore_url(pg_search: @project.account.try(:address_state))}" 
+                a.btn.btn-inline.btn-small.btn-transparent.link-hidden-light.u-marginbottom-10 href="#{explore_url(anchor: 'near_of/'+@project.account.try(:address_state))}" 
                   span.fa.fa-map-marker
                   |&nbsp;
                   = @project.decorator.show_city
@@ -131,13 +131,16 @@
                           =link_to @project.user.display_name, user_path(@project.user), class: 'alt-link'
                         .fontsize-smallest="#{@project.user.created_projects.size} criado&nbsp;&nbsp;|&nbsp;&nbsp;#{@project.user.total_contributed_projects} apoiados".html_safe
                         ul.w-hidden-tiny.w-hidden-small.w-list-unstyled.fontsize-smaller.fontweight-semibold.u-margintop-10
-
                           - if @project.user.facebook_link.present?
                             li
                               = link_to t('.facebook_profile'), @project.user.facebook_link, target: '_blank', class: 'link-hidden', itemprop: "url"
                           - if @project.user.twitter_link
                             li
                               = link_to t('.twitter_profile'), @project.user.twitter_link, target: '_blank', class: 'link-hidden', itemprop: "url"
+
+                          - @project.user.links.with_link.each do |link|
+                            li
+                              = link_to truncate(link.hostname, length: 30), link.link, target: '_blank', class: 'link-hidden', itemprop: "url"
                         /a.w-button.btn.btn-terciary.btn-small.btn-inline href="javascript:void(0);"  Enviar mensagem
 
 
