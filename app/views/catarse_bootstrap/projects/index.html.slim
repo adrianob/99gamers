@@ -70,12 +70,12 @@ section#hero-home.hero-full.hero-knowmore style=("background-image: url(/assets/
     .card-banner
       .card-banner-description
         h1.fontweight-semibold.fontsize-base
-          = link_to hero_project.name, project_path(hero_project), class: 'link-hidden'
+          = link_to hero_project.name, project_by_slug_path(permalink: hero_project.permalink), class: 'link-hidden'
         h2.fontweight-semibold.fontsize-base.u-marginbottom-10
           = hero_project.tags.map{|tag| tag.name}.join(', ')
         p
-          = link_to hero_project.headline, project_path(hero_project), class: 'link-hidden'
-        = link_to 'Quero apoiar', project_path(hero_project), class: 'btn btn-large btn-inline'
+          = link_to hero_project.headline, project_by_slug_path(permalink: hero_project.permalink), class: 'link-hidden'
+        = link_to 'Quero apoiar', project_by_slug_path(permalink: hero_project.permalink), class: 'btn btn-large btn-inline'
       .card-banner-info
         .card-p-stats
           .w-row
