@@ -99,7 +99,7 @@
                           |% alcançados
                       .w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-clearfix
                         .u-right.fontsize-small.lineheight-tighter
-                          span.fontweight-semibold= @project.online_days
+                          span.fontweight-semibold= @project.time_to_go[:time]
                           span  #{@project.time_to_go[:unit]} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
                   .w-row.u-margintop-30.u-marginbottom-10
                     #aon.w-row
