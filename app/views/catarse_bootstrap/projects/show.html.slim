@@ -71,7 +71,7 @@
             #project-highlight
               .project-blurb= @project.headline
               .u-text-center-small-only.u-marginbottom-10
-                a.btn.btn-inline.btn-small.btn-transparent.link-hidden-light.u-marginbottom-10 href="/pt/explore?pg_search=RS" 
+                a.btn.btn-inline.btn-small.btn-transparent.link-hidden-light.u-marginbottom-10 href="#{explore_url(pg_search: @project.account.try(:address_state))}" 
                   span.fa.fa-map-marker
                   |&nbsp;
                   = @project.decorator.show_city
@@ -115,10 +115,10 @@
                   = link_to 'Apoiar este projeto', new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn btn-large u-marginbottom-15"
 
               .user-c
-                #project-reminder.u-text-center.u-marginbottom-10
-                  button.btn-link.btn-lmb.link-hidden.fontsize-small.fontcolor-secondary.fontweight-semibold
-                    span.fa.fa-clock-o
-                      span  Lembrar-me
+                /#project-reminder.u-text-center.u-marginbottom-10
+                  /button.btn-link.btn-lmb.link-hidden.fontsize-small.fontcolor-secondary.fontweight-semibold
+                    /span.fa.fa-clock-o
+                      /span  Lembrar-me
                 -if @project.expires_at.present?
                   .fontsize-smaller.u-marginbottom-15="Você pode apoiar este projeto até o dia #{@project.display_expires_at} às 23h59m59s"
                 #user-card
@@ -128,7 +128,7 @@
                         img.thumb.u-marginbottom-30.u-round itemprop="image" src=@project.user.display_image width="100" /
                       .w-col.w-col-8
                         .fontsize-small.link-hidden.fontweight-semibold.u-marginbottom-10.lineheight-tight itemprop="name" 
-                          a.link-hidden href="/users/141651"=@project.user.display_name
+                          =link_to @project.user.display_name, user_path(@project.user), class: 'alt-link'
                         .fontsize-smallest="#{@project.user.created_projects.size} criado&nbsp;&nbsp;|&nbsp;&nbsp;#{@project.user.total_contributed_projects} apoiados".html_safe
                         ul.w-hidden-tiny.w-hidden-small.w-list-unstyled.fontsize-smaller.fontweight-semibold.u-margintop-10
 
