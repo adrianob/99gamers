@@ -143,13 +143,14 @@
                               = link_to truncate(link.hostname, length: 30), link.link, target: '_blank', class: 'link-hidden', itemprop: "url"
                         /a.w-button.btn.btn-terciary.btn-small.btn-inline href="javascript:void(0);"  Enviar mensagem
 
-
-
-
   section.section.section-content itemtype="http://schema.org/CreativeWork" 
     .w-container
       .w-row
         #project-about.w-col.w-col-8
+          .w-hidden-main.w-hidden-medium.project-about-highlight
+            .w-container
+              p.w-hidden-main.w-hidden-medium.fontsize-small = @project.headline
+              = link_to 'Leia mais', about_mobile_project_path(@project), class: "alt-link fontsize-small"
           .project-bg.content.w-col.w-col-12
             nav.project-nav.w-hidden-small.w-hidden-tiny
               .w-container
