@@ -79,7 +79,8 @@
                   span.fa.fa-tag
                   |&nbsp;
                   = @project.category
-                button#share-box.btn.btn-small.btn-terciary.btn-inline Compartilhar
+                #share-box.btn-inline = render_facebook_share title: @project.name, href: project_by_slug_url(@project.permalink, locale: I18n.locale, ref: 'facebook')
+                
 
           .w-col.w-col-4
             #project-sidebar.aside
