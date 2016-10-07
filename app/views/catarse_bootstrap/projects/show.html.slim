@@ -92,7 +92,10 @@
                       .fontsize-small.u-text-center-small-only.u-marginbottom-15 anjos apoiadores
                       #pledged.fontsize-jumbo.fontweight-semibold.u-text-center-small-only=@project.display_pledged
                     .meter
-                      = @project.current_goal.try(:decorate).try(:progress_bar)
+                      - if @project.goals.present?
+                        = @project.current_goal.try(:decorate).try(:progress_bar)
+                      - else
+                        = @project.try(:decorate).try(:progress_bar)
                     .w-row.u-margintop-10
                       .w-col.w-col-6.w-col-small-6.w-col-tiny-6
                         .fontsize-small.lineheight-tighter
