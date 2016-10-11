@@ -155,11 +155,11 @@
             .w-container
               p.w-hidden-main.w-hidden-medium.fontsize-small = @project.headline
               = link_to 'Leia mais', about_mobile_project_path(@project), class: "alt-link fontsize-small"
-          .project-bg.content.w-col.w-col-12
+          .project-bg.content.w-col.w-col-12.w-hidden-small.w-hidden-tiny
             nav.project-nav.w-hidden-small.w-hidden-tiny
               .w-container
                 .w-row
-                  .w-col.w-col-9.w-hidden-small.w-hidden-tiny.u-margintop-10.u-marginbottom-20
+                  .w-col.w-col-12.w-hidden-small.w-hidden-tiny.u-margintop-10.u-marginbottom-20
                     = link_to '#about', id: 'about_link', class: 'dashboard-nav-link mf selected ', style: 'float: left', data: {target: '#project_about.content'} do
                       = t('.menu.about')
 
