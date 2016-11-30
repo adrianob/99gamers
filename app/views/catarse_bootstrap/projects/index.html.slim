@@ -65,39 +65,40 @@
 
 
 -hero_project = @recommends.first
-section#hero-home.hero-full.hero-knowmore style=("background-image: url(/assets/GoAngels/rise-of-ages-banner.jpg) !important;display:block;") 
-  article.section.transparent
-    .card-banner
-      .card-banner-description
-        h1.fontweight-semibold.fontsize-base
-          = link_to hero_project.name, project_by_slug_path(permalink: hero_project.permalink), class: 'link-hidden'
-        h2.fontweight-semibold.fontsize-base.u-marginbottom-10
-          = hero_project.tags.map{|tag| tag.name}.join(', ')
-        p
-          = link_to hero_project.headline, project_by_slug_path(permalink: hero_project.permalink), class: 'link-hidden'
-        = link_to 'Quero apoiar', project_by_slug_path(permalink: hero_project.permalink), class: 'btn btn-large btn-inline'
-      .card-banner-info
-        .card-p-stats
-          .w-row
-            .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-angels
-              .fontsize-small.fontweight-bold.a-num= hero_project.total_contributions
-              .fontsize-small.a-angel anjos
-            .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-value
-              .fontsize-small.fontweight-bold=hero_project.display_pledged
-              .fontsize-small levantados
-            .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-days
+- if hero_project
+  section#hero-home.hero-full.hero-knowmore style=("background-image: url(/assets/GoAngels/rise-of-ages-banner.jpg) !important;display:block;") 
+    article.section.transparent
+      .card-banner
+        .card-banner-description
+          h1.fontweight-semibold.fontsize-base
+            = link_to hero_project.name, project_by_slug_path(permalink: hero_project.permalink), class: 'link-hidden'
+          h2.fontweight-semibold.fontsize-base.u-marginbottom-10
+            = hero_project.tags.map{|tag| tag.name}.join(', ')
+          p
+            = link_to hero_project.headline, project_by_slug_path(permalink: hero_project.permalink), class: 'link-hidden'
+          = link_to 'Quero apoiar', project_by_slug_path(permalink: hero_project.permalink), class: 'btn btn-large btn-inline'
+        .card-banner-info
+          .card-p-stats
+            .w-row
+              .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-angels
+                .fontsize-small.fontweight-bold.a-num= hero_project.total_contributions
+                .fontsize-small.a-angel anjos
+              .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-value
+                .fontsize-small.fontweight-bold=hero_project.display_pledged
+                .fontsize-small levantados
+              .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-days
 
-              - unless hero_project.expired?
-                .fontsize-small.fontweight-bold
-                  = "#{hero_project.time_to_go[:time]}  #{hero_project.time_to_go[:unit]}"
-              .fontsize-small
-              = t('projects.card.remaining', count: hero_project.time_to_go[:time])
-            .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-meter
+                - unless hero_project.expired?
+                  .fontsize-small.fontweight-bold
+                    = "#{hero_project.time_to_go[:time]}  #{hero_project.time_to_go[:unit]}"
+                .fontsize-small
+                = t('projects.card.remaining', count: hero_project.time_to_go[:time])
+              .w-col.w-col-3.w-col-small-12.w-col-tiny-12.u-text-center-small-only.a-meter
 
-              .fontsize-small.fontweight-bold="#{hero_project.progress}%"
-              .card-banner-meter.online
-                .meter
-                  = hero_project.progress_bar
+                .fontsize-small.fontweight-bold="#{hero_project.progress}%"
+                .card-banner-meter.online
+                  .meter
+                    = hero_project.progress_bar
 
 section#offers.dark
   article.section.w-container.u-text-center.divider-2
